@@ -1,0 +1,39 @@
+1. jng hapus comment php nya atau comment html yang udah ada, ditambah gpp tpi jangan di hapus
+2. untuk xampp, pengaturan emailnya, copy yang di folder mail ke xampp nya, caranya :
+	copy php.ini ke /xampp/php/ >disini<
+	copy sendmail.ini ke /xampp/sendmail/ >disini<
+
+3. untuk session di bagian header cnth :
+
+<?php
+    #ambil get/post dan olah disini
+    if (isset($_SESSION['loginsalah'])){
+        echo $_SESSION['loginsalah'];
+        #hapus method loginsalah yang tidak digunakan setelah refresh page
+        unset ($_SESSION['loginsalah']);
+    }
+    
+    if (isset($_SESSION['pass_notf'])){
+        echo $_SESSION['pass_notf'];
+        #hapus method loginsalah yang tidak digunakan setelah refresh page
+        unset ($_SESSION['pass_notf']);
+    }
+    unset ($_SESSION['status']);
+?>
+
+yg di echo itulah yang ditampilkan, silahkan modif htmlnya
+apapun yang echo php, silahkan modif bagi yang front end.
+
+php bisa terhubung ke html, contoh :
+
+<?php if (isset($_SESSION['loginsalah'])) { ?>
+<p> <?php echo $_SESSION['loginsalah']; ?> </p>
+<?php } ?>
+
+cara diatas itu kira kira buat edit data php di html yang nantinya bisa ditambahin css.
+
+
+3. Database nya buat sesuia yg di gambar di folder db
+-buat database mtp setelah itu import .sql nya
+
+4.PASSWORD DAN USERNAME = ADMIN, jng ubah database password karena passwordnya di hash/encrypt

@@ -1,0 +1,4 @@
+1. pagination
+2. update dan delete (ajax/tanpa ajax), Disarankan ajax.
+
+sudah di bookmark

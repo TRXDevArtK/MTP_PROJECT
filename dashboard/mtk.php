@@ -45,11 +45,10 @@
                 </div>
             </form>
             <!--PERHATIAN, CSS TABEL DAN ISINYA MASIH MENGGUNAKAN BOOTSTRAP 3.3.7, SILAHKAN KALAU MAU GANTI ATAU MODIF -->
-            <div class="text-center">
+            <div class="text-center" <?php if($total_pages == 1){ echo " hidden"; }?>>
                 <ul class="pagination">
                     <?php 
-                    if(!empty($total_pages) && ($total_pages > 1)){ ?>
-
+                    if(!empty($total_pages)){ ?>
                         <li id="back_page">
                             <a href="#" data-id="" class="page-link" id="bp"> < </a>
                         </li>

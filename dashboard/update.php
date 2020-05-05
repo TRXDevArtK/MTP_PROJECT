@@ -11,10 +11,11 @@ include('database.php');
     $_SESSION['nilai'] = $nilai;
     $_SESSION['idmatkul'] = $idmatkul;
     
-    //TINGGAALLL QUERY LAGI
+    $date = date('d-m-Y');
     
     for($i = 0; $i < count($nim); $i++){
-        mysqli_query($conn2, "UPDATE nilaimtk SET `$idmatkul` = '$nilai[$i]' WHERE nilaimtk.nim = $nim[$i]");
+        $query = "UPDATE `$idmatkul` SET `nilai` = '$nilai[$i]', `tanggal_nilai` = '$date' WHERE `$idmatkul`.`nim` = $nim[$i]";
+        mysqli_query($conn2, $query);
     }
 
 ?>

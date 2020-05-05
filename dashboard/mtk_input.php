@@ -8,7 +8,7 @@
 <?php
     #ID PAGE
 
-    $idmatkul = $_POST['id'];
+    $idmatkul = $_POST['id']."_mtk";
     $nama = $_POST['nama'];
     $semester = $_POST['semester'];
     $thn = $_POST['thn'];
@@ -16,7 +16,7 @@
     $kkm = $_POST['kkm'];
     
     $limit = 20;
-    $query = "SELECT COUNT(*) FROM nilaimtk";  
+    $query = "SELECT COUNT(*) FROM $idmatkul";  
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  
     $total_records = $row[0];  
@@ -77,11 +77,10 @@
                 </div>
             </form>
             <!--PERHATIAN, CSS TABEL DAN ISINYA MASIH MENGGUNAKAN BOOTSTRAP 3.3.7, SILAHKAN KALAU MAU GANTI ATAU MODIF -->
-            <div class="text-center">
+            <div class="text-center" <?php if($total_pages == 1){ echo " hidden"; }?>>
                 <ul class="pagination">
                     <?php 
-                    if(!empty($total_pages) && ($total_pages > 1)){ ?>
-
+                    if(!empty($total_pages)){ ?>
                         <li id="back_page">
                             <a href="#" data-id="" class="page-link" id="bp"> < </a>
                         </li>
@@ -280,7 +279,7 @@ $(document).ready(function(){
         //gunakan fungsi serializearray untuk auto add dengan push
         var serialize = $(this).serializeArray();
         var page = $('#bp2').attr('data-id');
-        serialize.push({name: 'idmatkul', value: <?=$idmatkul?>});
+        serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
         
         if($('.check_box:checked').length > 0)
         {
@@ -290,7 +289,6 @@ $(document).ready(function(){
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    //alert(page);
                     fetch_data_nilaimtk(page-1);
                 }
              })

@@ -7,7 +7,7 @@
     include('database.php');
     
     //Dapatkan data properties
-    $idmatkul = $_POST['idmatkul']."_mtk";
+    $idmatkul = $_POST['idmatkul'];
     
     $limit = $_POST['limit'];
     if (isset($_POST["page"])){ 

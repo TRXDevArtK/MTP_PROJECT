@@ -7,6 +7,7 @@
     
     //Dapatkan data properties
     $idmatkul = $_POST['idmatkul'];
+    $idmatkul = chop($idmatkul,"_mtk");
 
     $query = "select A,B,C,D from descmtk where id = $idmatkul";
     

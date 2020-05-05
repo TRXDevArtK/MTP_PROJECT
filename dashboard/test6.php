@@ -16,13 +16,15 @@
     while($row = mysqli_fetch_array($sql_run)){
         $data[] = $row;
     }
-    
+
     foreach($data as $single_data){
-        $query2 = "SELECT $single_data[0].nim, idmtk.nama, 1122335_mtk.nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id";
-        echo $query2;
-        nl2br();
-        //$sql_run2 = mysqli_query($conn2, $query2);
-        //$datas = mysqli_fetch_array($sql_run2);
-        //echo $single_data[0];
+        $query = "SELECT $single_data[0].nim, idmtk.nama, $single_data[0].nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id AND nim = 1700018014";
+        $sql_run = mysqli_query($conn2, $query);
+        
+        while($row = mysqli_fetch_assoc($sql_run)){
+            $datas[] = $row;
+        }
     }
+    
+    echo json_encode($datas);
 ?>

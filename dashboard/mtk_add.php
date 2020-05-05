@@ -29,11 +29,15 @@ if(isset($_POST['submit']) && !empty($_POST['nama'])){ //check if form was submi
         $query = "INSERT INTO `idmtk` (`id`, `nama`, `semester`, `thn`, `kelas`, `kkm`) VALUES ('$id', '$nama', '$semester', '$thn', '$kelas', '$kkm')";
         mysqli_query($conn2, $query);
         
-        //untuk tabel idmtk
-        $query = "ALTER TABLE `nilaimtk` ADD `$id` CHAR(1) NOT NULL AFTER `nim`";
+        //untuk tabel matakuliah
+        $id_t = $id."_mtk";
+        $query = "CREATE TABLE $id_t (id INT(7) NULL, "
+                . "nim INT(11) PRIMARY KEY, "
+                . "nilai CHAR(1) NULL, "
+                . "tanggal_nilai VARCHAR(15) NULL)";
         mysqli_query($conn2, $query);
         
-        //untuk tabel idmtk
+        //untuk tabel descmtk
         $query = "INSERT INTO `descmtk` (`id`, `A`, `B`, `C`, `D`) VALUES ('$id', '$desca', '$descb', '$descc', '$descd')";
         mysqli_query($conn2, $query);
     }

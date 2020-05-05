@@ -24,10 +24,11 @@
         echo "nope";
     }
     
-    $val = mysqli_query($conn2, "SHOW COLUMNS FROM nilaimtk LIKE '$id'");
+    $id_k = $id."_mtk";
+    $val = mysqli_query($conn2, "SELECT 1 FROM $id_k");
     $exists = mysqli_fetch_assoc($val);
     if($exists){
-        mysqli_query($conn2, "ALTER TABLE nilaimtk DROP `$id`");
+        mysqli_query($conn2, "DROP TABLE $id_k");
     }
     else{
         echo "nope";

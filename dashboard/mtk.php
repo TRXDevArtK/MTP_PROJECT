@@ -1,4 +1,4 @@
-<?php
+b6<?php
     session_start();
     #include sesuatu disini
     include_once "../sql_connect.php";
@@ -6,7 +6,7 @@
 ?>
 
 <?php
-    $limit = 1;
+    $limit = 20;
     $query = "SELECT COUNT(*) FROM idmtk";  
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  

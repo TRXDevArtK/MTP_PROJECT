@@ -5,23 +5,21 @@
         <group>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/update.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/load_nilaimtk.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/test.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_del.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_edit.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_edit.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/test2.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/test4.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/load_descmtk.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/load_idmtk.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/index.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/load_listpeserta.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_add.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/test3.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/index.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_input.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_del.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_update.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/test7.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_data.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/load_peserta2.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta.php</file>
         </group>
     </open-files>

@@ -54,30 +54,30 @@ if(isset($_POST['submit']) && !empty($_POST['nama'])){ //check if form was submi
         <form action="mtk_edit.php" method="post">
             <br><h4>PROFIL MATKUL</h4><br>
             
-            <label>Masukkan nama matkul (Wajib) :</label><br>
+            <label>Masukkan nama matkul:</label><br>
             <input type="text" name="nama" placeholder="e.g : Al-Quran" value="<?php echo $nama;?>"><br>
             <input type="hidden" name="id" value="<?php echo $id;?>" readonly>
-            <label for="lname">Masukkan semester : </label><br>
+            <label>Masukkan semester : </label><br>
             <input type="text" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?php echo $semester;?>"><br>
-            <label for="lname">Masukkan tahun ajar : </label><br>
+            <label>Masukkan tahun ajar : </label><br>
             <input type="text" name="thn" placeholder="e.g : 2019/2020" value="<?php echo $thn;?>"><br>
-            <label for="lname">Masukkan kelas : </label><br>
+            <label>Masukkan kelas : </label><br>
             <input type="text" name="kelas" placeholder="e.g : A, B, C, etc" value="<?php echo $kelas;?>"><br>
-            <label for="lname">Masukkan kkm : </label><br>
+            <label>Masukkan kkm : </label><br>
             <input type="text" name="kkm" placeholder="" value="<?php echo $kkm;?>"><br>
             
             <br><h4>DESKRIPSI NILAI</h4><br>
             
-            <label for="lname">Masukkan Deskripsi Nilai A : </label><br>
+            <label>Masukkan Deskripsi Nilai A : </label><br>
             <input type="text" name="desca" placeholder="" value="<?php echo $desca;?>"><br>
             
-            <label for="lname">Masukkan Deskripsi Nilai B : </label><br>
+            <label>Masukkan Deskripsi Nilai B : </label><br>
             <input type="text" name="descb" placeholder="" value="<?php echo $descb;?>"><br>
             
-            <label for="lname">Masukkan Deskripsi Nilai C : </label><br>
+            <label>Masukkan Deskripsi Nilai C : </label><br>
             <input type="text" name="descc" placeholder="" value="<?php echo $descc;?>"><br>
             
-            <label for="lname">Masukkan Deskripsi Nilai D : </label><br>
+            <label>Masukkan Deskripsi Nilai D : </label><br>
             <input type="text" name="descd" placeholder="" value="<?php echo $descd;?>"><br>
             
             <br>

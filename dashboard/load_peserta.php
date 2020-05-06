@@ -18,12 +18,13 @@
     }
 
     foreach($data as $single_data){
-        $query = "SELECT $single_data[0].nim, idmtk.nama, $single_data[0].nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id AND nim = 1700018014";
+        $query = "SELECT $single_data[0].nim, idmtk.nama, $single_data[0].nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id AND nim = 1700018013";
         $sql_run = mysqli_query($conn2, $query);
         
         while($row = mysqli_fetch_assoc($sql_run)){
             $datas[] = $row;
         }
+        
     }
     
     echo json_encode($datas);

@@ -2,7 +2,7 @@
 
 include_once "database.php";
 
-if(isset($_POST['edit']) && !empty($_POST['nama'])){ //check if form was submitted
+if(isset($_POST['edit']) && !empty($_POST['nama'])){ //check data post
 $id         = $_POST['id'];
 $nama       = $_POST['nama'];
 $semester   = $_POST['semester'];

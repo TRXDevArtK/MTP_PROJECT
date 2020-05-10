@@ -19,7 +19,7 @@
     
     $start_from = ($page-1) * $limit;
 
-    $query = "SELECT $idmatkul.nim, peserta.namafull, $idmatkul.nilai FROM peserta,$idmatkul "
+    $query = "SELECT $idmatkul.nim, peserta.namafull, $idmatkul.tanggal_nilai, $idmatkul.nilai FROM peserta,$idmatkul "
             . "WHERE peserta.nim = $idmatkul.nim LIMIT $start_from,$limit";
     
     $sql_run = mysqli_query($conn2, $query);

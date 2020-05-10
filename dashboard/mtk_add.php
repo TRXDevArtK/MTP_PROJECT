@@ -34,7 +34,7 @@ if(isset($_POST['submit']) && !empty($_POST['nama'])){ //check if form was submi
         $query = "CREATE TABLE $id_t (id INT(7) NULL, "
                 . "nim INT(11) PRIMARY KEY, "
                 . "nilai CHAR(1) NULL, "
-                . "tanggal_nilai VARCHAR(15) NULL)";
+                . "tanggal_nilai VARCHAR(30) NULL)";
         mysqli_query($conn2, $query);
         
         //untuk tabel descmtk

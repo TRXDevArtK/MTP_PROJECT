@@ -26,10 +26,10 @@
     <body>
         <div class="container">  
             <br />
-            <h3 align="center">List Matkul</h3>
+            <h3 align="center">List Peserta</h3>
             <br />
             <div align="left">
-                <a href="mtk_add.php"><input type="button" class="btn btn-info" value="Tambah Matkul" /></a>
+                <a href="peserta_add.php"><input type="button" class="btn btn-info" value="Tambah Peserta" /></a>
             </div>
             <form method="post" id="update_form">
                 <br />
@@ -99,11 +99,12 @@ $(document).ready(function(){
             id = 1;
         }
         $.ajax({
-            url:"load_listpeserta.php",
+            url:"peserta_opr.php",
             method:"POST",
             data:{
                 'limit':'<?=$limit?>',
-                'page':id
+                'page':id,
+                'key':'load'
             },
             dataType:"json",
             error: function (xhr, status) {
@@ -121,12 +122,12 @@ $(document).ready(function(){
                     html += '<td>'+data[count].nim+'</td>';
                     html += '<td>'+data[count].namafull+'</td>';
                     html += '<td>\n\
-                                <i></i><form action="peserta_data.php" method="post" class="pull-left">\n\
+                                <i></i><form action="peserta_data.php" method="post" class="pull-left" style="margin-right : 10px">\n\
                                             <input type="hidden" name="nim" value="'+data[count].nim+'" readonly>\n\
                                             <input type="hidden" name="namafull" value="'+data[count].namafull+'" readonly>\n\
-                                            <input type="submit">\n\
+                                            <input type="submit" value="Data Peserta" class="btn btn-primary">\n\
                                         </form>\n\
-                                <i></i><input type="button" class="pull-left" id="peserta_hapus" id_s="'+data[count].nim+'"value="Hapus Peserta">\n\
+                                <i></i><input type="button" class="pull-left btn btn-danger" id="peserta_hapus" id_s="'+data[count].nim+'"value="Hapus Peserta">\n\
                             </td></tr>';
                     //console.log(data[count].id);
                     
@@ -180,10 +181,11 @@ $(document).ready(function(){
         var page = $('#bp2').attr('data-id');
         if(submit == "YAKIN"){
           $.ajax({
-                url:"peserta_del.php",
+                url:"peserta_opr.php",
                 method:"POST",
                 data : {
-                    nim : id
+                    nim : id,
+                    'key':'delete'
                 },
                 //dataType:"json",
                 success:function(data){

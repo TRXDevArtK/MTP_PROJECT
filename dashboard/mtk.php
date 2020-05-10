@@ -1,4 +1,4 @@
-b6<?php
+<?php
     session_start();
     #include sesuatu disini
     include_once "../sql_connect.php";
@@ -98,11 +98,12 @@ $(document).ready(function(){
             id = 1;
         }
         $.ajax({
-            url:"load_idmtk.php",
+            url:"mtk_opr.php",
             method:"POST",
             data:{
                 'limit':'<?=$limit?>',
-                'page':id
+                'page':id,
+                'key':'load'
             },
             dataType:"json",
             error: function (xhr, status) {
@@ -120,16 +121,11 @@ $(document).ready(function(){
                     html += '<td>'+data[count].nama+'</td>';
                     //html += '<td><button id="soak">SOAK</button></td>';
                     html += '<td>\n\
-                                <i></i><form action="mtk_input.php" method="post" class="pull-left">\n\
+                                <i></i><form action="mtk_data.php" method="post" class="pull-left">\n\
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
-                                            <input type="hidden" name="nama" value="'+data[count].nama+'" readonly>\n\
-                                            <input type="hidden" name="semester" value="'+data[count].semester+'" readonly>\n\
-                                            <input type="hidden" name="thn" value="'+data[count].thn+'" readonly>\n\
-                                            <input type="hidden" name="kelas" value="'+data[count].kelas+'" readonly>\n\
-                                            <input type="hidden" name="kkm" value="'+data[count].kkm+'" readonly>\n\
-                                            <input type="submit" value="Input Nilai">\n\
+                                            <input type="submit" value="Input Nilai" class="btn btn-primary" style="margin-right:10px">\n\
                                         </form>\n\
-                                <i></i><input type="button" class="pull-left" id="mtk_hapus" id_s="'+data[count].id+'"value="Hapus Matkul">\n\
+                                <i></i><input type="button" class="pull-left btn btn-danger" id="mtk_hapus" id_s="'+data[count].id+'"value="Hapus Matkul" style="margin-right:10px">\n\
                                 <i></i><form action="mtk_edit.php" method="post" class="pull-left">\n\
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
                                             <input type="hidden" name="nama" value="'+data[count].nama+'" readonly>\n\
@@ -137,7 +133,7 @@ $(document).ready(function(){
                                             <input type="hidden" name="thn" value="'+data[count].thn+'" readonly>\n\
                                             <input type="hidden" name="kelas" value="'+data[count].kelas+'" readonly>\n\
                                             <input type="hidden" name="kkm" value="'+data[count].kkm+'" readonly>\n\
-                                            <input type="submit" name="edit" value="Edit Data Matkul">\n\
+                                            <input type="submit" name="edit" value="Edit Data Matkul" class="btn btn-info">\n\
                                         </form>\n\
                             </td></tr>';
                     //console.log(data[count].id);
@@ -192,10 +188,11 @@ $(document).ready(function(){
         var page = $('#bp2').attr('data-id');
         if(submit == "YAKIN"){
           $.ajax({
-                url:"mtk_del.php",
+                url:"mtk_opr.php",
                 method:"POST",
                 data : {
-                    id : id
+                    id : id,
+                    'key':'delete'
                 },
                 //dataType:"json",
                 success:function(data){

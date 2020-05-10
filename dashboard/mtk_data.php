@@ -8,12 +8,28 @@
 <?php
     #ID PAGE
 
-    $idmatkul = $_POST['id']."_mtk";
-    $nama = $_POST['nama'];
-    $semester = $_POST['semester'];
-    $thn = $_POST['thn'];
-    $kelas = $_POST['kelas'];
-    $kkm = $_POST['kkm'];
+    
+    if(isset($_SESSION['id'])){
+        $idmatkul = $_SESSION['id']."_mtk";
+        unset($_SESSION['id']);
+    }
+    else if(isset($_POST['id'])){
+        $idmatkul = $_POST['id']."_mtk";
+    }
+    else{
+        header('Location:mtk.php');
+    }
+    
+    $id_chp = chop($idmatkul,"_mtk");
+    $query = "SELECT nama,semester,thn,kelas,kkm FROM idmtk WHERE id = $id_chp";
+    $sql_run = mysqli_query($conn2, $query);
+    $row = mysqli_fetch_assoc($sql_run);
+    
+    $nama = $row['nama'];
+    $semester = $row['semester'];
+    $thn = $row['thn'];
+    $kelas = $row['kelas'];
+    $kkm = $row['kkm'];
     
     $limit = 20;
     $query = "SELECT COUNT(*) FROM $idmatkul";  
@@ -48,28 +64,42 @@
     </head>
     <body>
         <div class="container">
-            <ul>
-                <li>Matkul : <?php echo $nama;?></li>
-                <li>Semester : <?php echo $semester;?></li>
-                <li>Tahun Ajaran : <?php echo $thn;?></li>
-                <li>Kelas : <?php echo $kelas;?></li>
-                <li>KKM : <?php echo $kkm;?></li>
+            <div class="page-header text-center">
+                <h3>Data Matkul</h3>      
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">Matkul : <?php echo $nama;?></li>
+                <li class="list-group-item">Semester : <?php echo $semester;?></li>
+                <li class="list-group-item">Tahun Ajaran : <?php echo $thn;?></li>
+                <li class="list-group-item">Kelas : <?php echo $kelas;?></li>
+                <li class="list-group-item">KKM : <?php echo $kkm;?></li>
             </ul>
-            <br />
-            <h3 align="center">List Nilai Matkul Al-Quran</h3>
-            <br />
-            <form method="post" id="update_form">
-                <div align="left">
-                    <input type="submit" name="multiple_update" id="multiple_update" class="btn btn-info" value="Multiple Update" />
-                </div>
+            
+            <div class="page-header text-center">
+                <h3>List Nilai Matkul</h3>      
+            </div>
+            
+            <form action="mtk_pes_add.php" method="post">
+                <input type="hidden" name="idmatkul" value="<?= $idmatkul ?>"/>
+                <input type="submit" name="add_pes" id="add" class="btn btn-success" value="Tambah Peserta" />
+            </form>
+            
+            <div align="left">
+                <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
+                <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Hapus Data Yang Dipilih" />
+            </div>
+            
+            <form method="post" id="form_data">
+                <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->
                 <br />
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <th width="5%">Pilih</th>
-                            <th width="10%">No</th>
-                            <th width="15%">NIM</th>
-                            <th width="30%">Nama</th>
+                            <th width="5%">No</th>
+                            <th width="5%">NIM</th>
+                            <th width="15%">Nama</th>
+                            <th width="30%">Waktu & Tanggal Penilaian</th>
                             <th width="10%">Nilai</th>
                         </thead>
                         <tbody id="tbody"></tbody>
@@ -114,7 +144,9 @@
                     ?>
                 </ul>
             </div>
-            <h3 align="center">Deskripsi Nilai</h3>
+            <div class="page-header text-center">
+                <h3>Deskripsi Nilai</h3>      
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -143,13 +175,14 @@ $(document).ready(function(){
             id = 1;
         }
         $.ajax({
-            url:"load_nilaimtk.php",
+            url:"mtk_data_opr.php",
             method:"POST",
             /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
             data:{
                 'idmatkul': '<?=$idmatkul?>',
                 'limit':'<?=$limit?>',
-                'page':id
+                'page':id,
+                'key':'load_nilai'
             },
             dataType:"json",
             success:function(data)
@@ -159,10 +192,11 @@ $(document).ready(function(){
                 for(count; count < data.length; count++)
                 {
                     html += '<tr>';
-                    html += '<td><input type="checkbox" no="'+(count+1)+'" nim="'+data[count].nim+'" namafull="'+data[count].namafull+'" nilai="'+data[count].nilai+'" class="check_box"  /></td>';
+                    html += '<td><input type="checkbox" no="'+(count+1)+'" nim="'+data[count].nim+'" namafull="'+data[count].namafull+'" tanggal_nilai="'+data[count].tanggal_nilai+'" nilai="'+data[count].nilai+'" class="check_box"  /></td>';
                     html += '<td>'+(count+1)+'</td>';
                     html += '<td>'+data[count].nim+'</td>';
                     html += '<td>'+data[count].namafull+'</td>';
+                    html += '<td>'+data[count].tanggal_nilai+'</td>';
                     html += '<td>'+data[count].nilai+'</td></tr>';
                 }
                 
@@ -183,11 +217,12 @@ $(document).ready(function(){
     function fetch_data_descmtk()
     {
         $.ajax({
-            url:"load_descmtk.php",
+            url:"mtk_data_opr.php",
             method:"POST",
             /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
             data:{
-                'idmatkul': '<?=$idmatkul?>'
+                'idmatkul': '<?=$idmatkul?>',
+                'key':'load_dsc'
             },
             dataType:"json",
             success:function(data)
@@ -244,15 +279,14 @@ $(document).ready(function(){
     
     $(document).on('click', '.check_box', function(){
         var html = '';
-        alert($(this).attr('nilai'));
         if(this.checked)
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" checked /></td>';
             html += '<td>'+$(this).attr("no")+'</td>';
             html += '<td>'+$(this).attr("nim")+'<input type="hidden" name="nim[]" class="form-control" value="'+$(this).attr("nim")+'" readonly/></td>';
             html += '<td>'+$(this).attr("namafull")+'</td>';
-            
-            html += '<td><select name="nilai[]" class="form-control" id="options">\n\
+            html += '<td>'+$(this).attr("tanggal_nilai")+'</td>';
+            html += '<td><select name="nilai[]" class="form-control" id="options'+$(this).attr('no')+'">\n\
                     <option value="A">A</option>\n\
                     <option value="B">B</option>\n\
                     <option value="C">C</option>\n\
@@ -261,30 +295,57 @@ $(document).ready(function(){
         }
         else
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" /></td>';
             html += '<td>'+$(this).attr('no')+'</td>';
             html += '<td>'+$(this).attr('nim')+'</td>';
             html += '<td>'+$(this).attr('namafull')+'</td>';
+            html += '<td>'+$(this).attr("tanggal_nilai")+'</td>';
             html += '<td>'+$(this).attr('nilai')+'</td>';
         }
         $(this).closest('tr').html(html);
         
         //SET option sesuai dengan database awal
-        $("#options").val($(this).attr('nilai'));
+        $("#options"+$(this).attr('no')).val($(this).attr('nilai'));
     });
     
-    $('#update_form').on('submit', function(event){
+    $('#update').on('click', function(event){
         event.preventDefault();
         
         //gunakan fungsi serializearray untuk auto add dengan push
-        var serialize = $(this).serializeArray();
+        //Catatan : Serialize butuh form
+        var serialize = $("#form_data").serializeArray();
         var page = $('#bp2').attr('data-id');
         serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
+        serialize.push({name: 'key', value: 'update'});
         
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"update.php",
+                url:"mtk_data_opr.php",
+                method:"POST",
+                data:$.param(serialize),
+                success:function(data)
+                {
+                    fetch_data_nilaimtk(page-1);
+                }
+             })
+        }
+    });
+    
+    $('#delete').on('click', function(event){
+        event.preventDefault();
+        
+        //gunakan fungsi serializearray untuk auto add dengan push
+        //Catatan : Serialize butuh form
+        var serialize = $("#form_data").serializeArray();
+        var page = $('#bp2').attr('data-id');
+        serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
+        serialize.push({name: 'key', value: 'delete'});
+        
+        if($('.check_box:checked').length > 0)
+        {
+            $.ajax({
+                url:"mtk_data_opr.php",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)

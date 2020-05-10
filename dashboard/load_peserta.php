@@ -4,6 +4,8 @@
     session_start();
 
     include('database.php');
+    
+    $nim = $_POST['nim'];
    
     $query = "SELECT count(*) AS number_table from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '%_______mtk'";
     $sql_run = mysqli_query($conn2, $query);
@@ -18,13 +20,12 @@
     }
 
     foreach($data as $single_data){
-        $query = "SELECT $single_data[0].nim, idmtk.nama, $single_data[0].nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id AND nim = 1700018013";
+        $query = "SELECT $single_data[0].id, idmtk.nama, $single_data[0].nilai, $single_data[0].tanggal_nilai FROM $single_data[0],idmtk WHERE $single_data[0].id = idmtk.id AND nim = $nim";
         $sql_run = mysqli_query($conn2, $query);
         
         while($row = mysqli_fetch_assoc($sql_run)){
             $datas[] = $row;
         }
-        
     }
     
     echo json_encode($datas);

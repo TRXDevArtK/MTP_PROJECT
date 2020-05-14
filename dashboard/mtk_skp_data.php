@@ -8,33 +8,30 @@
 
 <?php
     #ID PAGE
-
-    $mtk = "mtk";
+    
+    $mtk = "skp";
     
     if(isset($_SESSION['id'])){
-        $idmatkul = $_SESSION['id']."_mtk";
+        $idmatkul = $_SESSION['id']."_skp_mtk";
         unset($_SESSION['id']);
     }
     else if(isset($_POST['id'])){
-        $idmatkul = $_POST['id']."_mtk";
+        $idmatkul = $_POST['id']."_skp_mtk";
     }
     else{
-        header('Location:mtk.php');
+        header('Location:mtk_skp.php');
     }
     
-    $id_chp = chop($idmatkul,"_mtk");
-    $query = "SELECT nama,semester,thn,kelas,kkm FROM idmtk WHERE id = $id_chp";
+    $id_chp = chop($idmatkul,"_skp_mtk");
+    
+    $query = "SELECT nama FROM idmtk_skp WHERE id = $id_chp";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
     
     $nama = $row['nama'];
-    $semester = $row['semester'];
-    $thn = $row['thn'];
-    $kelas = $row['kelas'];
-    $kkm = $row['kkm'];
     
     $limit = 20;
-    $query = "SELECT COUNT(*) FROM $idmatkul";  
+    $query = "SELECT COUNT(*) FROM ".$idmatkul."";
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  
     $total_records = $row[0];  
@@ -67,14 +64,10 @@
     <body>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Data Matkul</h3>      
+                <h3>Data Matkul Sikap</h3>      
             </div>
             <ul class="list-group">
                 <li class="list-group-item">Matkul : <?php echo $nama;?></li>
-                <li class="list-group-item">Semester : <?php echo $semester;?></li>
-                <li class="list-group-item">Tahun Ajaran : <?php echo $thn;?></li>
-                <li class="list-group-item">Kelas : <?php echo $kelas;?></li>
-                <li class="list-group-item">KKM : <?php echo $kkm;?></li>
             </ul>
             
             <div class="page-header text-center">

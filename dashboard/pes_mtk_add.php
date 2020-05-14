@@ -1,8 +1,15 @@
 <?php
 
-include('database.php');
+    include('database.php');
+
+    $nim = $_POST['nim'];
     
-$nim = $_POST['nim'];
+    if(isset($_POST['mtk'])){
+        $mtk = $_POST['mtk'];
+    }
+    else{
+        $mtk = null;
+    }
   
 ?>
 
@@ -10,9 +17,9 @@ $nim = $_POST['nim'];
     <head>
         <!--Metadata-->
         <meta charset="UTF-8">
-        <script src="../scripts/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap337.min.css" />  
-        <script src="../scripts/bootstrap.js"></script>  
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
@@ -56,17 +63,18 @@ $(document).ready(function(){
             method:"POST",
             data:{
                 'nim':'<?=$nim?>',
-                'key':'load'
+                'key':'load',
+                'mtk':'<?=$mtk?>'
             },
             dataType:"json",
             error: function (xhr, status) {
                 //set tidak ada isi jika error ATAU DATA = 0 (NULL) atau data tidak terbaca
                 var html = '';
                 $('tbody').html(html);
+                alert(JSON.stringify(xhr));
             },
             success:function(data)
             {
-                console.log(data);
                 var html = '';
                 var count = 0;
                 for(count; count < data.length; count++){
@@ -124,7 +132,7 @@ $(document).ready(function(){
         var serialize = $("#form_data").serializeArray();
         serialize.push({name: 'nim', value: '<?=$nim?>'});
         serialize.push({name: 'key', value: 'submit'});
-        
+        serialize.push({name: 'mtk', value: '<?=$mtk?>'});
         //alert($.param(serialize));
         
         if($('.check_box:checked').length > 0){
@@ -134,6 +142,7 @@ $(document).ready(function(){
                 data:$.param(serialize),
                 success:function(data)
                 {
+                    
                     var url = "peserta_data.php";
                     $(location).attr('href',url);
                     //fetch_data_mtk();

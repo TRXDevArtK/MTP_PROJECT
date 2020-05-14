@@ -14,7 +14,7 @@
 
         $start_from = ($page-1) * $limit;  
 
-        $query = "SELECT * FROM idmtk limit $start_from,$limit";
+        $query = "SELECT * FROM idmtk_skp limit $start_from,$limit";
 
         $sql_run = mysqli_query($conn2, $query);
 
@@ -31,10 +31,10 @@
     if(isset($_POST['key']) && $_POST['key'] == 'delete'){
         $id = $_POST['id'];
 
-        $val = mysqli_query($conn2, "select 1 from idmtk where id = $id LIMIT 1");
+        $val = mysqli_query($conn2, "select 1 from idmtk_skp where id = $id LIMIT 1");
         $val = mysqli_fetch_assoc($val);
         if($val[1] == 1){
-            mysqli_query($conn2, "DELETE FROM idmtk WHERE idmtk.id = $id");
+            mysqli_query($conn2, "DELETE FROM idmtk_skp WHERE idmtk_skp.id = $id");
         }
         else{
             echo "nope";
@@ -49,7 +49,7 @@
             echo "nope";
         }
 
-        $id_k = $id."_mtk";
+        $id_k = $id."_skp_mtk";
         mysqli_query($conn2, "DROP TABLE IF EXISTS $id_k");
 
     }

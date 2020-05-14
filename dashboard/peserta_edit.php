@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include_once "database.php";
 
 if(isset($_POST['edit']) && !empty($_POST['nim'])){
@@ -14,6 +13,12 @@ if(isset($_POST['edit']) && !empty($_POST['nim'])){
     $fakultas = $_POST['fakultas'];
     $universitas = $_POST['universitas'];
     $alamat = $_POST['alamat'];
+    $nama_ayah = $_POST['nama_ayah'];
+    $nama_ibu = $_POST['nama_ibu'];
+    $kerja_ayah = $_POST['kerja_ayah'];
+    $kerja_ibu = $_POST['kerja_ibu'];
+    $essai = $_POST['essai'];
+    $periode = $_POST['periode'];
     
     if($jk == "Perempuan"){
         $jk = "P";
@@ -35,11 +40,18 @@ if(isset($_POST['submit'])){ //check if form was submitted
     $fakultas = $_POST['fakultas'];
     $universitas = $_POST['universitas'];
     $alamat = $_POST['alamat'];
+    $nama_ayah = $_POST['nama_ayah'];
+    $nama_ibu = $_POST['nama_ibu'];
+    $kerja_ayah = $_POST['kerja_ayah'];
+    $kerja_ibu = $_POST['kerja_ibu'];
+    $essai = $_POST['essai'];
+    $periode = $_POST['periode'];
     
     //Edit data peserta
     $query = "UPDATE `peserta` SET `namafull` = '$namafull', `namapanggil` = '$namapanggil', `notelp` = '$notelp', "
             . "`tempat` = '$tempat', `tanggal` = '$tanggal', `jk` = '$jk', `fakultas` = '$fakultas', "
-            . "`universitas` = '$universitas', `alamat` = '$alamat' WHERE `peserta`.`nim` = $nim";
+            . "`universitas` = '$universitas', `alamat` = '$alamat', `nama_ayah` = '$nama_ayah', `nama_ibu` = '$nama_ibu', "
+            . "`kerja_ayah` = '$kerja_ayah', `kerja_ibu` = '$kerja_ibu', `essai` = '$essai', `periode` = '$periode' WHERE `peserta`.`nim` = $nim";
     mysqli_query($conn2, $query);
     
     $_SESSION['nim'] = $nim;
@@ -49,46 +61,114 @@ if(isset($_POST['submit'])){ //check if form was submitted
 ?>
 
 <html>
-    <head></head>
+    <head>
+        <!--Metadata-->
+        <meta charset="UTF-8">
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
+        <title></title>
+    </head>
     <body>
-        <form action="peserta_edit.php" method="post">
-            <br><h4>PROFIL PESERTA</h4><br>
-            
-            <input type="hidden" name="nim" value="<?php echo $nim;?>" readonly>
-            
-            <label>Masukkan nama peserta :</label><br>
-            <input type="text" name="namafull" placeholder="e.g : Fulan Fulan" value="<?php echo $namafull;?>"><br>
-            
-            <label>Masukkan Nama Panggil : </label><br>
-            <input type="text" name="namapanggil" placeholder="e.g : Fulan" value="<?php echo $namapanggil;?>"><br>
-            
-            <label>Masukkan Nomor Telepon : </label><br>
-            <input type="text" name="notelp" placeholder="e.g : 085212413135" value="<?php echo $notelp;?>"><br>
-            
-            <label>Masukkan Tempat Lahir : </label><br>
-            <input type="text" name="tempat" placeholder="e.g : Jl. Fulan belakang" value="<?php echo $tempat;?>"><br>
-            
-            <label>Masukkan Tanggal Lahir (FORMAT : DD-MM-YYYY): </label><br>
-            <input type="text" name="tanggal" placeholder="e.g : 08-07-2020" value="<?php echo $tanggal;?>"><br>
-            
-            <label>Masukkan Jenis Kelamin : </label><br>
-            <select name="jk">
-                <option value="P" <?php if($jk = 'P'){echo "selected"; }?> >Perempuan</option>
-                <option value="L" <?php if($jk = 'L'){echo "selected"; }?> >Laki-laki</option>
-            </select><br>
-            
-            <label>Masukkan Fakultas : </label><br>
-            <input type="text" name="fakultas" placeholder="e.g : Farmasi" value="<?php echo $fakultas;?>"><br>
-            
-            <label>Masukkan Universitas : </label><br>
-            <input type="text" name="universitas" placeholder="e.g : Universitas Ahmad Dahlan" value="<?php echo $universitas;?>"><br>
-            
-            <label>Masukkan Alamat : </label><br>
-            <input type="text" name="alamat" placeholder="e.g : Jl. Taman Sari" value="<?php echo $alamat;?>"><br>
-            
-            <br>
-            <input type="submit" name="submit">
-        </form>
+        <div class="container">
+            <div class="page-header text-center">
+                <h3>Profil Peserta</h3>      
+            </div>
+              
+            <br></br>
+            <form action="peserta_edit.php" method="post">
+                <!--Konten Hidden-->
+                <input type="hidden" name="nim" value="<?php echo $nim;?>" readonly>
+                <!-- -->
+                
+                <div class="form-group">
+                    <label>Nama Peserta :</label>
+                    <input type="text" class="form-control" name="namafull" placeholder="e.g : Fulan Fulan" value="<?php echo $namafull;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nama Panggil :</label>
+                    <input type="text" class="form-control" name="namapanggil" placeholder="e.g : Fulan" value="<?php echo $namapanggil;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nomor Telepon : </label>
+                    <input type="number" class="form-control" name="notelp" placeholder="e.g : 085212413135" value="<?php echo $notelp;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Tempat Lahir : </label>
+                    <input type="text" class="form-control" name="tempat" placeholder="e.g : Jl. Fulan belakang" value="<?php echo $tempat;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Tanggal Lahir (FORMAT : DD-MM-YYYY) : </label>
+                    <input type="date" class="form-control" name="tanggal" placeholder="e.g : 08-07-2020" value="<?php echo $tanggal;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Jenis Kelamin : </label>
+                    <label class="radio-inline"><input type="radio" name="jk" value="L" <?php if($jk = 'L'){echo "checked"; }?> >Laki-Laki</label>
+                    <label class="radio-inline"><input type="radio" name="jk" value="P" <?php if($jk = 'P'){echo "checked"; }?> >Perempuan</label>
+                </div>
+                
+                <div class="form-group">
+                    <label>Fakultas : </label>
+                    <input type="text" class="form-control" name="fakultas" placeholder="e.g : Farmasi" value="<?php echo $fakultas;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Universitas : </label>
+                    <input type="text" class="form-control" name="universitas" placeholder="e.g : Universitas Ahmad Dahlan" value="<?php echo $universitas;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Alamat : </label>
+                    <input type="text" class="form-control" name="alamat" placeholder="e.g : Jl. Taman Sari" value="<?php echo $alamat;?>">
+                </div>
+               
+                <div class="page-header text-center">
+                    <h3>Data Orang Tua</h3>      
+                </div>
+                
+                <div class="form-group">
+                    <label>Nama Ayah : </label>
+                    <input type="text" class="form-control" name="nama_ayah" placeholder="e.g : Fulan" value="<?php echo $nama_ayah;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nama Ibu : </label>
+                    <input type="text" class="form-control" name="nama_ibu" placeholder="e.g : Fulan" value="<?php echo $nama_ibu;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Kerja Ayah : </label>
+                    <input type="text" class="form-control" name="kerja_ayah" placeholder="e.g : Bisnis . . ." value="<?php echo $kerja_ayah;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Kerja Ibu : </label>
+                    <input type="text" class="form-control" name="kerja_ibu" placeholder="e.g : IRT" value="<?php echo $kerja_ibu;?>">
+                </div>
+                
+                <div class="page-header text-center">
+                    <h3>Data Akademik</h3>      
+                </div>
+                
+                <div class="form-group">
+                    <label>Nama Essai : </label>
+                    <input type="text" class="form-control" name="essai" placeholder="e.g : Ibu Rumah Tangga, etc" value="<?php echo $essai;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Periode : </label>
+                    <input type="text" class="form-control" name="periode" placeholder="e.g : 2019/2020" value="<?php echo $periode;?>">
+                </div>
+                
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Update / Submit">
+                
+            </form>
+        </div>
     </body>
 </html>
 

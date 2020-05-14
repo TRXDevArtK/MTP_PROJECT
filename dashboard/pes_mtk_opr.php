@@ -1,60 +1,85 @@
 <?php
-session_start();
-include('database.php');
     
-//LOAD DATA
-if(isset($_POST['key']) && $_POST['key'] == 'load'){
-    $nim = $_POST['nim'];
-    //CEK APABILA PESERTA SUDAH ADA DI TABEL MATKUL (OPERASI)
-    $query = "SHOW TABLES LIKE '%_______mtk'";
-    $sql_run = mysqli_query($conn2, $query);
+    include('database.php');
 
-    while($row = mysqli_fetch_array($sql_run)){
-        $data[] = $row;
-    }
-
-    $itung = count($data);
-
-    for($i=0;$i < $itung;$i++){
-        $query = "select *from ".$data[$i][0]." where nim = '$nim'";
+    //LOAD DATA
+    if(isset($_POST['key']) && $_POST['key'] == 'load'){
+        $nim = $_POST['nim'];
+        //CEK APABILA PESERTA SUDAH ADA DI TABEL MATKUL (OPERASI)
+        
+        if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
+            $u_mtk = "%_______skp_mtk";
+            $t_mtk = "idmtk_skp";
+            $c_mtk = "_skp_mtk";
+            $semester = "";
+        }
+        else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
+            $u_mtk = "%_______mtk";
+            $t_mtk = "idmtk";
+            $c_mtk = "_mtk";
+            $semester = ",semester";
+        }
+        
+        $query = "SHOW TABLES LIKE '$u_mtk'";
         $sql_run = mysqli_query($conn2, $query);
+        
+        $data = array();
+        while($row = mysqli_fetch_array($sql_run)){
+            $data[] = $row;
+        }
 
-        if(mysqli_num_rows($sql_run)==0){
-            $idmatkul = chop($data[$i][0],"_mtk");
-            $data_1[] = $idmatkul;
+        $itung = count($data);
+        
+        $data_1 = array();
+        for($i=0;$i < $itung;$i++){
+            $query = "select *from ".$data[$i][0]." where nim = '$nim'";
+            $sql_run = mysqli_query($conn2, $query);
+
+            if(mysqli_num_rows($sql_run)==0){
+                $idmatkul = chop($data[$i][0],$c_mtk);
+                $data_1[] = $idmatkul;
+            }
+            else{
+                //$data -= NULL;
+            }
         }
-        else{
-            //$data -= NULL;
+        
+        $data_2 = array();
+        foreach($data_1 as $single_data){
+            $query = "SELECT id,nama$semester FROM $t_mtk where id = '$single_data'";
+            $sql_run = mysqli_query($conn2, $query);
+
+            while($row = mysqli_fetch_assoc($sql_run)){
+                $data_2[] = $row;
+            }
         }
+
+        echo json_encode($data_2);
+
     }
 
-    foreach($data_1 as $single_data){
-        $query = "SELECT id,nama,semester FROM idmtk where id = $single_data";
-        $sql_run = mysqli_query($conn2, $query);
-
-        while($row = mysqli_fetch_assoc($sql_run)){
-            $data_2[] = $row;
+    //PILIH MATKUL
+    if(isset($_POST['key']) && $_POST['key'] == 'submit'){
+        $id = $_POST['id'];
+        $nim = $_POST['nim'];
+        
+        if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
+            $c_mtk = "_skp_mtk";
         }
+        else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
+            $c_mtk = "_mtk";
+        }
+
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('G:i - d/M/Y');
+
+        for($i=0;$i < count($id);$i++){
+            $query = "INSERT INTO `".$id[$i].$c_mtk."` (`id`, `nim`, `nilai`, `tanggal_nilai`) VALUES ('$id[$i]', '$nim', '', '$date')";
+            mysqli_query($conn2,$query);
+        }
+
+        $_SESSION['nim'] = $nim;
     }
-
-    echo json_encode($data_2);
-
-}
-
-//PILIH MATKUL
-if(isset($_POST['key']) && $_POST['key'] == 'submit'){
-    $id = $_POST['id'];
-    $nim = $_POST['nim'];
-
-    date_default_timezone_set('Asia/Jakarta');
-    $date = date('G:i - d/M/Y');
     
-    for($i=0;$i < count($id);$i++){
-        $query = "INSERT INTO `$id[$i]_mtk` (`id`, `nim`, `nilai`, `tanggal_nilai`) VALUES ('$id[$i]', '$nim', '', '$date')";
-        mysqli_query($conn2,$query);
-    }
-    
-    $_SESSION['nim'] = $nim;
-}
 ?>
 

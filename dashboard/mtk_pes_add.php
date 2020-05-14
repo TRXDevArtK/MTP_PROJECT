@@ -1,8 +1,15 @@
 <?php
 
-include('database.php');
+    include('database.php');
+
+    $idmatkul = $_POST['idmatkul'];
     
-$idmatkul = $_POST['idmatkul'];
+    if(isset($_POST['mtk'])){
+        $mtk = $_POST['mtk'];
+    }
+    else{
+        $mtk = null;
+    }
   
 ?>
 
@@ -10,9 +17,9 @@ $idmatkul = $_POST['idmatkul'];
     <head>
         <!--Metadata-->
         <meta charset="UTF-8">
-        <script src="../scripts/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap337.min.css" />  
-        <script src="../scripts/bootstrap.js"></script>  
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
@@ -121,6 +128,7 @@ $(document).ready(function(){
         var serialize = $("#form_data").serializeArray();
         serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
         serialize.push({name: 'key', value: 'submit'});
+        serialize.push({name: 'mtk', value: '<?=$mtk?>'});
         
         //alert($.param(serialize));
         
@@ -131,7 +139,12 @@ $(document).ready(function(){
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    var url = "mtk_data.php";
+                    var url = "";
+                    <?php if($mtk == 'skp'){?>
+                        url = "mtk_skp_data.php";
+                    <?php } else if($mtk == 'mtk'){?>
+                        url = "mtk_data.php";
+                    <?php } ?>
                     $(location).attr('href',url);
                     //fetch_data_mtk();
                 }

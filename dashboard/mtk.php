@@ -1,5 +1,4 @@
 <?php
-    session_start();
     #include sesuatu disini
     include_once "../sql_connect.php";
     include_once "database.php";
@@ -16,11 +15,11 @@
 
 <html>
     <head>
-         <!--Metadata-->
+        <!--Metadata-->
         <meta charset="UTF-8">
-        <script src="../scripts/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap337.min.css" />  
-        <script src="../scripts/bootstrap.js"></script>  
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>

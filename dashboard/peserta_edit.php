@@ -1,63 +1,63 @@
 <?php
     include_once "database.php";
 
-if(isset($_POST['edit']) && !empty($_POST['nim'])){
-    
-    $nim = $_POST['nim'];
-    $namafull = $_POST['namafull'];
-    $namapanggil = $_POST['namapanggil'];
-    $notelp = $_POST['notelp'];
-    $tempat = $_POST['tempat'];
-    $tanggal = $_POST['tanggal'];
-    $jk = $_POST['jk'];
-    $fakultas = $_POST['fakultas'];
-    $universitas = $_POST['universitas'];
-    $alamat = $_POST['alamat'];
-    $nama_ayah = $_POST['nama_ayah'];
-    $nama_ibu = $_POST['nama_ibu'];
-    $kerja_ayah = $_POST['kerja_ayah'];
-    $kerja_ibu = $_POST['kerja_ibu'];
-    $essai = $_POST['essai'];
-    $periode = $_POST['periode'];
-    
-    if($jk == "Perempuan"){
-        $jk = "P";
-    }
-    else if($jk == "Laki-laki"){
-        $jk = "L";
-    }
-  
-}
+    if(isset($_POST['edit']) && !empty($_POST['nim'])){
 
-if(isset($_POST['submit'])){ //check if form was submitted
-    $nim = $_POST['nim'];
-    $namafull = $_POST['namafull'];
-    $namapanggil = $_POST['namapanggil'];
-    $notelp = $_POST['notelp'];
-    $tempat = $_POST['tempat'];
-    $tanggal = $_POST['tanggal'];
-    $jk = $_POST['jk'];
-    $fakultas = $_POST['fakultas'];
-    $universitas = $_POST['universitas'];
-    $alamat = $_POST['alamat'];
-    $nama_ayah = $_POST['nama_ayah'];
-    $nama_ibu = $_POST['nama_ibu'];
-    $kerja_ayah = $_POST['kerja_ayah'];
-    $kerja_ibu = $_POST['kerja_ibu'];
-    $essai = $_POST['essai'];
-    $periode = $_POST['periode'];
-    
-    //Edit data peserta
-    $query = "UPDATE `peserta` SET `namafull` = '$namafull', `namapanggil` = '$namapanggil', `notelp` = '$notelp', "
-            . "`tempat` = '$tempat', `tanggal` = '$tanggal', `jk` = '$jk', `fakultas` = '$fakultas', "
-            . "`universitas` = '$universitas', `alamat` = '$alamat', `nama_ayah` = '$nama_ayah', `nama_ibu` = '$nama_ibu', "
-            . "`kerja_ayah` = '$kerja_ayah', `kerja_ibu` = '$kerja_ibu', `essai` = '$essai', `periode` = '$periode' WHERE `peserta`.`nim` = $nim";
-    mysqli_query($conn2, $query);
-    
-    $_SESSION['nim'] = $nim;
-    header("location:peserta_data.php");
+        $nim = $_POST['nim'];
+        $namafull = $_POST['namafull'];
+        $namapanggil = $_POST['namapanggil'];
+        $notelp = $_POST['notelp'];
+        $tempat = $_POST['tempat'];
+        $tanggal = $_POST['tanggal'];
+        $jk = $_POST['jk'];
+        $fakultas = $_POST['fakultas'];
+        $universitas = $_POST['universitas'];
+        $alamat = $_POST['alamat'];
+        $nama_ayah = $_POST['nama_ayah'];
+        $nama_ibu = $_POST['nama_ibu'];
+        $kerja_ayah = $_POST['kerja_ayah'];
+        $kerja_ibu = $_POST['kerja_ibu'];
+        $essai = $_POST['essai'];
+        $periode = $_POST['periode'];
 
-}
+        if($jk == "Perempuan"){
+            $jk = "P";
+        }
+        else if($jk == "Laki-laki"){
+            $jk = "L";
+        }
+
+    }
+
+    if(isset($_POST['submit'])){ //check if form was submitted
+        $nim = $_POST['nim'];
+        $namafull = $_POST['namafull'];
+        $namapanggil = $_POST['namapanggil'];
+        $notelp = $_POST['notelp'];
+        $tempat = $_POST['tempat'];
+        $tanggal = $_POST['tanggal'];
+        $jk = $_POST['jk'];
+        $fakultas = $_POST['fakultas'];
+        $universitas = $_POST['universitas'];
+        $alamat = $_POST['alamat'];
+        $nama_ayah = $_POST['nama_ayah'];
+        $nama_ibu = $_POST['nama_ibu'];
+        $kerja_ayah = $_POST['kerja_ayah'];
+        $kerja_ibu = $_POST['kerja_ibu'];
+        $essai = $_POST['essai'];
+        $periode = $_POST['periode'];
+
+        //Edit data peserta
+        $query = "UPDATE `peserta` SET `namafull` = '$namafull', `namapanggil` = '$namapanggil', `notelp` = '$notelp', "
+                . "`tempat` = '$tempat', `tanggal` = '$tanggal', `jk` = '$jk', `fakultas` = '$fakultas', "
+                . "`universitas` = '$universitas', `alamat` = '$alamat', `nama_ayah` = '$nama_ayah', `nama_ibu` = '$nama_ibu', "
+                . "`kerja_ayah` = '$kerja_ayah', `kerja_ibu` = '$kerja_ibu', `essai` = '$essai', `periode` = '$periode' WHERE `peserta`.`nim` = $nim";
+        mysqli_query($conn2, $query);
+
+        $_SESSION['nim'] = $nim;
+        header("location:peserta_data.php");
+
+    }
 ?>
 
 <html>

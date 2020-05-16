@@ -29,6 +29,9 @@
         <a href="peserta.php">
             <button>Data Peserta</button>
         </a>
+        <a href="dad.php">
+            <button>Data DAD</button>
+        </a>
         <a href="raport.php">
             <button>raport</button>
         </a>

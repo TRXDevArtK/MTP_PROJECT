@@ -49,7 +49,7 @@
             echo "nope";
         }
 
-        $id_k = $id."_skp_mtk";
+        $id_k = $id."_mtk_skp";
         mysqli_query($conn2, "DROP TABLE IF EXISTS $id_k");
 
     }

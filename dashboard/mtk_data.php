@@ -77,26 +77,26 @@
                 <li class="list-group-item">KKM : <?php echo $kkm;?></li>
             </ul>
             
-            <div class="page-header text-center">
-                <h3>List Nilai Matkul</h3>      
-            </div>
-            
+            <hr style="color:black">
             <form action="mtk_pes_add.php" method="post">
                 <input type="hidden" name="idmatkul" value="<?= $idmatkul ?>"/>
                 <input type="hidden" name="mtk" value="<?= $mtk ?>"/>
-                <input type="submit" name="add_pes" id="add" class="btn btn-success" value="Tambah Peserta" />
+                <input type="submit" name="add_pes" id="add" class="hidden"/>
             </form>
-            
-            <div align="left">
-                <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
-                <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Hapus Data Yang Dipilih" />
-            </div>
             
             <form method="post" id="form_data">
                 <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->
                 <br />
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
+                        <tr>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">List Nilai Matkul</h3>
+                            <span style="display: inline;">
+                                <label for="add" tabindex="0" class="btn btn-success">Tambah Peserta</label>
+                                <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
+                                <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Hapus Data Yang Dipilih" />
+                            </span>
+                        </tr>
                         <thead>
                             <th width="5%">Pilih</th>
                             <th width="5%">No</th>
@@ -147,11 +147,14 @@
                     ?>
                 </ul>
             </div>
-            <div class="page-header text-center">
-                <h3>Deskripsi Nilai</h3>      
-            </div>
+            
+            <hr style="color:black">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
+                    <tr>
+                        <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Deskripsi Nilai</h3>
+                        </li>
+                    </tr>
                     <thead>
                         <th width="15%" class="text-center">A</th>
                         <th width="15%" class="text-center">B</th>

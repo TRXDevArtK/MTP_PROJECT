@@ -47,39 +47,72 @@
 ?>
 
 <html>
-    <head></head>
+    <head>
+        <!--Metadata-->
+        <meta charset="UTF-8">
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
+        <title></title>
+    </head>
     <body>
-        <form action="#" method="post">
-            <br><h4>PROFIL MATKUL</h4><br>
-            
-            <label>Masukkan nama matkul (Wajib) :</label><br>
-            <input type="text" name="nama" placeholder="e.g : Al-Quran"><br>
-            <label for="lname">Masukkan semester : </label><br>
-            <input type="text" name="semester" placeholder="e.g : 1, 2, 3, etc"><br>
-            <label for="lname">Masukkan tahun ajar : </label><br>
-            <input type="text" name="thn" placeholder="e.g : 2019/2020"><br>
-            <label for="lname">Masukkan kelas : </label><br>
-            <input type="text" name="kelas" placeholder="e.g : A, B, C, etc"><br>
-            <label for="lname">Masukkan kkm : </label><br>
-            <input type="text" name="kkm" placeholder=""><br>
-            
-            <br><h4>DESKRIPSI NILAI</h4><br>
-            
-            <label for="lname">Masukkan Deskripsi Nilai A : </label><br>
-            <input type="text" name="desca" placeholder=""><br>
-            
-            <label for="lname">Masukkan Deskripsi Nilai B : </label><br>
-            <input type="text" name="descb" placeholder=""><br>
-            
-            <label for="lname">Masukkan Deskripsi Nilai C : </label><br>
-            <input type="text" name="descc" placeholder=""><br>
-            
-            <label for="lname">Masukkan Deskripsi Nilai D : </label><br>
-            <input type="text" name="descd" placeholder=""><br>
-            
+        <div class="container">
+            <div class="page-header text-center">
+                <h3>Profil Matkul</h3>      
+            </div>
+              
             <br>
-            <input type="submit" name="submit">
-        </form>
+            <form action="#" method="post">
+                
+                <div class="form-group">
+                    <label>Masukkan Nama Matkul (Wajib) :</label>
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Semester : </label>
+                    <input type="text" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Tahun Ajar : </label>
+                    <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Kelas : </label>
+                    <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan KKM : </label>
+                    <input type="text" class="form-control" name="kkm" placeholder="">
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai A :</label>
+                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai B :</label>
+                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai C :</label>
+                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai D :</label>
+                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."></textarea>
+                </div>
+                
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambah / Submit">
+                
+            </form>
+        </div>
     </body>
 </html>
 

@@ -11,6 +11,15 @@
         while($row = mysqli_fetch_assoc($sql_run)){
             $data[] = $row;
         }
+        
+        $query = "SELECT 1 FROM instruktur WHERE jabatan = 'MOT'";
+        $sql_run = mysqli_query($conn2, $query);
+        $mot_state = "mot_false";
+        if(mysqli_num_rows($sql_run)==1){
+            $mot_state = "mot_true";
+        }
+        
+        $data[0]['mot_state'] = $mot_state;
      
         echo json_encode($data);
     }

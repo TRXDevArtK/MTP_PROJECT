@@ -12,13 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_add.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/pes_mtk_opr.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/database.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/dad.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_edit.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/komsat_edit.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/pes_mtk_opr.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_data.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/dad_opr.php</file>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/instruktur_add.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_data.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_skp_data.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta.php</file>
         </group>
     </open-files>

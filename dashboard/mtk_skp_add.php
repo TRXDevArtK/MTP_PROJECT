@@ -26,7 +26,7 @@
             mysqli_query($conn2, $query);
 
             //untuk tabel matakuliah
-            $id_t = $id."_skp_mtk";
+            $id_t = $id."_mtk_skp";
             $query = "CREATE TABLE $id_t (id INT(7) NULL, "
                     . "nim INT(11) PRIMARY KEY, "
                     . "nilai CHAR(1) NULL, "
@@ -67,28 +67,24 @@
                     <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL">
                 </div>
                 
-                <div class="page-header text-center">
-                    <h3>Data Matkul Sikap</h3>      
-                </div>
-                
                 <div class="form-group">
                     <label>Deskripsi Nilai A :</label>
-                    <input type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . .">
+                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai B :</label>
-                    <input type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . .">
+                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai C :</label>
-                    <input type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . .">
+                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai D :</label>
-                    <input type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . .">
+                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."></textarea>
                 </div>
                 
                 <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambah / Submit">

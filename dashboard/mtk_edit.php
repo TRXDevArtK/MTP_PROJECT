@@ -49,40 +49,73 @@
 ?>
 
 <html>
-    <head></head>
+    <head>
+        <!--Metadata-->
+        <meta charset="UTF-8">
+        <script src="../js/jquery.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <script src="../js/bootstrap.min.js"></script>  
+        <title></title>
+    </head>
     <body>
-        <form action="mtk_edit.php" method="post">
-            <br><h4>PROFIL MATKUL</h4><br>
-            
-            <label>Masukkan nama matkul:</label><br>
-            <input type="text" name="nama" placeholder="e.g : Al-Quran" value="<?php echo $nama;?>"><br>
-            <input type="hidden" name="id" value="<?php echo $id;?>" readonly>
-            <label>Masukkan semester : </label><br>
-            <input type="text" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?php echo $semester;?>"><br>
-            <label>Masukkan tahun ajar : </label><br>
-            <input type="text" name="thn" placeholder="e.g : 2019/2020" value="<?php echo $thn;?>"><br>
-            <label>Masukkan kelas : </label><br>
-            <input type="text" name="kelas" placeholder="e.g : A, B, C, etc" value="<?php echo $kelas;?>"><br>
-            <label>Masukkan kkm : </label><br>
-            <input type="text" name="kkm" placeholder="" value="<?php echo $kkm;?>"><br>
-            
-            <br><h4>DESKRIPSI NILAI</h4><br>
-            
-            <label>Masukkan Deskripsi Nilai A : </label><br>
-            <input type="text" name="desca" placeholder="" value="<?php echo $desca;?>"><br>
-            
-            <label>Masukkan Deskripsi Nilai B : </label><br>
-            <input type="text" name="descb" placeholder="" value="<?php echo $descb;?>"><br>
-            
-            <label>Masukkan Deskripsi Nilai C : </label><br>
-            <input type="text" name="descc" placeholder="" value="<?php echo $descc;?>"><br>
-            
-            <label>Masukkan Deskripsi Nilai D : </label><br>
-            <input type="text" name="descd" placeholder="" value="<?php echo $descd;?>"><br>
-            
+        <div class="container">
+            <div class="page-header text-center">
+                <h3>Profil Matkul</h3>      
+            </div>
+              
             <br>
-            <input type="submit" name="submit">
-        </form>
+            <form action="#" method="post">
+                <input type="hidden" class="form-control" name="id" value="<?= $id ?>" readonly>
+                
+                <div class="form-group">
+                    <label>Masukkan Nama Matkul (Wajib) :</label>
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Semester : </label>
+                    <input type="text" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?= $semester ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Tahun Ajar : </label>
+                    <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020" value="<?= $thn ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan Kelas : </label>
+                    <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc" value="<?= $kelas ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Masukkan KKM : </label>
+                    <input type="text" class="form-control" name="kkm" placeholder="" value="<?= $kkm ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai A :</label>
+                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ." value="<?= $desca ?>"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai B :</label>
+                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ." value="<?= $descb ?>"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai C :</label>
+                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ." value="<?= $descc ?>"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Nilai D :</label>
+                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ." value="<?= $descd ?>"></textarea>
+                </div>
+                
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambah / Submit">
+                
+            </form>
+        </div>
     </body>
 </html>
 

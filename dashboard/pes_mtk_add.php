@@ -39,7 +39,6 @@
                                 <th width="5%">Pilih</th>
                                 <th width="5%">No</th>
                                 <th width="25%">Nama Matkul</th>
-                                <th width="5%">Semester</th>
                             </thead>
                             <tbody id="tbody"></tbody>
                         </table>
@@ -79,11 +78,9 @@ $(document).ready(function(){
                 var count = 0;
                 for(count; count < data.length; count++){
                     html += '<tr>';
-                    html += '<td><input type="checkbox" no="'+(count+1)+'" id="'+data[count].id+'" nama="'+data[count].nama+'" \n\
-                            semester="'+data[count].semester+'" class="check_box"/></td>';
+                    html += '<td><input type="checkbox" no="'+(count+1)+'" id="'+data[count].id+'" nama="'+data[count].nama+'" class="check_box"/></td>';
                     html += '<td>'+(count+1)+'</td>';
                     html += '<td>'+data[count].nama+'</td>';
-                    html += '<td>'+data[count].semester+'</td>';
                     html += '</tr>';
                     //console.log(data[count].id);
                 }
@@ -104,21 +101,18 @@ $(document).ready(function(){
         var html = '';
         if(this.checked)
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" id="'+$(this).attr('id')+'" nama="'+$(this).attr('nama')+'" \n\
-                    semester="'+$(this).attr('semester')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" id="'+$(this).attr('id')+'" \n\
+                    nama="'+$(this).attr('nama')+'" class="check_box" checked /></td>';
             html += '<input type="hidden" name="id[]" class="form-control" value="'+$(this).attr("id")+'" readonly/>';
             html += '<td>'+$(this).attr("no")+'</td>';
             html += '<td>'+$(this).attr("nama")+'</td>';
-            html += '<td>'+$(this).attr("semester")+'</td>';
 
         }
         else
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nama="'+$(this).attr('nama')+'" \n\
-                    semester="'+$(this).attr('semester')+'" class="check_box" /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nama="'+$(this).attr('nama')+'" class="check_box" /></td>';
             html += '<td>'+$(this).attr("no")+'</td>';
             html += '<td>'+$(this).attr("nama")+'</td>';
-            html += '<td>'+$(this).attr("semester")+'</td>';
         }
         
         $(this).closest('tr').html(html);

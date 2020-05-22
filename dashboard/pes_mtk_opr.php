@@ -8,9 +8,9 @@
         //CEK APABILA PESERTA SUDAH ADA DI TABEL MATKUL (OPERASI)
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
-            $u_mtk = "%_______skp_mtk";
+            $u_mtk = "%_______mtk_skp";
             $t_mtk = "idmtk_skp";
-            $c_mtk = "_skp_mtk";
+            $c_mtk = "_mtk_skp";
             $semester = "";
         }
         else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
@@ -64,7 +64,7 @@
         $nim = $_POST['nim'];
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
-            $c_mtk = "_skp_mtk";
+            $c_mtk = "_mtk_skp";
         }
         else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
             $c_mtk = "_mtk";

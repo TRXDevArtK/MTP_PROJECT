@@ -96,6 +96,34 @@
               </div>
             </div>
             
+            <!-- Modal -->
+            <div id="catatan_modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Data Presensi</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="catatan">
+                            <div class="form-group">
+                                <label>Catatan Peserta</label>
+                                <textarea type="text" class="form-control" name="catatan" id="catatan_in" ></textarea>
+                            </div>
+                            
+                            <input type="button" name="catatan_edit" id="catatan_edit"class="btn btn-primary center-block" value="Update / Submit">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+            
             <form action="peserta_edit.php" method="post">
                 
             <div class="panel-group">
@@ -103,7 +131,8 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <input type="submit" name="edit" class="btn btn-primary pull-left" style="margin-right:10px;"value="Edit Data">
-                            <input type="button" data-toggle="modal" data-target="#presensi_modal" id="edit_presensi" name="edit_presensi" class="btn btn-primary pull-left" value="Edit Data Presensi">
+                            <input type="button" data-toggle="modal" data-target="#presensi_modal" id="edit_presensi" name="edit_presensi" class="btn btn-primary pull-left" style="margin-right:10px;" value="Edit Data Presensi">
+                            <input type="button" data-toggle="modal" data-target="#catatan_modal" id="edit_catatan" name="edit_catatan" class="btn btn-primary pull-left" value="Edit Data Catatan">
                             <br><br><br>
                             <a class="list-group-item">Nama : <?php echo $namafull ?></a><input type="hidden" name="namafull" value="<?php echo $namafull ?>" readonly>
                             <a class="list-group-item">NIM : <?php echo $nim ?></a><input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
@@ -113,10 +142,12 @@
                             <button data-toggle="collapse" href="#collapse1" type="button" class="btn btn-info">Data Peserta + </button>
                             <button data-toggle="collapse" href="#collapse2" type="button" class="btn btn-info">Data Orang Tua + </button>
                             <button data-toggle="collapse" href="#collapse3" type="button" class="btn btn-info">Data Presensi + </button>
+                            <button data-toggle="collapse" href="#collapse4" type="button" class="btn btn-info">Data Catatan + </button>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <ul class="list-group">
+                            <li class="list-group-item list-group-item-info text-center">Data Peserta Tambahan</li>
                             <li class="list-group-item">Nama Panggilan : <?php echo $namapanggil ?><input type="hidden" name="namapanggil" value="<?php echo $namapanggil ?>" readonly>
                             <li class="list-group-item">Nomor Telepon : <?php echo $notelp ?><input type="hidden" name="notelp" value="<?php echo $notelp ?>" readonly>
                             <li class="list-group-item">Tempat Lahir : <?php echo $tempat ?><input type="hidden" name="tempat" value="<?php echo $tempat ?>" readonly>
@@ -129,6 +160,7 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <ul class="list-group">
+                            <li class="list-group-item list-group-item-info text-center">Data Orang Tua Peserta</li>
                             <li class="list-group-item">Nama Ayah : <?php echo $nama_ayah ?><input type="hidden" name="nama_ayah" value="<?php echo $nama_ayah ?>" readonly>
                             <li class="list-group-item">Nama Ibu : <?php echo $nama_ibu ?><input type="hidden" name="nama_ibu" value="<?php echo $nama_ibu ?>" readonly>
                             <li class="list-group-item">Kerja Ayah : <?php echo $kerja_ayah ?><input type="hidden" name="kerja_ayah" value="<?php echo $kerja_ayah ?>" readonly>
@@ -140,28 +172,34 @@
                         <ul class="list-group" id="presensi_out">
                         </ul>
                     </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <!-- Data ada di script -->
+                        <ul class="list-group" id="catatan_out">
+                        </ul>
+                    </div>
                 </div>
             </div>
             </form>
             
             <!-- Data nilai sikap peserta -->
             <hr style="color:black">
-            <div class="page-header text-center">
-                <h3>Nilai Matkul Sikap</h3>      
-            </div>
             <form action="pes_mtk_add.php" method="post">
                 <input type="hidden" name="nim" value="<?= $nim ?>"/>
                 <input type="hidden" name="mtk" value="skp"/>
-                <input type="submit" name="add_mtk_skp" id="add" class="btn btn-success" value="Tambah Mata Kuliah" />
+                <input type="submit" name="add_mtk_skp" id="add_mtk_skp" hidden/>
             </form>
             <form method="post" id="form_data_2">
-                <span style="display: inline;">
-                    <input type="button" name="multiple_update" id="update_skp" class="btn btn-primary" value="Update Data Yang Dipilih" />
-                    <input type="button" name="multiple_delete" id="delete_skp" class="btn btn-danger" value="Delete Data Yang Dipilih" />
-                </span>
-                <br><br/>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
+                        <tr>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Matkul Sikap</h3>
+                                <span style="display: inline;">
+                                    <label for="add_mtk_skp" tabindex="0" class="btn btn-success">Tambah Mata Kuliah</label>
+                                    <input type="button" name="multiple_update" id="update_skp" class="btn btn-primary" value="Update Data Yang Dipilih" />
+                                    <input type="button" name="multiple_delete" id="delete_skp" class="btn btn-danger" value="Delete Data Yang Dipilih" />
+                                </span>
+                            </li>
+                        </tr>
                         <thead>
                             <th width="5%">Pilih</th>
                             <th width="5%">No</th>
@@ -177,22 +215,23 @@
             
             <!-- Data nilai peserta -->
             <hr style="color:black">
-            <div class="page-header text-center">
-                <h3>Nilai Matkul</h3>      
-            </div>
             <form action="pes_mtk_add.php" method="post">
                 <input type="hidden" name="nim" value="<?= $nim ?>"/>
                 <input type="hidden" name="mtk" value="mtk"/>
-                <input type="submit" name="add_mtk" id="add" class="btn btn-success" value="Tambah Mata Kuliah" />
+                <input type="submit" name="add_mtk" id="add_mtk" hidden/>
             </form>
             <form method="post" id="form_data">
-                <span style="display: inline;">
-                    <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
-                    <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Delete Data Yang Dipilih" />
-                </span>
-                <br><br/>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
+                        <tr>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Matkul</h3>
+                                <span style="display: inline;">
+                                    <label for="add_mtk" tabindex="0" class="btn btn-success">Tambah Mata Kuliah</label>
+                                    <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
+                                    <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Delete Data Yang Dipilih" />
+                                </span>
+                            </li>
+                        </tr>
                         <thead>
                             <th width="5%">Pilih</th>
                             <th width="5%">No</th>
@@ -205,11 +244,24 @@
                     </table>
                 </div>
             </form>
+            
+            <form method="post" id="download_xls" action="download_xls.php">
+                <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
+                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="XLS">
+            </form>
+            <form method="post" id="download_pdf" action="download_pdf.php">
+                <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
+                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="PDF">
+            </form>
+            <form method="post" id="download_print" action="download_print.php" target="_blank">
+                <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
+                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="PRINT">
+            </form>
 	</div>
     </body>
 </html>
 
-<script type="text/javascript"> //MATKUL SIKAP
+<script type="text/javascript"> //MATKUL SIKAP & ETC
 $(document).ready(function(){
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
@@ -428,6 +480,7 @@ $(document).ready(function(){
             success:function(data)
             {
                 var html = '';
+                html += '<li class="list-group-item list-group-item-info text-center">Data Presensi</li>';
                 html += '<li class="list-group-item">Sakit : '+data['sakit']+'';
                 html += '<li class="list-group-item">Izin : '+data['izin']+'';
                 html += '<li class="list-group-item">Tanpa Keterangan : '+data['tanpa_ket']+'';
@@ -440,6 +493,50 @@ $(document).ready(function(){
     }
     
     fetch_data_presensi();
+    
+    //EDIT CATATAN
+    $('#catatan_edit').on('click', function(event){
+        event.preventDefault();
+        
+        //gunakan fungsi serializearray untuk auto add dengan push
+        
+        var serialize = $("#catatan").serializeArray();
+        serialize.push({name: 'nim', value: '<?=$nim?>'});
+        serialize.push({name: 'key', value: 'catatan_edit'});
+        $.ajax({
+            url:"peserta_data_opr.php",
+            method:"POST",
+            data:$.param(serialize),
+            success:function(data)
+            {
+                fetch_data_catatan();
+                $('#catatan_modal').modal('toggle');
+            }
+        })
+    });
+    
+    //LOAD DATA CATATAN
+    function fetch_data_catatan(){
+        $.ajax({
+            url:"peserta_data_opr.php",
+            method:"POST",
+            dataType:"json",
+            data:{
+                'nim':'<?=$nim?>',
+                'key':'catatan_load'
+            },    
+            success:function(data)
+            {
+                var html = '';
+                html += '<li class="list-group-item list-group-item-info text-center">Data Catatan</li>';
+                html += '<li class="list-group-item">Catatan : '+data['deskripsi']+'';
+                $('#catatan_out').html(html);
+                $('#catatan_in').val(data['deskripsi']);
+            }
+        })
+    }
+    
+    fetch_data_catatan();
     
 })
 </script>

@@ -30,6 +30,13 @@
             }
         }
     }
+    
+    $query = "SELECT 1 FROM instruktur WHERE jabatan = 'MOT'";
+    $sql_run = mysqli_query($conn2, $query);
+    $mot_state = 0;
+    if(mysqli_num_rows($sql_run)==1){
+        $mot_state = 1;
+    }
 ?>
 
 <html>
@@ -62,7 +69,11 @@
                 
                 <div class="form-group">
                     <label>Masukkan Jabatan Insturktur : </label>
-                    <input type="text" class="form-control" name="jabatan" placeholder="e.g : MOT">
+                    <label class="radio-inline"><input type="radio" name="jabatan" value="MOT" <?php if($mot_state == 1){echo "disabled";} ?>>MOT</label>
+                    <label class="radio-inline"><input type="radio" name="jabatan" value="SOT">SOT</label>
+                    <label class="radio-inline"><input type="radio" name="jabatan" value="IOT">IOT</label>
+                    <label class="radio-inline"><input type="radio" name="jabatan" value="PO">PO</label>
+                    <label class="radio-inline"><input type="radio" name="jabatan" value="OB">OB</label>
                 </div>
                 
                 <div class="form-group">

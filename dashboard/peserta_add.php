@@ -23,6 +23,12 @@
             $fakultas = $_POST['fakultas'];
             $universitas = $_POST['universitas'];
             $alamat = $_POST['alamat'];
+            
+            $query = "INSERT INTO `peserta_presensi` (`nim`, `sakit`, `izin`, `tanpa_ket`) VALUES ('$nim', NULL, NULL, NULL)";
+            $sql_run = mysqli_query($conn2, $query);
+            
+            $query = "INSERT INTO `peserta_catatan` (`nim`, `deskripsi`) VALUES ('$nim', 'NULL')";
+            $sql_run = mysqli_query($conn2, $query);
 
             $query = "INSERT INTO `peserta` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, "
                     . "`universitas`, `alamat`, `nama_ayah`, `nama_ibu`, `kerja_ayah`, `kerja_ibu`, `essai`, `periode`) "

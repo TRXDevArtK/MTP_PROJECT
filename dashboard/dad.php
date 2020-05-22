@@ -89,6 +89,7 @@
                         </div>
                         <div id="collapse1" class="panel-collapse collapse">
                             <ul class="list-group">
+                                <li class="list-group-item list-group-item-info text-center">Data Komsat Tambahan</li>
                                 <li class="list-group-item">Alamat : <?php echo $alamat ?><input type="hidden" name="alamat" value="<?php echo $alamat ?>" readonly>
                                 <li class="list-group-item">Kecamatan : <?php echo $kecamatan ?><input type="hidden" name="kecamatan" value="<?php echo $kecamatan ?>" readonly>
                                 <li class="list-group-item">Kabupaten/Kota : <?php echo $kota ?><input type="hidden" name="kota" value="<?php echo $kota ?>" readonly>
@@ -105,18 +106,19 @@
                     </div>
                 </div>
             </form>
-             
-            <br>
-            
-            <span style="display: inline;">
-                <a href="instruktur_add.php"><input type="button" name="add" id="add" class="btn btn-success" value="Tambah Data" /></a>
-                <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
-                <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Delete Data Yang Dipilih" />
-            </span>
-            <br><br>
+            <hr style="color:black">
             <form method="post" id="form_data">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
+                        <tr>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Data Instruktur</h3>
+                                <span style="display: inline;">
+                                    <a href="instruktur_add.php"><input type="button" name="add" id="add" class="btn btn-success" value="Tambah Data" /></a>
+                                    <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
+                                    <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Delete Data Yang Dipilih" />
+                                </span>
+                            </li>
+                        </tr>
                         <thead>
                             <th width="2%">Pilih</th>
                             <th width="2%">No</th>
@@ -159,7 +161,7 @@ $(document).ready(function(){
                     
                     html += '<tr>';
                     html += '<td><input type="checkbox" no="'+(count+1)+'" nia="'+data[count].nia+'" nama="'+data[count].nama+'"\n\
-                            jabatan="'+data[count].jabatan+'" asal="'+data[count].asal+'" class="check_box" /></td>';
+                            jabatan="'+data[count].jabatan+'" asal="'+data[count].asal+'" mot_state="'+data[0].mot_state+'" class="check_box" /></td>';
                     html += '<td>'+(count+1)+'</td>';
                     html += '<td>'+data[count].nia+'</td>';
                     html += '<td>'+data[count].nama+'</td>';
@@ -186,6 +188,7 @@ $(document).ready(function(){
             success:function(data)
             {
                 var html = '';
+                html +='<li class="list-group-item list-group-item-info text-center">Data PC</li>';
                 html += '<li class="list-group-item">Ketum PC Djazman : '+data[0].nama+' ( NBA : '+data[0].nba+')';
                 html += '<li class="list-group-item">Bidang Kader PC : '+data[1].nama+' (NBA : '+data[1].nba+')';
                 $('#pc_out').html(html);
@@ -203,6 +206,7 @@ $(document).ready(function(){
     
     $(document).on('click', '.check_box', function(){
         var html = '';
+        var mot = $(this).attr('mot_state');
         if(this.checked)
         {
             html += '<td><input type="checkbox" no="'+$(this).attr('no')+'" nia="'+$(this).attr('nia')+'" nama="'+$(this).attr('nama')+'"\n\
@@ -211,7 +215,20 @@ $(document).ready(function(){
             html += '<td>'+$(this).attr('no')+'</td>';
             html += '<td>'+$(this).attr('nia')+'</td>';
             html += '<td><input type="text" name="nama[]" class="form-control" value="'+$(this).attr("nama")+'"/></td>';
-            html += '<td><input type="text" name="jabatan[]" class="form-control" value="'+$(this).attr("jabatan")+'"/></td>';        
+            html += '<td><select name="jabatan[]" class="form-control" id="options2'+$(this).attr('no')+'">';
+            
+            if(mot == "mot_true"){
+                html += '<option value="MOT" disabled>MOT</option>';
+            }
+            else{
+                html += '<option value="MOT">MOT</option>';
+            }
+            html += '<option value="SOT">SOT</option>\n\
+                    <option value="IOT">IOT</option>\n\
+                    <option value="PO">PO</option>\n\
+                    <option value="OB">OB</option>\n\
+                    <option value="">KOSONGKAN</option>\n\</select></td>';        
+    
             html += '<td><input type="text" name="asal[]" class="form-control" value="'+$(this).attr("asal")+'"/></td>';
         }
         else
@@ -226,6 +243,7 @@ $(document).ready(function(){
         }
         
         $(this).closest('tr').html(html);
+        $("#options2"+$(this).attr('no')).val($(this).attr('jabatan'));
     });
     
     //UPDATE DATA INSTRUKTUR

@@ -46,7 +46,7 @@
         $date = date('G:i - d/M/Y');
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
-            $chp = chop($idmatkul,"_skp_mtk");
+            $chp = chop($idmatkul,"_mtk_skp");
         }
         else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
             $chp = chop($idmatkul,"_mtk");

@@ -37,7 +37,7 @@
         $idmatkul = $_POST['idmatkul'];
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
-            $idmatkul = chop($idmatkul,"_skp_mtk");
+            $idmatkul = chop($idmatkul,"_mtk_skp");
         }
         else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
             $idmatkul = chop($idmatkul,"_mtk");

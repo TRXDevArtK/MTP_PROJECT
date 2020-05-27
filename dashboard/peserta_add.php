@@ -1,5 +1,5 @@
 <?php
-
+    ob_start();
     include_once "database.php";
     
     if(isset($_POST['submit']) && $_POST['nim'] != ''){ //check if form was submitted
@@ -39,6 +39,7 @@
             //Test untuk sql berjalan
             if($sql_run){
                 header("location:peserta.php");
+                exit();
             }
             else{
                 echo "Maaf ada kesalahan data, silahkan coba lagi";
@@ -57,6 +58,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Input Profil Peserta</h3>      
@@ -67,7 +69,7 @@
                 
                 <div class="form-group">
                     <label>Masukkan NIM (JANGAN SAMPAI SALAH !) :</label>
-                    <input type="text" class="form-control" name="nim" placeholder="e.g : 1700018012">
+                    <input type="text" class="form-control" name="nim" placeholder="e.g : 1700018012" required="require">
                 </div>
                 
                 <div class="form-group">

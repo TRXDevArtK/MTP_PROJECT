@@ -1,6 +1,5 @@
 <?php
     #include sesuatu disini
-    include_once "../sql_connect.php";
     include_once "database.php";
 ?>
 
@@ -18,11 +17,13 @@
         <!--Metadata-->
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/bootstrap.min.css" /> 
+        <link rel="stylesheet" href="../css/loading.css" /> 
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">  
             <br />
             <h3 align="center">List Matkul Sikap</h3>
@@ -82,11 +83,19 @@
                 </ul>
             </div>
         </div>
+        <div class="ajaxload"><!-- ini loading ajax --></div>
     </body>
 </html>
 
 <script> //PAKAI ACTIVE JAVASCRIPT (AJAX)
 $(document).ready(function(){
+    
+    $body = $("body");
+    
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading"); },
+        ajaxStop: function() { $body.removeClass("loading"); }    
+    });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
     function fetch_data_idmtk(id)

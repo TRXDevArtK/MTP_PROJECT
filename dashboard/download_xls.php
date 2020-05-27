@@ -13,5 +13,6 @@
     
     $_SESSION['nim'] = $nim;
     header('Location:peserta_data.php');
+    exit();
 ?>
 

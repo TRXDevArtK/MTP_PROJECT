@@ -1,5 +1,5 @@
 <?php
-
+    ob_start();
     include_once "database.php";
 
     if(isset($_POST['edit']) && !empty($_POST['id'])){ //check data post
@@ -35,6 +35,7 @@
         $sql_run2 = mysqli_query($conn2, $query2); // DEBUG // or trigger_error("Query Failed! SQL: $query2 - Error: ".mysqli_error($conn2), E_USER_ERROR);
 
         header("location:mtk_skp.php");
+        exit();
         //echo "DISUBMIT";
     }
 
@@ -50,6 +51,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Data Matkul Sikap</h3>      
@@ -66,28 +68,24 @@
                     <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" value="<?php echo $nama;?>">
                 </div>
                 
-                <div class="page-header text-center">
-                    <h3>Data Matkul Sikap</h3>      
-                </div>
-                
                 <div class="form-group">
                     <label>Deskripsi Nilai A :</label>
-                    <input type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ." value="<?php echo $desca;?>">
+                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."><?php echo $desca;?></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai B :</label>
-                    <input type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ." value="<?php echo $descb;?>">
+                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."><?php echo $descb;?></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai C :</label>
-                    <input type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ." value="<?php echo $descc;?>">
+                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."><?php echo $descc;?>></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>Deskripsi Nilai D :</label>
-                    <input type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ." value="<?php echo $descd;?>">
+                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."><?php echo $descd;?></textarea>
                 </div>
                 
                 <input type="submit" name="submit" class="btn btn-primary center-block" value="Update / Submit">

@@ -1,5 +1,5 @@
 <?php
-    
+    ob_start();
     include('database.php');
     
     if(isset($_SESSION['nim'])){
@@ -11,6 +11,7 @@
     }
     else{
         header('Location:peserta.php');
+        exit();
     }
     
     $query = "SELECT *FROM `peserta` where `peserta`.`nim` = $nim";
@@ -49,10 +50,13 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/loading.css" />  
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
+        
         <div class="container">
             <div class="page-header text-center">
                 <h3>Data Peserta</h3>      
@@ -201,12 +205,12 @@
                             </li>
                         </tr>
                         <thead>
-                            <th width="5%">Pilih</th>
+                            <th width="1%">Pilih</th>
                             <th width="5%">No</th>
-                            <th width="10%">Nama Matkul</th>
-                            <th width="10%">Tanggal Nilai</th>
-                            <th width="5%">Nilai</th>
-                            <th width="10%">Deskripsi Nilai</th>
+                            <th width="15%">Nama Matkul</th>
+                            <th width="15%">Tanggal Nilai</th>
+                            <th width="10%">Nilai</th>
+                            <th width="30%">Deskripsi Nilai</th>
                         </thead>
                         <tbody id="tbody_skp"></tbody>
                     </table>
@@ -233,12 +237,12 @@
                             </li>
                         </tr>
                         <thead>
-                            <th width="5%">Pilih</th>
+                            <th width="1%">Pilih</th>
                             <th width="5%">No</th>
-                            <th width="10%">Nama Matkul</th>
-                            <th width="10%">Tanggal Nilai</th>
-                            <th width="5%">Nilai</th>
-                            <th width="10%">Deskripsi Nilai</th>
+                            <th width="15%">Nama Matkul</th>
+                            <th width="15%">Tanggal Nilai</th>
+                            <th width="10%">Nilai</th>
+                            <th width="30%">Deskripsi Nilai</th>
                         </thead>
                         <tbody id="tbody"></tbody>
                     </table>
@@ -247,22 +251,40 @@
             
             <form method="post" id="download_xls" action="download_xls.php">
                 <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
-                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="XLS">
+                <input type="submit" id="btn_xls" hidden>
             </form>
             <form method="post" id="download_pdf" action="download_pdf.php">
                 <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
-                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="PDF">
+                <input type="submit" id="btn_pdf" hidden>
             </form>
             <form method="post" id="download_print" action="download_print.php" target="_blank">
                 <input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
-                <input type="submit" class="btn btn-danger pull-right" style="margin:10px"value="PRINT">
+                <input type="submit" id="btn_print" hidden>
             </form>
+            
+            <div class="panel panel-primary" style="text-align: center">
+                <div class="panel-body">
+                    <h4> Download Laporan : </h4>
+                    <label for="btn_xls" tabindex="0" class="btn btn-danger">XLS</label>
+                    <label for="btn_pdf" tabindex="0" class="btn btn-danger">PDF</label>
+                    <label for="btn_print" tabindex="0" class="btn btn-danger">PRINT</label>
+                </div>
+            </div>
 	</div>
+        
+        <div class="ajaxload"><!-- ini loading ajax --></div>
     </body>
 </html>
 
 <script type="text/javascript"> //MATKUL SIKAP & ETC
 $(document).ready(function(){
+    
+    $body = $("body");
+    
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading"); },
+        ajaxStop: function() { $body.removeClass("loading"); }    
+    });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
     function fetch_data_sikap_perpeserta()

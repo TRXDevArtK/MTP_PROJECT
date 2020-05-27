@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     include_once "database.php";
 
     if(isset($_POST['edit']) && !empty($_POST['nim'])){
@@ -56,6 +57,7 @@
 
         $_SESSION['nim'] = $nim;
         header("location:peserta_data.php");
+        exit();
 
     }
 ?>
@@ -70,6 +72,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Profil Peserta</h3>      

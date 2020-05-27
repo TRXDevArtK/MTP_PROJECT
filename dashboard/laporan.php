@@ -643,11 +643,11 @@
 	</tr>
 	<tr>
 		<td height="17" align="left"><font color="#000000"><br></font></td>
-		<td align="center"><font color="#000000">NBA : <?php echo $nba_kader; ?></font></td>
+		<td align="center"><font color="#000000">NIA : <?php echo $nba_kader; ?></font></td>
 		<td align="left"><font color="#000000"><br></font></td>
-		<td colspan=2 align="center" valign=middle><font color="#000000">NBA : <?php echo $nba_ketua; ?></font></td>
+		<td colspan=2 align="center" valign=middle><font color="#000000">NIA : <?php echo $nba_ketua; ?></font></td>
 		<td align="left"><font color="#000000"><br></font></td>
-		<td align="center"><font color="#000000">NBA : <?php echo $NIA; ?></font></td>
+		<td align="center"><font color="#000000">NIA : <?php echo $NIA; ?></font></td>
 		<td align="left"><font color="#000000"><br></font></td>
 		<td align="left"><font color="#000000"><br></font></td>
 	</tr>

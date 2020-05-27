@@ -23,14 +23,13 @@
     $dompdf->setPaper('A4','potrait');
 
     // Render the HTML as PDF
-    $dompdf->render();
-
-    ob_end_clean();
+    $dompdf->render();;
 
     // Output the generated PDF to Browser
     $dompdf->stream($nim."_raport");
 
     $_SESSION['nim'] = $nim;
     header('Location:peserta_data.php');
+    exit();
 
 ?>

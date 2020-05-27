@@ -1,7 +1,6 @@
 <?php
-
+    ob_start();
     #include sesuatu disini
-    include_once "../sql_connect.php";
     include_once "database.php";
     
 ?>
@@ -20,6 +19,7 @@
     }
     else{
         header('Location:mtk.php');
+        exit();
     }
     
     $id_chp = chop($idmatkul,"_mtk");
@@ -61,10 +61,12 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/loading.css" />  
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Data Matkul</h3>      
@@ -165,14 +167,22 @@
                 </table>
             </div>
         </div>
+        
+        <div class="ajaxload"><!-- ini loading ajax --></div>
     </body>
 </html>
 
 <script> //PAKAI ACTIVE JAVASCRIPT (AJAX)
 $(document).ready(function(){
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    $body = $("body");
     
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading"); },
+        ajaxStop: function() { $body.removeClass("loading"); }    
+    });
+    
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
     function fetch_data_nilaimtk(id)
     {
         //REFRESH PAGE

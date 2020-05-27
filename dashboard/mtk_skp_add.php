@@ -1,5 +1,5 @@
 <?php
-
+    ob_start();
     include_once "database.php";
 
     if(isset($_POST['submit']) && !empty($_POST['nama'])){ //check if form was submitted
@@ -39,6 +39,7 @@
         }
         
         header("location:mtk_skp.php");
+        exit();
         
     }  
     
@@ -54,6 +55,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Data Matkul Sikap</h3>      
@@ -63,8 +65,8 @@
             <form action="#" method="post">
                 
                 <div class="form-group">
-                    <label>Nama Matkul :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL">
+                    <label>Nama Matkul (Wajib) :</label>
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" required="require">
                 </div>
                 
                 <div class="form-group">

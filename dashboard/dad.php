@@ -1,5 +1,4 @@
 <?php
-    
     #include sesuatu disini
     include_once "database.php";
     
@@ -27,10 +26,13 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/loading.css" />
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
+        <br><br>
         <div class="container">
             
              <!-- Modal -->
@@ -48,15 +50,15 @@
                             <div class="form-group">
                                 <label>Ketua Umum (Nama) :</label>
                                 <input type="text" class="form-control" name="ketum_nama" id="ketum_nama" placeholder="Dzikri A" value="">
-                                <label>NBA Ketum Umum :</label>
-                                <input type="number" class="form-control" name="ketum_nba" id="ketum_nba" placeholder="4643534" value="">
+                                <label>NIA Ketum Umum :</label>
+                                <input type="number" class="form-control" name="ketum_nia" id="ketum_nia" placeholder="4643534" value="">
                             </div>
                             
                             <div class="form-group">
                                 <label>Bidang Kader (Nama) :</label>
                                 <input type="text" class="form-control" name="kader_nama" id="kader_nama" placeholder="Muhammad T" value="">
-                                <label>NBA Kader :</label>
-                                <input type="number" class="form-control" name="kader_nba" id="kader_nba" placeholder="1232344" value="">
+                                <label>NIA Kader :</label>
+                                <input type="number" class="form-control" name="kader_nia" id="kader_nia" placeholder="1232344" value="">
                             </div>
                             
                             <input type="button" name="pc_edit" id="pc_edit" class="btn btn-primary center-block" value="Update / Submit">
@@ -131,13 +133,20 @@
                     </table>
                 </div>
             </form>
-            
         </div>
+        <div class="ajaxload"><!-- ini loading ajax --></div>
     </body>
 </html>
 
 <script>
 $(document).ready(function(){
+    
+    $body = $("body");
+    
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading"); },
+        ajaxStop: function() { $body.removeClass("loading"); }    
+    });
     
     //LOAD DATA KOMSAT
     function fetch_data_instruktur(){
@@ -189,14 +198,14 @@ $(document).ready(function(){
             {
                 var html = '';
                 html +='<li class="list-group-item list-group-item-info text-center">Data PC</li>';
-                html += '<li class="list-group-item">Ketum PC Djazman : '+data[0].nama+' ( NBA : '+data[0].nba+')';
-                html += '<li class="list-group-item">Bidang Kader PC : '+data[1].nama+' (NBA : '+data[1].nba+')';
+                html += '<li class="list-group-item">Ketum PC Djazman : '+data[0].nama+' ( NIA : '+data[0].nia+')';
+                html += '<li class="list-group-item">Bidang Kader PC : '+data[1].nama+' (NIA : '+data[1].nia+')';
                 $('#pc_out').html(html);
                 
                 $('#kader_nama').val(data[0].nama);
-                $('#kader_nba').val(data[0].nba);
+                $('#kader_nia').val(data[0].nia);
                 $('#ketum_nama').val(data[1].nama);
-                $('#ketum_nba').val(data[1].nba);
+                $('#ketum_nia').val(data[1].nia);
             }
         });
     }

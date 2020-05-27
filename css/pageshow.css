@@ -1,0 +1,178 @@
+#pageshow, #pageshow:before, #pageshow:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+#pageshow {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #999;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+}
+
+#pageshow a {
+  text-decoration: none;
+  margin: 1rem 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  letter-spacing: 1px;
+}
+
+#pageshow p {
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+#pageshow h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.825rem;
+  margin: 1.3rem 0;
+}
+
+#pageshow img {
+	width: 30%;
+	height: 25%;
+}
+
+#pageshow .section-lead {
+  max-width: 600px;
+  margin: 1rem auto 1.5rem;
+}
+
+#pageshow .service a {
+  color: #5b7abb;
+  display: block;
+}
+
+#pageshow .service h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #56ceba;
+  font-size: 1.3rem;
+  margin: 1rem 0 0.6rem;
+}
+
+#pageshow .services-grid {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+#pageshow .service {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #e7e7e7;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+#pageshow .service:hover {
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+#pageshow .service i {
+  font-size: 3.45rem;
+  margin: 1rem 0;
+}
+
+#pageshow .service1 i,
+#pageshow .service1 h4,
+#pageshow .service1 .cta {
+  color: #42b7ca;
+}
+
+#pageshow .service1:hover {
+  border: 2px solid #42b7ca;
+}
+
+#pageshow .service2 i,
+#pageshow .service2 h4,
+#pageshow .service2 .cta {
+  color: #425fca;
+}
+
+#pageshow .service2:hover {
+  border: 2px solid #425fca;
+}
+
+#pageshow .service3 i,
+#pageshow .service3 h4,
+#pageshow .service3 .cta {
+  color: #9c42ca;
+}
+
+#pageshow .service3:hover {
+  border: 2px solid #9c42ca;
+}
+
+#pageshow .service .cta span {
+  font-size: 0.6rem;
+}
+
+#pageshow .service > * {
+  flex: 1 1 100%;
+}
+
+#pageshow .service .cta {
+  align-self: flex-end;
+}
+
+@media all and (max-width:900px) {
+  #pageshow .services-grid {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+}
+
+/* BUTTON .. . */
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}

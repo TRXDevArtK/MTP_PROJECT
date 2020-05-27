@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     #include sesuatu disini
     include_once "database.php";
     
@@ -33,6 +34,7 @@
         mysqli_query($conn2, $query);
 
         header("location:dad.php");
+        exit();
     }
 ?>
 
@@ -46,6 +48,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Profil Komsat</h3>      

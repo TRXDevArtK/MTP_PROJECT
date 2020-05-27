@@ -1,5 +1,5 @@
 <?php
-
+    ob_start();
     include_once "database.php";
 
     if(isset($_POST['submit']) && !empty($_POST['nama'])){ //check if form was submitted
@@ -42,6 +42,7 @@
             mysqli_query($conn2, $query);
         }
         header("location:mtk.php");
+        exit();
     }  
     
 ?>
@@ -56,6 +57,7 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Profil Matkul</h3>      
@@ -66,7 +68,7 @@
                 
                 <div class="form-group">
                     <label>Masukkan Nama Matkul (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran">
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" required="require">
                 </div>
                 
                 <div class="form-group">

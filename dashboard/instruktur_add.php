@@ -1,7 +1,8 @@
 <?php
-
-    include_once "database.php";
+    ob_start();
     
+    include_once "database.php";
+    $warning = 0;
     if(isset($_POST['submit']) && $_POST['nia'] != ''){ //check if form was submitted
         
         $nia = $_POST['nia'];
@@ -11,7 +12,7 @@
 
         //Test untuk data apakah ada atau tidak
         if(mysqli_num_rows($sql_run)==1){
-            echo "Maaf NIA yang anda inputkan, sudah ada silahkan coba lagi";
+            $warning = 1;
         }
         else{
             $nama = $_POST['nama'];
@@ -20,13 +21,16 @@
 
             $query = "INSERT INTO `instruktur` (`nia`, `jabatan`, `nama`, `asal`) VALUES ('$nia', '$jabatan', '$nama', '$asal')";
             $sql_run = mysqli_query($conn2, $query);
-
+            
+            $warning = 0;
             //Test untuk sql berjalan
             if($sql_run){
                 header("location:dad.php");
+                exit();
             }
+            
             else{
-                echo "Maaf ada kesalahan data, silahkan coba lagi";
+                $warning = 2;
             }
         }
     }
@@ -49,17 +53,24 @@
         <title></title>
     </head>
     <body>
+        <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
                 <h3>Input Profil Instruktur</h3>      
             </div>
-              
+            
+            <?php if($warning == 1){ ?>
+            <p class="text-center" style="color:red"> Maaf NIA yang anda inputkan, sudah ada silahkan coba lagi </p>
+            <?php } 
+            else if($warning == 2){ ?>
+            <p class="text-center" style="color:red"> Maaf ada kesalahan data, silahkan coba lagi </p>
+            <?php } ?>
             <br></br>
             <form action="#" method="post">
                 
                 <div class="form-group">
                     <label>Masukkan NIA instruktur (Jangan Sampai Salah) :</label>
-                    <input type="number" class="form-control" name="nia" placeholder="e.g : 1231235">
+                    <input type="number" class="form-control" name="nia" placeholder="e.g : 1231235" required="require">
                 </div>
                 
                 <div class="form-group">

@@ -1,10 +1,11 @@
 <?php
-
+    ob_start();
     session_start();
 
     //CEK LOGIN
     if(!isset($_SESSION['status'])){
         header("location:../index.php");
+        exit();
     }
 
     include_once "database.php";
@@ -45,6 +46,7 @@
             mysqli_query($conn2, $query);
         }
         header("location:mtk.php");
+        exit();
     }  
     
 ?>

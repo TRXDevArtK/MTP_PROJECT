@@ -26,7 +26,7 @@
     
     //LOAD DATA PC
     if(isset($_POST['key']) && $_POST['key'] == 'load_pc'){
-        $query = "SELECT nba,nama,jabatan,pc FROM `data_pc`";
+        $query = "SELECT nia,nama,jabatan,pc FROM `data_pc`";
         $sql_run = mysqli_query($conn2, $query);
 
         $data = array();
@@ -37,6 +37,7 @@
         echo json_encode($data);
     }
     
+    //UPDATE
     if(isset($_POST['key']) && $_POST['key'] == 'update_instruktur'){
         
         $nia = $_POST['nia'];
@@ -50,6 +51,7 @@
         }
     }
     
+    //DELETE
     if(isset($_POST['key']) && $_POST['key'] == 'delete_instruktur'){
         
         $nia = $_POST['nia'];
@@ -64,14 +66,14 @@
     if(isset($_POST['key']) && $_POST['key'] == 'update_pc'){
         
         $ketum_nama = $_POST['ketum_nama'];
-        $ketum_nba = $_POST['ketum_nba'];
+        $ketum_nia = $_POST['ketum_nia'];
         $kader_nama = $_POST['kader_nama'];
-        $kader_nba = $_POST['kader_nba'];
+        $kader_nia = $_POST['kader_nia'];
 
-        $query = "UPDATE `data_pc` SET `nba` = '$ketum_nba', `nama` = '$ketum_nama' WHERE `data_pc`.`pc` = 'ketum'";
+        $query = "UPDATE `data_pc` SET `nia` = '$ketum_nia', `nama` = '$ketum_nama' WHERE `data_pc`.`pc` = 'ketum'";
         mysqli_query($conn2, $query);
         
-        $query = "UPDATE `data_pc` SET `nba` = '$kader_nba', `nama` = '$kader_nama' WHERE `data_pc`.`pc` = 'kader'";
+        $query = "UPDATE `data_pc` SET `nia` = '$kader_nia', `nama` = '$kader_nama' WHERE `data_pc`.`pc` = 'kader'";
         mysqli_query($conn2, $query);
     }
     

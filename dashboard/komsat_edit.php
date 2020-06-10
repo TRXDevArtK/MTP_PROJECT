@@ -44,7 +44,7 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
-        <script src="../js/bootstrap.min.js"></script>  
+        <script src="../js/bootstrap.min.js"></script>
         <title></title>
     </head>
     <body>

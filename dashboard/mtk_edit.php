@@ -71,12 +71,14 @@
                 
                 <div class="form-group">
                     <label>Masukkan Nama Matkul (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>">
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>" 
+                                                        oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                                          accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">
                     <label>Masukkan Semester : </label>
-                    <input type="text" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?= $semester ?>">
+                    <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?= $semester ?>">
                 </div>
                 
                 <div class="form-group">
@@ -114,7 +116,7 @@
                     <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."><?= $descd ?></textarea>
                 </div>
                 
-                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambah / Submit">
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Update / Submit">
                 
             </form>
         </div>

@@ -68,12 +68,14 @@
                 
                 <div class="form-group">
                     <label>Masukkan Nama Matkul (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" required="require">
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" 
+                                          oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">
                     <label>Masukkan Semester : </label>
-                    <input type="text" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc">
+                    <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc">
                 </div>
                 
                 <div class="form-group">

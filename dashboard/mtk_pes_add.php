@@ -26,12 +26,12 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Matkul List</h3>      
+                <h3>List Peserta</h3>      
             </div>
                 <form method="post" id="form_data">
                     <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->
                     <div align="left">
-                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Matkul Yang Di Centang" />
+                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Peserta Yang Di Centang" />
                     </div>
                     <br />
                     <div class="table-responsive">

@@ -69,7 +69,9 @@
                 
                 <div class="form-group">
                     <label>Masukkan NIM (JANGAN SAMPAI SALAH !) :</label>
-                    <input type="text" class="form-control" name="nim" placeholder="e.g : 1700018012" required="require">
+                    <input type="number" class="form-control" name="nim" placeholder="e.g : 1700018012" 
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan NIM Peserta')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">
@@ -99,7 +101,7 @@
                 
                 <div class="form-group">
                     <label>Pilih Jenis Kelamin : </label>
-                    <label class="radio-inline"><input type="radio" name="jk" value="L">Laki-Laki</label>
+                    <label class="radio-inline"><input type="radio" name="jk" value="L" checked>Laki-Laki</label>
                     <label class="radio-inline"><input type="radio" name="jk" value="P">Perempuan</label>
                 </div>
                 
@@ -156,7 +158,7 @@
                     <input type="text" class="form-control" name="periode" placeholder="e.g : 2019/2020">
                 </div>
                 
-                <input type="submit" name="submit" class="btn btn-primary center-block" value="Update / Submit">
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambahkan / Submit">
                 
             </form>
         </div>

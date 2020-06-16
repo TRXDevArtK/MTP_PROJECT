@@ -180,7 +180,7 @@
     
     //DAD-----------------------------------------
     //DATA PC
-    $query = "SELECT nba,nama FROM data_pc";
+    $query = "SELECT nia,nama FROM data_pc";
     $sql_run = mysqli_query($conn2, $query);
     
     while($row = mysqli_fetch_assoc($sql_run)){
@@ -193,9 +193,9 @@
     //print_r($data);
     
     $nama_kader = $data[0]['nama'];
-    $nba_kader = $data[0]['nba'];
+    $nba_kader = $data[0]['nia'];
     $nama_ketua = $data[1]['nama'];
-    $nba_ketua = $data[1]['nba'];
+    $nba_ketua = $data[1]['nia'];
     
     //https://www.malasngoding.com/membuat-format-tanggal-indonesia-dengan-php/
     function tgl_indo($tanggal){

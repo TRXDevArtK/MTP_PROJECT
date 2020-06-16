@@ -65,7 +65,9 @@
                 
                 <div class="form-group">
                     <label>Nama Matkul :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" value="<?php echo $nama;?>">
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" value="<?php echo $nama;?>" 
+                                                                oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                                                  accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">

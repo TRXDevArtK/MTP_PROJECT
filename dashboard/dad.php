@@ -198,8 +198,8 @@ $(document).ready(function(){
             {
                 var html = '';
                 html +='<li class="list-group-item list-group-item-info text-center">Data PC</li>';
-                html += '<li class="list-group-item">Ketum PC Djazman : '+data[0].nama+' ( NIA : '+data[0].nia+')';
-                html += '<li class="list-group-item">Bidang Kader PC : '+data[1].nama+' (NIA : '+data[1].nia+')';
+                html += '<li class="list-group-item">Ketum PC Djazman : '+data[1].nama+' ( NIA : '+data[1].nia+')';
+                html += '<li class="list-group-item">Bidang Kader PC : '+data[0].nama+' (NIA : '+data[0].nia+')';
                 $('#pc_out').html(html);
                 
                 $('#kader_nama').val(data[0].nama);

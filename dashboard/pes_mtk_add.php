@@ -10,6 +10,15 @@
     else{
         $mtk = null;
     }
+    
+    $judul = "";
+    
+    if($mtk == "mtk"){
+        $judul = "";
+    }
+    else{
+        $judul = "Sikap";
+    }
   
 ?>
 
@@ -26,7 +35,7 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Matkul List</h3>      
+                <h3>List Matkul <?php echo $judul; ?></h3>      
             </div>
                 <form method="post" id="form_data">
                     <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->

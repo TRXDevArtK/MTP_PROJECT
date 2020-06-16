@@ -66,7 +66,9 @@
                 
                 <div class="form-group">
                     <label>Nama Matkul (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" required="require">
+                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" 
+                                          oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">

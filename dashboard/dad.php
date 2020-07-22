@@ -2,6 +2,7 @@
     #include sesuatu disini
     include_once "database.php";
     
+    //ambil data komsat
     $query = "SELECT *FROM `komsat`";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
@@ -76,7 +77,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <input type="submit" name="edit" class="btn btn-primary pull-left" style="margin-right:10px;"value="Edit Data Komsat">
+                                <input type="submit" name="edit" class="btn btn-primary pull-left" style="margin-right:10px;"value="Edit Data Komsat Pelaksana">
                                 <input type="button" data-toggle="modal" data-target="#pc_modal" id="edit_pc" name="edit_pc" class="btn btn-primary pull-left" value="Edit Data PC">
                                 <br><br><br>
                                 <input type="hidden" name="id" value="<?php echo $id ?>" readonly>

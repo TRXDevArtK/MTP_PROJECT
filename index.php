@@ -1,9 +1,11 @@
 <?php
+    // Memulai ob start untuk caching web
     ob_start();
     #mulai sesi untuk fungsi login
     session_start();
     #include sesuatu disini
     
+    //cek status apabila login atau belum
     if(isset($_SESSION['status'])){
         header("location:dashboard/index.php");
         exit();

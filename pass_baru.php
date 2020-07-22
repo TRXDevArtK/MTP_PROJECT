@@ -1,5 +1,4 @@
 <?php
-
     ob_start();
     session_start();
     #include sesuatu disini
@@ -8,38 +7,57 @@
 ?>
 
 <?php
+    //pada email yang ada maka klik link, otomatis akan GET pinnya dan ambil
     $pin = $_GET['pin'];
     //$_SESSION['pin'] = $pin;
+    
+    //cekp in jika ada di database
     $query = "SELECT 1 FROM users_reset where pin = '$pin'";
     $sql_run = mysqli_query($conn,$query);
     
+    //jika pin tidak ada maka kembali ke login
     if(mysqli_num_rows($sql_run) != 1){
         header('location:index.php');
         exit();
     }
     
+    //jika ada
     if(isset($_POST['new_password'])){
+        
+        //ambil pass & pass confirmasi
         $pass_baru = $_POST['pass_baru'];
         $pass_baru_c = $_POST['pass_baru_c'];
         $error = 0;
+        
+        //kalau passbaru kosong maka kirim notifikasi
         if (empty($pass_baru) || empty($pass_baru_c)){
             $_SESSION['error1'] = "Password Kosong/Salah";
             $error = 1;
         }
+        //kalau passbaru tidak sama dengan password confirm maka kirim notifikasi
         if ($pass_baru !== $pass_baru_c){
             $_SESSION['error2'] = "Password Tidak Sama";
             $error = 1;
         }
+        
+        //apabila tidak ada error (masih 0 warningnya)
         if($error == 0){
+            //cek pinnya & ambil email
             $query = "SELECT email FROM users_reset where pin ='$pin' LIMIT 1";
             $sql_run = mysqli_query($conn, $query);
             $email = mysqli_fetch_assoc($sql_run)['email'];
-
+            
+            //jika pin ada dan emailnya : 
             if($email) {
+                
+                //hasing passwordbaru
                 $pass_baru = password_hash($pass_baru, PASSWORD_DEFAULT);
+                
+                //jalankan querynya, simpan passbaru ke target user
                 $query = "UPDATE users SET password='$pass_baru' WHERE email='$email'";
                 $sql_run = mysqli_query($conn, $query);
 
+                //kirim notofikasi dan redirect ke login
                 $_SESSION['pass_notf'] = "Ubah password berhasil, silahkan login kembali";
                 header("location:index.php");
                 exit();

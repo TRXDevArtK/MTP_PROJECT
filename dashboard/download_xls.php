@@ -10,9 +10,6 @@
     header("Content-Disposition: attachment; filename=$nim"."_raport.xls");
     
     echo $string;
-    
-    $_SESSION['nim'] = $nim;
-    header('Location:peserta_data.php');
     exit();
 ?>
 

@@ -8,12 +8,14 @@
 ?>
 
 <?php
+    //ambil post username dan password
     $username = $_POST['username'];
     $password = $_POST['password'];
     //Jika perlu , untuk auth 2x nanti
     //$_SESSION['username'] = $username;
     //$_SESSION['password'] = $password;
     
+    //ambil id,username,password dari database
     $query = "SELECT *FROM users where username='$username'";
     $sql_run = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($sql_run);
@@ -22,8 +24,12 @@
     $db_username = $row["username"];
     $db_password = $row["password"];
     
+    //verifikasi post password dengan database password yang terenkripsi
     $conf_password = password_verify($password, $db_password);
 
+    //jika username sama dengan database username
+    //dan konfirmasi masi password benar, maka tambah session untuk login
+    //dan redirect ke index.php (setelah itu ke dashboard index)
     if(($username == $db_username) && $conf_password == true){
         $_SESSION['login_id'] = $id;
         $_SESSION['status'] = "login";
@@ -38,6 +44,9 @@
         exit();
         
     }
+    
+    //jika salah maka tambahkan session login salah
+    //dan kembali lagi ke page login
     else{
         $_SESSION['loginsalah'] = "Login salah, silahkan coba lagi";  
         header("location:index.php");

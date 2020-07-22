@@ -1,11 +1,13 @@
 <?php
-
     #include sesuatu disini
     include_once "database.php";
     
 ?>
 
 <?php
+
+    //rumus untuk pagination
+    //set limit, 20 data di list akan tampil
     $limit = 20;
     $query = "SELECT COUNT(*) FROM peserta";  
     $sql_run = mysqli_query($conn2, $query);  
@@ -93,6 +95,9 @@
 <script> //PAKAI ACTIVE JAVASCRIPT (AJAX)
 $(document).ready(function(){
     
+    //ini adalah rumus untuk loading jquery
+    //jika load data dari database maka tampilkan animasi loading
+    //agar orang tahu datanya lagi diload
     $body = $("body");
     
     $(document).on({
@@ -100,7 +105,7 @@ $(document).ready(function(){
         ajaxStop: function() { $body.removeClass("loading"); }    
     });
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE
     function fetch_data_peserta(id)
     {
         //REFRESH PAGE
@@ -108,6 +113,7 @@ $(document).ready(function(){
         if(id == null){
             id = 1;
         }
+        //jalankan fungsi ajax
         $.ajax({
             url:"peserta_opr.php",
             method:"POST",
@@ -126,6 +132,7 @@ $(document).ready(function(){
             {
                 var html = '';
                 var count = 0;
+                //dibawah adalah kode html yang akan diulang begitu juga dengan file databasenya sesuai index
                 for(count; count < data.length; count++){
                     html += '<tr>';
                     html += '<td>'+(count+1)+'</td>';
@@ -159,6 +166,7 @@ $(document).ready(function(){
     fetch_data_peserta();
     
     //Jika pagination di click
+    //maka kalkukasikan tombol paginationnya
     $(".page-link").click(function(){
         var id = $(this).attr("data-id");
         if(id >= <?=$total_pages?>)
@@ -182,9 +190,8 @@ $(document).ready(function(){
         fetch_data_peserta(id);
     });
     
-    //Hapus MTK
+    //fungsi hapus mtk
     $(document).on('click', '#peserta_hapus', function(){
-        //var text;
         var submit = prompt("Apa anda yakin ingin menghapus PESERTA ? \n\
         \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus PESERTA", "KETIK DISINI");
         var id = $(this).attr('id_s');

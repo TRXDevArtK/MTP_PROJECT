@@ -12,9 +12,22 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_edit.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/login.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/sql_connect.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_pes_add.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/dad.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/lupa_pass.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/pass_baru.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_data_opr.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_pes_opr.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/index.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/database.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/pes_mtk_opr.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/index.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta_data.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/mtk_data_opr.php</file>
             <file>file:/C:/xampp/htdocs/MTP_PROJECT/dashboard/peserta.php</file>
+            <file>file:/C:/xampp/htdocs/MTP_PROJECT/pass_conf.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,4 +1,6 @@
 <?php
+
+    //ambil database untuk keperluan manajemen
     include('database.php');
 ?>
 

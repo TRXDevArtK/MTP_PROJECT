@@ -2,18 +2,24 @@
     ob_start();
     include('database.php');
     
+    //jika ada session nim
     if(isset($_SESSION['nim'])){
         $nim = $_SESSION['nim'];
         unset($_SESSION['nim']);
     }
+    
+    //jika ada post nim
     else if(isset($_POST['nim'])){
         $nim = $_POST['nim'];
     }
+    
+    //tidak ada semua itu maka balik ke page list peserta
     else{
         header('Location:peserta.php');
         exit();
     }
     
+    //ambil hal yang diperlukan pada data peserta di database
     $query = "SELECT *FROM `peserta` where `peserta`.`nim` = $nim";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
@@ -313,6 +319,8 @@ $(document).ready(function(){
                 var nilai = 0;
                 for(count; count < data.length; count++){
                     
+                    //untuk deskripsi nilai, maka ubah sesuai nilainya
+                    //cnth , jika nilai A maka deskripsi nilai untuk nilai A, dst
                     if(data[count].nilai == 'A'){
                         desc_nilai = data[count].A;
                         nilai = 4;
@@ -352,6 +360,7 @@ $(document).ready(function(){
                     
                 }
                 
+                //Untuk kalkulasi nilai ke huruf
                 nilai_akhir = calc_nilai / count;
                 nilai_huruf = '';
                 
@@ -385,8 +394,10 @@ $(document).ready(function(){
     
     fetch_data_sikap_perpeserta();
     
+    //Ambil data dari attribut pada setiap checkbox (box yang di check)
     $(document).on('click', '.check_box_2', function(){
         var html = '';
+        //kalau di check maka tampilkan serta ambil
         if(this.checked)
         {
             html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nama="'+$(this).attr('nama')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'"\n\
@@ -402,6 +413,8 @@ $(document).ready(function(){
                     <option value="D">D</option>\n\
                     <option value="">KOSONGKAN</option>\n\</select></td>';
         }
+        
+        //kalau tidak di cek kembali, maka data kembali seperti semula
         else
         {
             html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nama="'+$(this).attr('nama')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'"\n\
@@ -424,6 +437,7 @@ $(document).ready(function(){
         event.preventDefault();
         
         //gunakan fungsi serializearray untuk auto add dengan push
+        //ambil data form dari checkbox tadi
         var serialize = $("#form_data_2").serializeArray();
         serialize.push({name: 'nim', value: '<?=$nim?>'});
         serialize.push({name: 'key', value: 'update'});

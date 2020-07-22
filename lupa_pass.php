@@ -5,19 +5,28 @@
     include_once "sql_connect.php";
     
     $warning = 0;
+    
+    //jika ada post submit dan post email ada dan tidak kosong maka
     if(isset($_POST['submit']) && !empty($_POST['email'])){
         $email = $_POST['email'];
+        //jika email kosong
         if(empty($email)){
             $warning = 1;
             //header("location:email_inp.php");
         }
+        //jika email ada
         else{
+            
+            //cek email di database apakah ada atau tidak
             $query = "SELECT email FROM users WHERE email='$email'";
             $sql_run = mysqli_query($conn, $query);
 
+            //jika email tidak ada
             if(mysqli_num_rows($sql_run) <= 0) {
                 $warning = 2;
             }
+            
+            //jika email ada di database maka kirim email
             else{
                 /*Algoritma : cek email di user_reset, apabila ada maka update, apabila baru maka insert */
                 $pin = bin2hex(random_bytes(20));
@@ -49,7 +58,7 @@
                     }*/
                 }
 
-                // FILE EMAILNYA
+                // FILE EMAILNYA & kirim
                 $to = $email;
                 $subject = "RESET PASSWORD DJAZMAN";
                 $msg = "Hi, untuk reset password kamu, klik link ini ".$_SERVER['HTTP_HOST']."/pass_baru.php?pin=" . $pin ."";

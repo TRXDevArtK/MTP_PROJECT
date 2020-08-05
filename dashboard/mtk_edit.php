@@ -62,7 +62,7 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Profil Matkul</h3>      
+                <h3>Profil Materi</h3>      
             </div>
               
             <br>
@@ -70,9 +70,9 @@
                 <input type="hidden" class="form-control" name="id" value="<?= $id ?>" readonly>
                 
                 <div class="form-group">
-                    <label>Masukkan Nama Matkul (Wajib) :</label>
+                    <label>Masukkan Nama Materi (Wajib) :</label>
                     <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>" 
-                                                        oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                                        oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
                                                           accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 

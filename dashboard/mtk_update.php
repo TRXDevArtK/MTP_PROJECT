@@ -55,9 +55,9 @@
     <head></head>
     <body>
         <form action="#" method="post">
-            <br><h4>PROFIL MATKUL</h4><br>
+            <br><h4>PROFIL MATERI</h4><br>
             
-            <label>Masukkan nama matkul (Wajib) :</label><br>
+            <label>Masukkan nama materi (Wajib) :</label><br>
             <input type="text" name="nama" placeholder="e.g : Al-Quran"><br>
             <label for="lname">Masukkan semester : </label><br>
             <input type="text" name="semester" placeholder="e.g : 1, 2, 3, etc"><br>

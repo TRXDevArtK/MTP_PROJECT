@@ -14,7 +14,7 @@
 
         $start_from = ($page-1) * $limit;  
 
-        $query = "select nim, namafull from peserta LIMIT $start_from,$limit";
+        $query = "select nim, namafull, komsat from kader LIMIT $start_from,$limit";
 
         $sql_run = mysqli_query($conn2, $query);
 
@@ -32,18 +32,18 @@
         $nim = $_POST['nim'];
         
         //HAPUS DATA PESERTA
-        $query = "DELETE FROM `peserta` WHERE `peserta`.`nim` = $nim";
+        $query = "DELETE FROM `kader` WHERE `kader`.`nim` = $nim";
         $sql_run = mysqli_query($conn2, $query);
         
         //HAPUS DATA PRESENSI
-        $query = "DELETE FROM `peserta_presensi` WHERE `peserta_presensi`.`nim` = $nim";
+        $query = "DELETE FROM `kader_presensi` WHERE `kader_presensi`.`nim` = $nim";
         $sql_run = mysqli_query($conn2, $query);
         
         //HAPUS DATA CATATAN
-        $query = "DELETE FROM `peserta_catatan` WHERE `peserta_catatan`.`nim` = $nim";
+        $query = "DELETE FROM `kader_catatan` WHERE `kader_catatan`.`nim` = $nim";
         $sql_run = mysqli_query($conn2, $query);
         
-        //OPERASI HAPUS DATA PESERTA DI MATKUL . .
+        //OPERASI HAPUS DATA PESERTA DI MATERI . .
         
         $u_mtk = "%_______mtk";
         $query = "SHOW TABLES LIKE '$u_mtk'";
@@ -64,7 +64,7 @@
             }
         }
         
-        //OPERASI HAPUS DATA PESERTA DI MATKUL SIKAP . .
+        //OPERASI HAPUS DATA PESERTA DI MATERI SIKAP . .
         $u_mtk = "%_______mtk_skp";
         $query = "SHOW TABLES LIKE '$u_mtk'";
         $sql_run = mysqli_query($conn2, $query);

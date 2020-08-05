@@ -2,7 +2,7 @@
 
     include('database.php');
 
-    $idmatkul = $_POST['idmatkul'];
+    $idmateri = $_POST['idmateri'];
     
     if(isset($_POST['mtk'])){
         $mtk = $_POST['mtk'];
@@ -26,12 +26,12 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>List Peserta</h3>      
+                <h3>List Kader</h3>      
             </div>
                 <form method="post" id="form_data">
                     <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->
                     <div align="left">
-                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Peserta Yang Di Centang" />
+                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Kader Yang Di Centang" />
                     </div>
                     <br />
                     <div class="table-responsive">
@@ -40,11 +40,11 @@
                                 <th width="5%">Pilih</th>
                                 <th width="5%">No</th>
                                 <th width="10%">NIM</th>
-                                <th width="5%">Nama Peserta</th>
+                                <th width="5%">Nama Kader</th>
                             </thead>
                             <tbody id="tbody"></tbody>
                         </table>
-                        <div class="text-center">Catatan : Jika data tidak ada , berarti seluruh peserta sudah diinputkan ke matkul</div>
+                        <div class="text-center">Catatan : Jika data tidak ada , berarti seluruh kader sudah diinputkan ke materi</div>
                     </div>
                 </form>
             </div>
@@ -56,14 +56,14 @@
 $(document).ready(function(){
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
-    function fetch_data_peserta()
+    function fetch_data_kader()
     {
         //REFRESH PAGE
         $.ajax({
             url:"mtk_pes_opr.php",
             method:"POST",
             data:{
-                'idmatkul':'<?=$idmatkul?>',
+                'idmateri':'<?=$idmateri?>',
                 'key':'load'
             },
             dataType:"json",
@@ -97,7 +97,7 @@ $(document).ready(function(){
         });
     }
     
-    fetch_data_peserta();
+    fetch_data_kader();
     
     $(document).on('click', '.check_box', function(){
         var html = '';
@@ -127,7 +127,7 @@ $(document).ready(function(){
         
         //gunakan fungsi serializearray untuk auto add dengan push
         var serialize = $("#form_data").serializeArray();
-        serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
+        serialize.push({name: 'idmateri', value: '<?=$idmateri?>'});
         serialize.push({name: 'key', value: 'submit'});
         serialize.push({name: 'mtk', value: '<?=$mtk?>'});
         

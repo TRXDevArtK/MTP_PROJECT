@@ -23,20 +23,20 @@
           <p class="section-lead"></p>
             <div class="services-grid">
                 <div class="service service2">
-                    <h4>Data Peserta</h4>
+                    <h4>Data Kader</h4>
                     <p>Tempat untuk melihat data dan nilai serta download raportnya</p>
-                    <a href="peserta.php" class="cta">Klik Disini</a>
+                    <a href="kader.php" class="cta">Klik Disini</a>
                 </div>
 
                 <div class="service service2">
-                    <h4>Data Matkul</h4>
-                    <p>Tempat untuk melihat,mengedit matkul dan list pesertanya</p>
+                    <h4>Data Materi</h4>
+                    <p>Tempat untuk melihat,mengedit materi dan list kadernya</p>
                     <a href="mtk.php" class="cta">Klik Disini</a>
                 </div>
 
                 <div class="service service2">
-                    <h4>Data Matkul Sikap</h4>
-                    <p>Tempat untuk melihat,mengedit matkul SIKAP dan list pesertanya</p>
+                    <h4>Data Materi Sikap</h4>
+                    <p>Tempat untuk melihat,mengedit materi SIKAP dan list kadernya</p>
                     <a href="mtk_skp.php" class="cta">Read More <span class="ti-angle-right"></a>
                 </div>
             </div>

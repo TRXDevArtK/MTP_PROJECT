@@ -5,7 +5,7 @@
     //LOAD NILAI MTK
     if(isset($_POST['key']) && $_POST['key'] == 'load_nilai'){
         //Dapatkan data properties
-        $idmatkul = $_POST['idmatkul'];
+        $idmateri = $_POST['idmateri'];
 
         $limit = $_POST['limit'];
         if (isset($_POST["page"])){ 
@@ -17,8 +17,8 @@
 
         $start_from = ($page-1) * $limit;
 
-        $query = "SELECT $idmatkul.nim, peserta.namafull, $idmatkul.tanggal_nilai, $idmatkul.nilai FROM peserta,$idmatkul "
-                . "WHERE peserta.nim = $idmatkul.nim LIMIT $start_from,$limit";
+        $query = "SELECT $idmateri.nim, kader.namafull, kader.komsat, $idmateri.tanggal_nilai, $idmateri.nilai FROM kader,$idmateri "
+                . "WHERE kader.nim = $idmateri.nim LIMIT $start_from,$limit";
 
         $sql_run = mysqli_query($conn2, $query);
 
@@ -34,16 +34,16 @@
     //LOAD DESC MTK
     if(isset($_POST['key']) && $_POST['key'] == 'load_dsc'){
         //Dapatkan data properties
-        $idmatkul = $_POST['idmatkul'];
+        $idmateri = $_POST['idmateri'];
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
-            $idmatkul = chop($idmatkul,"_mtk_skp");
+            $idmateri = chop($idmateri,"_mtk_skp");
         }
         else if(isset($_POST['mtk']) && $_POST['mtk'] == 'mtk'){
-            $idmatkul = chop($idmatkul,"_mtk");
+            $idmateri = chop($idmateri,"_mtk");
         }
        
-        $query = "select A,B,C,D from descmtk where id = $idmatkul";
+        $query = "select A,B,C,D from descmtk where id = $idmateri";
 
         $sql_run = mysqli_query($conn2, $query);
 
@@ -60,24 +60,24 @@
     if(isset($_POST['key']) && $_POST['key'] == 'update'){
         $nim = $_POST['nim'];
         $nilai = $_POST['nilai'];
-        $idmatkul = $_POST['idmatkul'];
+        $idmateri = $_POST['idmateri'];
 
         date_default_timezone_set('Asia/Jakarta');
         $date = date('G:i - d/M/Y');
 
         for($i = 0; $i < count($nim); $i++){
-            $query = "UPDATE `$idmatkul` SET `nilai` = '$nilai[$i]', `tanggal_nilai` = '$date' WHERE `$idmatkul`.`nim` = $nim[$i]";
+            $query = "UPDATE `$idmateri` SET `nilai` = '$nilai[$i]', `tanggal_nilai` = '$date' WHERE `$idmateri`.`nim` = $nim[$i]";
             mysqli_query($conn2, $query);
         }
     }
 
-    //DELETE DATA PESERTA YANG DIMATKUL
+    //DELETE DATA KADER YANG DIMATERI
     if(isset($_POST['key']) && $_POST['key'] == 'delete'){
         $nim = $_POST['nim'];
-        $idmatkul = $_POST['idmatkul'];
+        $idmateri = $_POST['idmateri'];
 
         for($i = 0; $i < count($nim); $i++){
-            $query = "DELETE FROM `$idmatkul` WHERE `$idmatkul`.`nim` = $nim[$i]";
+            $query = "DELETE FROM `$idmateri` WHERE `$idmateri`.`nim` = $nim[$i]";
             mysqli_query($conn2, $query);
         }
     }

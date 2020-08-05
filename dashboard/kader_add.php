@@ -6,7 +6,7 @@
         
         $nim = $_POST['nim'];
 
-        $query = "SELECT nim FROM peserta where nim = $nim";
+        $query = "SELECT nim FROM kader where nim = $nim";
         $sql_run = mysqli_query($conn2, $query);
 
         //Test untuk data apakah ada atau tidak
@@ -24,13 +24,13 @@
             $universitas = $_POST['universitas'];
             $alamat = $_POST['alamat'];
             
-            $query = "INSERT INTO `peserta_presensi` (`nim`, `sakit`, `izin`, `tanpa_ket`) VALUES ('$nim', NULL, NULL, NULL)";
+            $query = "INSERT INTO `kader_presensi` (`nim`, `sakit`, `izin`, `tanpa_ket`) VALUES ('$nim', NULL, NULL, NULL)";
             $sql_run = mysqli_query($conn2, $query);
             
-            $query = "INSERT INTO `peserta_catatan` (`nim`, `deskripsi`) VALUES ('$nim', 'NULL')";
+            $query = "INSERT INTO `kader_catatan` (`nim`, `deskripsi`) VALUES ('$nim', 'NULL')";
             $sql_run = mysqli_query($conn2, $query);
 
-            $query = "INSERT INTO `peserta` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, "
+            $query = "INSERT INTO `kader` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, "
                     . "`universitas`, `alamat`, `nama_ayah`, `nama_ibu`, `kerja_ayah`, `kerja_ibu`, `essai`, `periode`) "
                     . "VALUES ('$nim', '$namafull', '$namapanggil', '$notelp', '$tempat', '$tanggal', '$jk', '$fakultas', "
                     . "'$universitas', '$alamat', '$nama_ayah', '$nama_ibu', '$kerja_ayah', '$kerja_ibu', '$essai', '$periode')";
@@ -38,7 +38,7 @@
 
             //Test untuk sql berjalan
             if($sql_run){
-                header("location:peserta.php");
+                header("location:kader.php");
                 exit();
             }
             else{
@@ -61,21 +61,21 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Input Profil Peserta</h3>      
+                <h3>Input Profil Kader</h3>      
             </div>
               
             <br></br>
-            <form action="peserta_add.php" method="post">
+            <form action="kader_add.php" method="post">
                 
                 <div class="form-group">
                     <label>Masukkan NIM (JANGAN SAMPAI SALAH !) :</label>
                     <input type="number" class="form-control" name="nim" placeholder="e.g : 1700018012" 
-                                            oninvalid="this.setCustomValidity('Silahkan Masukkan NIM Peserta')"
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan NIM Kader')"
                                             accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 
                 <div class="form-group">
-                    <label>Masukkan Nama Peserta :</label>
+                    <label>Masukkan Nama Kader :</label>
                     <input type="text" class="form-control" name="namafull" placeholder="e.g : Fulan Fulan">
                 </div>
                 

@@ -94,10 +94,10 @@ INSERT INTO `idmtk` (`id`, `nama`, `semester`, `thn`, `kelas`, `kkm`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peserta`
+-- Table structure for table `kader`
 --
 
-CREATE TABLE `peserta` (
+CREATE TABLE `kader` (
   `nim` int(11) NOT NULL,
   `namafull` varchar(50) NOT NULL,
   `namapanggil` varchar(20) NOT NULL,
@@ -111,10 +111,10 @@ CREATE TABLE `peserta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peserta`
+-- Dumping data for table `kader`
 --
 
-INSERT INTO `peserta` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`) VALUES
+INSERT INTO `kader` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`) VALUES
 (1700018013, 'ref', '', '', '', '', '', '', '', ''),
 (1700018014, 'ji', '', '', '', '', '', '', '', '');
 
@@ -147,9 +147,9 @@ ALTER TABLE `idmtk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `peserta`
+-- Indexes for table `kader`
 --
-ALTER TABLE `peserta`
+ALTER TABLE `kader`
   ADD PRIMARY KEY (`nim`);
 COMMIT;
 

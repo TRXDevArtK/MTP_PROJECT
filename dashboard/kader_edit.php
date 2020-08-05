@@ -5,6 +5,7 @@
     if(isset($_POST['edit']) && !empty($_POST['nim'])){
 
         $nim = $_POST['nim'];
+        $komsat = $_POST['komsat'];
         $namafull = $_POST['namafull'];
         $namapanggil = $_POST['namapanggil'];
         $notelp = $_POST['notelp'];
@@ -32,6 +33,7 @@
 
     if(isset($_POST['submit'])){ //check if form was submitted
         $nim = $_POST['nim'];
+        $komsat = $_POST['komsat'];
         $namafull = $_POST['namafull'];
         $namapanggil = $_POST['namapanggil'];
         $notelp = $_POST['notelp'];
@@ -48,15 +50,15 @@
         $essai = $_POST['essai'];
         $periode = $_POST['periode'];
 
-        //Edit data peserta
-        $query = "UPDATE `peserta` SET `namafull` = '$namafull', `namapanggil` = '$namapanggil', `notelp` = '$notelp', "
+        //Edit data kader
+        $query = "UPDATE `kader` SET `komsat` = '$komsat', `namafull` = '$namafull', `namapanggil` = '$namapanggil', `notelp` = '$notelp', "
                 . "`tempat` = '$tempat', `tanggal` = '$tanggal', `jk` = '$jk', `fakultas` = '$fakultas', "
                 . "`universitas` = '$universitas', `alamat` = '$alamat', `nama_ayah` = '$nama_ayah', `nama_ibu` = '$nama_ibu', "
-                . "`kerja_ayah` = '$kerja_ayah', `kerja_ibu` = '$kerja_ibu', `essai` = '$essai', `periode` = '$periode' WHERE `peserta`.`nim` = $nim";
+                . "`kerja_ayah` = '$kerja_ayah', `kerja_ibu` = '$kerja_ibu', `essai` = '$essai', `periode` = '$periode' WHERE `kader`.`nim` = $nim";
         mysqli_query($conn2, $query);
 
         $_SESSION['nim'] = $nim;
-        header("location:peserta_data.php");
+        header("location:kader_data.php");
         exit();
 
     }
@@ -75,23 +77,28 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Profil Peserta</h3>      
+                <h3>Profil Kader</h3>      
             </div>
               
             <br></br>
-            <form action="peserta_edit.php" method="post">
+            <form action="kader_edit.php" method="post">
                 <!--Konten Hidden-->
                 <input type="hidden" name="nim" value="<?php echo $nim;?>" readonly>
                 <!-- -->
                 
                 <div class="form-group">
-                    <label>Nama Peserta :</label>
+                    <label>Nama Kader :</label>
                     <input type="text" class="form-control" name="namafull" placeholder="e.g : Fulan Fulan" value="<?php echo $namafull;?>">
                 </div>
                 
                 <div class="form-group">
                     <label>Nama Panggil :</label>
                     <input type="text" class="form-control" name="namapanggil" placeholder="e.g : Fulan" value="<?php echo $namapanggil;?>">
+                </div>
+                
+                <div class="form-group">
+                    <label>Asal Komsat :</label>
+                    <input type="text" class="form-control" name="komsat" placeholder="e.g : FTI" value="<?php echo $komsat;?>">
                 </div>
                 
                 <div class="form-group">

@@ -91,10 +91,10 @@ INSERT INTO `nilaimtk` (`nim`, `8452947`, `5184637`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peserta`
+-- Table structure for table `kader`
 --
 
-CREATE TABLE `peserta` (
+CREATE TABLE `kader` (
   `no` int(11) NOT NULL,
   `nim` int(11) NOT NULL,
   `namafull` varchar(50) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE `peserta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peserta`
+-- Dumping data for table `kader`
 --
 
-INSERT INTO `peserta` (`no`, `nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`) VALUES
+INSERT INTO `kader` (`no`, `nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`) VALUES
 (1, 1900023096, 'Awalia Rezky Adnisyar', 'Eky', '89620774352', 'Batam', '05/10/1998', 'P', 'Farmasi', 'Universitas Ahmad Dahlan', 'Jl bimosari nomor 241B Umbulharjo Yogyakarta'),
 (2, 1900023183, 'Syamsy Salsabilla Riasty Putri Jumaldi', 'Abil', '85339040642', 'Maumere', '08/09/2001', 'P', 'Farmasi', 'Universitas Ahmad Dahlan', 'Jln. Janturan no 54/52, Rt 16/4,Warungboto ,Umbulh'),
 (3, 1900023246, 'Annisa Awalia Rahma Mh Sibadu', 'Nisaa', '82265088341', 'Luwuk', '4/15/2000', 'P', 'Farmasi', 'Universitas Ahmad Dahlan', 'jalan Menukan 273 Asrama Putri MBS Karang Kajen, K');
@@ -140,9 +140,9 @@ ALTER TABLE `nilaimtk`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indexes for table `peserta`
+-- Indexes for table `kader`
 --
-ALTER TABLE `peserta`
+ALTER TABLE `kader`
   ADD PRIMARY KEY (`nim`),
   ADD UNIQUE KEY `no` (`no`);
 
@@ -151,9 +151,9 @@ ALTER TABLE `peserta`
 --
 
 --
--- AUTO_INCREMENT for table `peserta`
+-- AUTO_INCREMENT for table `kader`
 --
-ALTER TABLE `peserta`
+ALTER TABLE `kader`
   MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 

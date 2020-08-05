@@ -35,12 +35,12 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>List Matkul <?php echo $judul; ?></h3>      
+                <h3>List Materi <?php echo $judul; ?></h3>      
             </div>
                 <form method="post" id="form_data">
                     <!-- BUTTON SEBAGAI BUTTON BIASA (BUKAN SUBMIT) agar nantinya bisa fleksibel kegunaannya-->
                     <div align="left">
-                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Matkul Yang Di Centang" />
+                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Pilih Materi Yang Di Centang" />
                     </div>
                     <br />
                     <div class="table-responsive">
@@ -48,11 +48,11 @@
                             <thead>
                                 <th width="5%">Pilih</th>
                                 <th width="5%">No</th>
-                                <th width="25%">Nama Matkul</th>
+                                <th width="25%">Nama Materi</th>
                             </thead>
                             <tbody id="tbody"></tbody>
                         </table>
-                        <div class="text-center">Catatan : Jika data tidak ada , berarti seluruh matkul sudah diinputkan ke peserta</div>
+                        <div class="text-center">Catatan : Jika data tidak ada , berarti seluruh materi sudah diinputkan ke kader</div>
                     </div>
                 </form>
             </div>
@@ -147,7 +147,7 @@ $(document).ready(function(){
                 success:function(data)
                 {
                     
-                    var url = "peserta_data.php";
+                    var url = "kader_data.php";
                     $(location).attr('href',url);
                     //fetch_data_mtk();
                 }

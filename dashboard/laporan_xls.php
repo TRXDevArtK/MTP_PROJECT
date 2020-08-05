@@ -3,8 +3,8 @@
 
     include('database.php');
     
-    //Panggil seluruh data peserta
-    $query = "SELECT nim,namafull,universitas,fakultas,periode,jk,essai FROM peserta WHERE nim = '$nim'";
+    //Panggil seluruh data kader
+    $query = "SELECT nim,namafull,universitas,fakultas,periode,jk,essai FROM kader WHERE nim = '$nim'";
     $sql_run = mysqli_query($conn2,$query);
     $row = mysqli_fetch_assoc($sql_run);
     
@@ -16,7 +16,7 @@
     $jk = $row['jk'];
     $essai = $row['essai'];
     
-    //Panggil seluruh data matkul sikap peserta------------------------------------ START
+    //Panggil seluruh data materi sikap kader------------------------------------ START
     $u_mtk = "%_______mtk_skp";
     $query = "SHOW TABLES LIKE '$u_mtk'";
     $sql_run = mysqli_query($conn2, $query);
@@ -26,7 +26,7 @@
     }
     
     //echo json_encode($data_chp);
-    //echo json_encode($data); //Data TABEL Matkul Sikap
+    //echo json_encode($data); //Data TABEL Materi Sikap
     
     foreach($data as $data){
         $query = "select idmtk_skp.nama, $data.nilai from idmtk_skp,$data where $data.id = idmtk_skp.id and $data.nim = '$nim'";
@@ -87,7 +87,7 @@
     $data_3 = array();
     $desc = array();
     
-    //Panggil seluruh data matkul peserta------------------------------------ START
+    //Panggil seluruh data materi kader------------------------------------ START
     $u_mtk = "%_______mtk";
     $query = "SHOW TABLES LIKE '$u_mtk'";
     $sql_run = mysqli_query($conn2, $query);
@@ -154,14 +154,14 @@
     $desc = array();
     
     //DATA CATATAN
-    $query = "SELECT deskripsi FROM peserta_catatan WHERE nim = '$nim'";
+    $query = "SELECT deskripsi FROM kader_catatan WHERE nim = '$nim'";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
     
     $deskripsi = $row['deskripsi'];
     
     //DATA AKUMULASI PRESENSI
-    $query = "SELECT izin,sakit,tanpa_ket FROM peserta_presensi WHERE nim = '$nim'";
+    $query = "SELECT izin,sakit,tanpa_ket FROM kader_presensi WHERE nim = '$nim'";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
     
@@ -256,7 +256,7 @@
 	<colgroup width="30"></colgroup>
 	<colgroup width="36"></colgroup>
 	<tr>
-		<td colspan=2 height="19" align="left" valign=middle><font color="#000000">Nama Peserta</font></td>
+		<td colspan=2 height="19" align="left" valign=middle><font color="#000000">Nama Kader</font></td>
 		<td align="right" valign=middle><b><font color="#000000">:</font></b></td>
 		<td align="left"><b><font color="#000000"><?php echo $namafull; ?></font></b></td>
 		<td align="right"><font color="#000000">Komisariat</font></td>

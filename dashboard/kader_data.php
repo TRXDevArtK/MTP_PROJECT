@@ -13,18 +13,19 @@
         $nim = $_POST['nim'];
     }
     
-    //tidak ada semua itu maka balik ke page list peserta
+    //tidak ada semua itu maka balik ke page list kader
     else{
-        header('Location:peserta.php');
+        header('Location:kader.php');
         exit();
     }
     
-    //ambil hal yang diperlukan pada data peserta di database
-    $query = "SELECT *FROM `peserta` where `peserta`.`nim` = $nim";
+    //ambil hal yang diperlukan pada data kader di database
+    $query = "SELECT *FROM `kader` where `kader`.`nim` = $nim";
     $sql_run = mysqli_query($conn2, $query);
     $row = mysqli_fetch_assoc($sql_run);
     
     $nim = $row['nim'];
+    $komsat = $row['komsat'];
     $namafull = $row['namafull'];
     $namapanggil = $row['namapanggil'];
     $notelp = $row['notelp'];
@@ -65,7 +66,7 @@
         
         <div class="container">
             <div class="page-header text-center">
-                <h3>Data Peserta</h3>      
+                <h3>Data Kader</h3>      
             </div>
             
             <!-- Modal -->
@@ -119,7 +120,7 @@
                     <div class="modal-body">
                         <form id="catatan">
                             <div class="form-group">
-                                <label>Catatan Peserta</label>
+                                <label>Catatan Kader</label>
                                 <textarea type="text" class="form-control" name="catatan" id="catatan_in" ></textarea>
                             </div>
                             
@@ -134,7 +135,7 @@
               </div>
             </div>
             
-            <form action="peserta_edit.php" method="post">
+            <form action="kader_edit.php" method="post">
                 
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -146,10 +147,11 @@
                             <br><br><br>
                             <a class="list-group-item">Nama : <?php echo $namafull ?></a><input type="hidden" name="namafull" value="<?php echo $namafull ?>" readonly>
                             <a class="list-group-item">NIM : <?php echo $nim ?></a><input type="hidden" name="nim" value="<?php echo $nim ?>" readonly>
+                            <a class="list-group-item">Asal Komsat : <?php echo $komsat?></a><input type="hidden" name="komsat" value="<?php echo $komsat ?>" readonly>
                             <a class="list-group-item">Judul Essai : <?php echo $essai ?></a><input type="hidden" name="essai" value="<?php echo $essai ?>" readonly>
                             <a class="list-group-item">Periode : <?php echo $periode ?></a><input type="hidden" name="periode" value="<?php echo $periode ?>" readonly>
                             <br>
-                            <button data-toggle="collapse" href="#collapse1" type="button" class="btn btn-info">Data Peserta + </button>
+                            <button data-toggle="collapse" href="#collapse1" type="button" class="btn btn-info">Data Kader + </button>
                             <button data-toggle="collapse" href="#collapse2" type="button" class="btn btn-info">Data Orang Tua + </button>
                             <button data-toggle="collapse" href="#collapse3" type="button" class="btn btn-info">Data Presensi + </button>
                             <button data-toggle="collapse" href="#collapse4" type="button" class="btn btn-info">Data Catatan + </button>
@@ -157,7 +159,7 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <ul class="list-group">
-                            <li class="list-group-item list-group-item-info text-center">Data Peserta Tambahan</li>
+                            <li class="list-group-item list-group-item-info text-center">Data Kader Tambahan</li>
                             <li class="list-group-item">Nama Panggilan : <?php echo $namapanggil ?><input type="hidden" name="namapanggil" value="<?php echo $namapanggil ?>" readonly>
                             <li class="list-group-item">Nomor Telepon : <?php echo $notelp ?><input type="hidden" name="notelp" value="<?php echo $notelp ?>" readonly>
                             <li class="list-group-item">Tempat Lahir : <?php echo $tempat ?><input type="hidden" name="tempat" value="<?php echo $tempat ?>" readonly>
@@ -170,7 +172,7 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <ul class="list-group">
-                            <li class="list-group-item list-group-item-info text-center">Data Orang Tua Peserta</li>
+                            <li class="list-group-item list-group-item-info text-center">Data Orang Tua Kader</li>
                             <li class="list-group-item">Nama Ayah : <?php echo $nama_ayah ?><input type="hidden" name="nama_ayah" value="<?php echo $nama_ayah ?>" readonly>
                             <li class="list-group-item">Nama Ibu : <?php echo $nama_ibu ?><input type="hidden" name="nama_ibu" value="<?php echo $nama_ibu ?>" readonly>
                             <li class="list-group-item">Kerja Ayah : <?php echo $kerja_ayah ?><input type="hidden" name="kerja_ayah" value="<?php echo $kerja_ayah ?>" readonly>
@@ -191,7 +193,7 @@
             </div>
             </form>
             
-            <!-- Data nilai sikap peserta -->
+            <!-- Data nilai sikap kader -->
             <hr style="color:black">
             <form action="pes_mtk_add.php" method="post">
                 <input type="hidden" name="nim" value="<?= $nim ?>"/>
@@ -202,7 +204,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Matkul Sikap</h3>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Materi Sikap</h3>
                                 <span style="display: inline;">
                                     <label for="add_mtk_skp" tabindex="0" class="btn btn-success">Tambah Mata Kuliah</label>
                                     <input type="button" name="multiple_update" id="update_skp" class="btn btn-primary" value="Update Data Yang Dipilih" />
@@ -213,7 +215,7 @@
                         <thead>
                             <th width="1%">Pilih</th>
                             <th width="5%">No</th>
-                            <th width="15%">Nama Matkul</th>
+                            <th width="15%">Nama Materi</th>
                             <th width="15%">Tanggal Nilai</th>
                             <th width="10%">Nilai</th>
                             <th width="30%">Deskripsi Nilai</th>
@@ -223,7 +225,7 @@
                 </div>
             </form>
             
-            <!-- Data nilai peserta -->
+            <!-- Data nilai kader -->
             <hr style="color:black">
             <form action="pes_mtk_add.php" method="post">
                 <input type="hidden" name="nim" value="<?= $nim ?>"/>
@@ -234,7 +236,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Matkul</h3>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Materi</h3>
                                 <span style="display: inline;">
                                     <label for="add_mtk" tabindex="0" class="btn btn-success">Tambah Mata Kuliah</label>
                                     <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
@@ -245,7 +247,7 @@
                         <thead>
                             <th width="1%">Pilih</th>
                             <th width="5%">No</th>
-                            <th width="15%">Nama Matkul</th>
+                            <th width="15%">Nama Materi</th>
                             <th width="15%">Tanggal Nilai</th>
                             <th width="10%">Nilai</th>
                             <th width="30%">Deskripsi Nilai</th>
@@ -282,7 +284,7 @@
     </body>
 </html>
 
-<script type="text/javascript"> //MATKUL SIKAP & ETC
+<script type="text/javascript"> //MATERI SIKAP & ETC
 $(document).ready(function(){
     
     $body = $("body");
@@ -293,12 +295,12 @@ $(document).ready(function(){
     });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
-    function fetch_data_sikap_perpeserta()
+    function fetch_data_sikap_perkader()
     {
         var calc_nilai = 0;
         var calc_sks = 0;
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             data:{
                 'nim':'<?=$nim?>',
@@ -392,7 +394,7 @@ $(document).ready(function(){
         });
     }
     
-    fetch_data_sikap_perpeserta();
+    fetch_data_sikap_perkader();
     
     //Ambil data dari attribut pada setiap checkbox (box yang di check)
     $(document).on('click', '.check_box_2', function(){
@@ -446,12 +448,12 @@ $(document).ready(function(){
         if($('.check_box_2:checked').length > 0)
         {
             $.ajax({
-                url:"peserta_data_opr.php",
+                url:"kader_data_opr.php",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    fetch_data_sikap_perpeserta();
+                    fetch_data_sikap_perkader();
                 }
              })
         }
@@ -470,12 +472,12 @@ $(document).ready(function(){
         if($('.check_box_2:checked').length > 0)
         {
             $.ajax({
-                url:"peserta_data_opr.php",
+                url:"kader_data_opr.php",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    fetch_data_sikap_perpeserta();
+                    fetch_data_sikap_perkader();
                 }
              })
         }
@@ -491,7 +493,7 @@ $(document).ready(function(){
         serialize.push({name: 'nim', value: '<?=$nim?>'});
         serialize.push({name: 'key', value: 'presensi_edit'});
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             data:$.param(serialize),
             success:function(data)
@@ -506,7 +508,7 @@ $(document).ready(function(){
     function fetch_data_presensi(){
         //alert("asdd");
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             dataType:"json",
             data:{
@@ -540,7 +542,7 @@ $(document).ready(function(){
         serialize.push({name: 'nim', value: '<?=$nim?>'});
         serialize.push({name: 'key', value: 'catatan_edit'});
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             data:$.param(serialize),
             success:function(data)
@@ -554,7 +556,7 @@ $(document).ready(function(){
     //LOAD DATA CATATAN
     function fetch_data_catatan(){
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             dataType:"json",
             data:{
@@ -577,17 +579,17 @@ $(document).ready(function(){
 })
 </script>
 
-<script type="text/javascript"> //MATKUL PESERTA
+<script type="text/javascript"> //MATERI KADER
 $(document).ready(function(){
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
-    function fetch_data_perpeserta()
+    function fetch_data_perkader()
     {
         //REFRESH PAGE
         var calc_nilai = 0;
         var calc_sks = 0;
         $.ajax({
-            url:"peserta_data_opr.php",
+            url:"kader_data_opr.php",
             method:"POST",
             data:{
                 'nim':'<?=$nim?>',
@@ -679,7 +681,7 @@ $(document).ready(function(){
         });
     }
     
-    fetch_data_perpeserta();
+    fetch_data_perkader();
     
     $(document).on('click', '.check_box', function(){
         var html = '';
@@ -728,12 +730,12 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"peserta_data_opr.php",
+                url:"kader_data_opr.php",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    fetch_data_perpeserta();
+                    fetch_data_perkader();
                 }
              })
         }
@@ -752,12 +754,12 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"peserta_data_opr.php",
+                url:"kader_data_opr.php",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
                 {
-                    fetch_data_perpeserta();
+                    fetch_data_perkader();
                 }
              })
         }

@@ -65,7 +65,7 @@ include('database.php');
 
     //UPDATE
     if(isset($_POST['key']) && $_POST['key'] == 'update'){
-        $idmatkul = $_POST['id'];
+        $idmateri = $_POST['id'];
         $nim = $_POST['nim']; //STATIC
         $nilai = $_POST['nilai'];
 
@@ -79,8 +79,8 @@ include('database.php');
         date_default_timezone_set('Asia/Jakarta');
         $date = date('G:i - d/M/Y');
 
-        for($i = 0; $i < count($idmatkul); $i++){
-            $query = "UPDATE `".$idmatkul[$i].$c_mtk."` SET `nilai` = '$nilai[$i]', `tanggal_nilai` = '$date' WHERE `".$idmatkul[$i].$c_mtk."`.`nim` = $nim";
+        for($i = 0; $i < count($idmateri); $i++){
+            $query = "UPDATE `".$idmateri[$i].$c_mtk."` SET `nilai` = '$nilai[$i]', `tanggal_nilai` = '$date' WHERE `".$idmateri[$i].$c_mtk."`.`nim` = $nim";
             mysqli_query($conn2, $query);
             //echo $query;
         }
@@ -88,7 +88,7 @@ include('database.php');
 
     //DELETE
     if(isset($_POST['key']) && $_POST['key'] == 'delete'){
-        $idmatkul = $_POST['id'];
+        $idmateri = $_POST['id'];
         $nim = $_POST['nim']; //STATIC
 
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
@@ -98,8 +98,8 @@ include('database.php');
             $c_mtk = "_mtk";
         }
 
-        for($i = 0; $i < count($idmatkul); $i++){
-            $query = "DELETE FROM `".$idmatkul[$i].$c_mtk."` WHERE `".$idmatkul[$i].$c_mtk."`.`nim` = $nim";
+        for($i = 0; $i < count($idmateri); $i++){
+            $query = "DELETE FROM `".$idmateri[$i].$c_mtk."` WHERE `".$idmateri[$i].$c_mtk."`.`nim` = $nim";
             mysqli_query($conn2, $query);
         }
     }
@@ -112,7 +112,7 @@ include('database.php');
         $izin = $_POST['izin'];
         $tanpa_ket = $_POST['tanpa_ket'];
 
-        $query = "UPDATE `peserta_presensi` SET `sakit` = '$sakit', `izin` = '$izin', `tanpa_ket` = '$tanpa_ket' WHERE `peserta_presensi`.`nim` = $nim";
+        $query = "UPDATE `kader_presensi` SET `sakit` = '$sakit', `izin` = '$izin', `tanpa_ket` = '$tanpa_ket' WHERE `kader_presensi`.`nim` = $nim";
         mysqli_query($conn2, $query);
     }
 
@@ -121,7 +121,7 @@ include('database.php');
 
         $nim = $_POST['nim']; //STATIC
 
-        $query = "SELECT sakit,izin,tanpa_ket FROM peserta_presensi WHERE nim = $nim";
+        $query = "SELECT sakit,izin,tanpa_ket FROM kader_presensi WHERE nim = $nim";
         $sql_run = mysqli_query($conn2, $query);
 
         $row = mysqli_fetch_assoc($sql_run);
@@ -136,7 +136,7 @@ include('database.php');
 
         $nim = $_POST['nim']; //STATIC
 
-        $query = "SELECT deskripsi FROM peserta_catatan WHERE nim = $nim";
+        $query = "SELECT deskripsi FROM kader_catatan WHERE nim = $nim";
         $sql_run = mysqli_query($conn2, $query);
 
         $row = mysqli_fetch_assoc($sql_run);
@@ -152,7 +152,7 @@ include('database.php');
         $nim = $_POST['nim']; //STATIC
         $catatan = $_POST['catatan'];
 
-        $query = "UPDATE `peserta_catatan` SET `deskripsi` = '$catatan' WHERE `peserta_catatan`.`nim` = $nim";
+        $query = "UPDATE `kader_catatan` SET `deskripsi` = '$catatan' WHERE `kader_catatan`.`nim` = $nim";
         mysqli_query($conn2, $query);
     }
 

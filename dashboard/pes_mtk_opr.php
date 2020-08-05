@@ -5,7 +5,7 @@
     //LOAD DATA
     if(isset($_POST['key']) && $_POST['key'] == 'load'){
         $nim = $_POST['nim'];
-        //CEK APABILA PESERTA SUDAH ADA DI TABEL MATKUL (OPERASI)
+        //CEK APABILA KADER SUDAH ADA DI TABEL MATERI (OPERASI)
         
         if(isset($_POST['mtk']) && $_POST['mtk'] == 'skp'){
             $u_mtk = "%_______mtk_skp";
@@ -36,8 +36,8 @@
             $sql_run = mysqli_query($conn2, $query);
 
             if(mysqli_num_rows($sql_run)==0){
-                $idmatkul = chop($data[$i][0],$c_mtk);
-                $data_1[] = $idmatkul;
+                $idmateri = chop($data[$i][0],$c_mtk);
+                $data_1[] = $idmateri;
             }
             else{
                 //$data -= NULL;
@@ -58,7 +58,7 @@
 
     }
 
-    //PILIH MATKUL
+    //PILIH MATERI
     if(isset($_POST['key']) && $_POST['key'] == 'submit'){
         $id = $_POST['id'];
         $nim = $_POST['nim'];

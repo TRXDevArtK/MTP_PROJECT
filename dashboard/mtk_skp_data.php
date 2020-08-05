@@ -11,18 +11,18 @@
     $mtk = "skp";
     
     if(isset($_SESSION['id'])){
-        $idmatkul = $_SESSION['id']."_mtk_skp";
+        $idmateri = $_SESSION['id']."_mtk_skp";
         unset($_SESSION['id']);
     }
     else if(isset($_POST['id'])){
-        $idmatkul = $_POST['id']."_mtk_skp";
+        $idmateri = $_POST['id']."_mtk_skp";
     }
     else{
         header('Location:mtk_skp.php');
         exit();
     }
     
-    $id_chp = chop($idmatkul,"_mtk_skp");
+    $id_chp = chop($idmateri,"_mtk_skp");
     
     $query = "SELECT nama FROM idmtk_skp WHERE id = $id_chp";
     $sql_run = mysqli_query($conn2, $query);
@@ -31,7 +31,7 @@
     $nama = $row['nama'];
     
     $limit = 20;
-    $query = "SELECT COUNT(*) FROM ".$idmatkul."";
+    $query = "SELECT COUNT(*) FROM ".$idmateri."";
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  
     $total_records = $row[0];  
@@ -48,8 +48,8 @@
     print_r($_SESSION['nilai']);
     unset ($_SESSION['nilai']);
     echo " |------| ";
-    print($_SESSION['idmatkul']);
-    unset ($_SESSION['idmatkul'])*/
+    print($_SESSION['idmateri']);
+    unset ($_SESSION['idmateri'])*/
 ?>
 
 <html>
@@ -66,15 +66,15 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Data Matkul Sikap</h3>      
+                <h3>Data Materi Sikap</h3>      
             </div>
             <ul class="list-group">
-                <li class="list-group-item">Matkul : <?php echo $nama;?></li>
+                <li class="list-group-item">Materi : <?php echo $nama;?></li>
             </ul>
             
             <hr style="color:black">
             <form action="mtk_pes_add.php" method="post">
-                <input type="hidden" name="idmatkul" value="<?= $idmatkul ?>"/>
+                <input type="hidden" name="idmateri" value="<?= $idmateri ?>"/>
                 <input type="hidden" name="mtk" value="<?= $mtk ?>"/>
                 <input type="submit" name="add_pes" id="add" class="hidden"/>
             </form>
@@ -85,9 +85,9 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Matkul Sikap</h3>
+                            <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Nilai Materi Sikap</h3>
                                 <span style="display: inline;">
-                                    <label for="add" tabindex="0" class="btn btn-success">Tambah Peserta</label>
+                                    <label for="add" tabindex="0" class="btn btn-success">Tambah Kader</label>
                                     <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
                                     <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Hapus Data Yang Dipilih" />
                                 </span>
@@ -98,6 +98,7 @@
                             <th width="5%">No</th>
                             <th width="5%">NIM</th>
                             <th width="15%">Nama</th>
+                            <th width="5%">Asal Komsat</th>
                             <th width="30%">Waktu & Tanggal Penilaian</th>
                             <th width="10%">Nilai</th>
                         </thead>
@@ -189,7 +190,7 @@ $(document).ready(function(){
             method:"POST",
             /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
             data:{
-                'idmatkul': '<?=$idmatkul?>',
+                'idmateri': '<?=$idmateri?>',
                 'limit':'<?=$limit?>',
                 'page':id,
                 'key':'load_nilai'
@@ -208,10 +209,11 @@ $(document).ready(function(){
                 for(count; count < data.length; count++)
                 {
                     html += '<tr>';
-                    html += '<td><input type="checkbox" no="'+(count+1)+'" nim="'+data[count].nim+'" namafull="'+data[count].namafull+'" tanggal_nilai="'+data[count].tanggal_nilai+'" nilai="'+data[count].nilai+'" class="check_box"  /></td>';
+                    html += '<td><input type="checkbox" no="'+(count+1)+'" nim="'+data[count].nim+'" namafull="'+data[count].namafull+'" komsat="'+data[count].komsat+'" tanggal_nilai="'+data[count].tanggal_nilai+'" nilai="'+data[count].nilai+'" class="check_box"  /></td>';
                     html += '<td>'+(count+1)+'</td>';
                     html += '<td>'+data[count].nim+'</td>';
                     html += '<td>'+data[count].namafull+'</td>';
+                    html += '<td>'+data[count].komsat+'</td>';
                     html += '<td>'+data[count].tanggal_nilai+'</td>';
                     html += '<td>'+data[count].nilai+'</td></tr>';
                 }
@@ -237,7 +239,7 @@ $(document).ready(function(){
             method:"POST",
             /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
             data:{
-                'idmatkul': '<?=$idmatkul?>',
+                'idmateri': '<?=$idmateri?>',
                 'key':'load_dsc',
                 'mtk':'<?= $mtk ?>'
             },
@@ -304,10 +306,11 @@ $(document).ready(function(){
         var html = '';
         if(this.checked)
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" checked /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" komsat="'+$(this).attr('komsat')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" checked /></td>';
             html += '<td>'+$(this).attr("no")+'</td>';
             html += '<td>'+$(this).attr("nim")+'<input type="hidden" name="nim[]" class="form-control" value="'+$(this).attr("nim")+'" readonly/></td>';
             html += '<td>'+$(this).attr("namafull")+'</td>';
+            html += '<td>'+$(this).attr("komsat")+'</td>';
             html += '<td>'+$(this).attr("tanggal_nilai")+'</td>';
             html += '<td><select name="nilai[]" class="form-control" id="options'+$(this).attr('no')+'">\n\
                     <option value="A">A</option>\n\
@@ -318,10 +321,11 @@ $(document).ready(function(){
         }
         else
         {
-            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" /></td>';
+            html = '<td><input type="checkbox" no="'+$(this).attr('no')+'" nim="'+$(this).attr('nim')+'" namafull="'+$(this).attr('namafull')+'" komsat="'+$(this).attr('komsat')+'" tanggal_nilai="'+$(this).attr('tanggal_nilai')+'" nilai="'+$(this).attr('nilai')+'" class="check_box" /></td>';
             html += '<td>'+$(this).attr('no')+'</td>';
             html += '<td>'+$(this).attr('nim')+'</td>';
             html += '<td>'+$(this).attr('namafull')+'</td>';
+            html += '<td>'+$(this).attr("komsat")+'</td>';
             html += '<td>'+$(this).attr("tanggal_nilai")+'</td>';
             html += '<td>'+$(this).attr('nilai')+'</td>';
         }
@@ -338,7 +342,7 @@ $(document).ready(function(){
         //Catatan : Serialize butuh form
         var serialize = $("#form_data").serializeArray();
         var page = $('#bp2').attr('data-id');
-        serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
+        serialize.push({name: 'idmateri', value: '<?=$idmateri?>'});
         serialize.push({name: 'key', value: 'update'});
         
         if($('.check_box:checked').length > 0)
@@ -362,7 +366,7 @@ $(document).ready(function(){
         //Catatan : Serialize butuh form
         var serialize = $("#form_data").serializeArray();
         var page = $('#bp2').attr('data-id');
-        serialize.push({name: 'idmatkul', value: '<?=$idmatkul?>'});
+        serialize.push({name: 'idmateri', value: '<?=$idmateri?>'});
         serialize.push({name: 'key', value: 'delete'});
         
         if($('.check_box:checked').length > 0)

@@ -26,10 +26,10 @@
         <?php include("nav.html"); ?>
         <div class="container">  
             <br />
-            <h3 align="center">List Matkul</h3>
+            <h3 align="center">List Materi</h3>
             <br />
             <div align="left">
-                <a href="mtk_add.php"><input type="button" class="btn btn-info" value="Tambah Matkul" /></a>
+                <a href="mtk_add.php"><input type="button" class="btn btn-info" value="Tambah Materi" /></a>
             </div>
             <form method="post" id="update_form">
                 <br />
@@ -133,7 +133,7 @@ $(document).ready(function(){
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
                                             <input type="submit" value="Input Nilai" class="btn btn-primary" style="margin-right:10px">\n\
                                         </form>\n\
-                                <i></i><input type="button" class="pull-left btn btn-danger" id="mtk_hapus" id_s="'+data[count].id+'"value="Hapus Matkul" style="margin-right:10px">\n\
+                                <i></i><input type="button" class="pull-left btn btn-danger" id="mtk_hapus" id_s="'+data[count].id+'"value="Hapus Materi" style="margin-right:10px">\n\
                                 <i></i><form action="mtk_edit.php" method="post" class="pull-left">\n\
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
                                             <input type="hidden" name="nama" value="'+data[count].nama+'" readonly>\n\
@@ -141,7 +141,7 @@ $(document).ready(function(){
                                             <input type="hidden" name="thn" value="'+data[count].thn+'" readonly>\n\
                                             <input type="hidden" name="kelas" value="'+data[count].kelas+'" readonly>\n\
                                             <input type="hidden" name="kkm" value="'+data[count].kkm+'" readonly>\n\
-                                            <input type="submit" name="edit" value="Edit Data Matkul" class="btn btn-info">\n\
+                                            <input type="submit" name="edit" value="Edit Data Materi" class="btn btn-info">\n\
                                         </form>\n\
                             </td></tr>';
                     //console.log(data[count].id);
@@ -190,8 +190,8 @@ $(document).ready(function(){
     //Hapus MTK
     $(document).on('click', '#mtk_hapus', function(){
         //var text;
-        var submit = prompt("Apa anda yakin ingin menghapus matkul ? \n\
-        \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus matkul", "KETIK DISINI");
+        var submit = prompt("Apa anda yakin ingin menghapus materi ? \n\
+        \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus materi", "KETIK DISINI");
         var id = $(this).attr('id_s');
         var page = $('#bp2').attr('data-id');
         if(submit == "YAKIN"){
@@ -204,7 +204,7 @@ $(document).ready(function(){
                 },
                 //dataType:"json",
                 success:function(data){
-                    alert("Matkul Dihapus");
+                    alert("Materi Dihapus");
                     fetch_data_idmtk(page-1);
                 }
             });

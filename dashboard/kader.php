@@ -9,7 +9,7 @@
     //rumus untuk pagination
     //set limit, 20 data di list akan tampil
     $limit = 20;
-    $query = "SELECT COUNT(*) FROM peserta";  
+    $query = "SELECT COUNT(*) FROM kader";  
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  
     $total_records = $row[0];  
@@ -30,10 +30,10 @@
         <?php include("nav.html"); ?>
         <div class="container">  
             <br />
-            <h3 align="center">List Peserta</h3>
+            <h3 align="center">List Kader</h3>
             <br />
             <div align="left">
-                <a href="peserta_add.php"><input type="button" class="btn btn-info" value="Tambah Peserta" /></a>
+                <a href="kader_add.php"><input type="button" class="btn btn-info" value="Tambah Kader" /></a>
             </div>
             <form method="post" id="update_form">
                 <br />
@@ -43,6 +43,7 @@
                             <th width="5%">No</th>
                             <th width="10%">Nim</th>
                             <th width="10%">Nama</th>
+                            <th width="10%">Asal Komsat</th>
                             <th width="10%">Menu</th>
                         </thead>
                         <tbody></tbody>
@@ -106,7 +107,7 @@ $(document).ready(function(){
     });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE
-    function fetch_data_peserta(id)
+    function fetch_data_kader(id)
     {
         //REFRESH PAGE
         //$('#bp2').attr('data-id',2);
@@ -115,7 +116,7 @@ $(document).ready(function(){
         }
         //jalankan fungsi ajax
         $.ajax({
-            url:"peserta_opr.php",
+            url:"kader_opr.php",
             method:"POST",
             data:{
                 'limit':'<?=$limit?>',
@@ -138,13 +139,15 @@ $(document).ready(function(){
                     html += '<td>'+(count+1)+'</td>';
                     html += '<td>'+data[count].nim+'</td>';
                     html += '<td>'+data[count].namafull+'</td>';
+                    html += '<td>'+data[count].komsat+'</td>';
                     html += '<td>\n\
-                                <i></i><form action="peserta_data.php" method="post" class="pull-left" style="margin-right : 10px">\n\
+                                <i></i><form action="kader_data.php" method="post" class="pull-left" style="margin-right : 10px">\n\
                                             <input type="hidden" name="nim" value="'+data[count].nim+'" readonly>\n\
                                             <input type="hidden" name="namafull" value="'+data[count].namafull+'" readonly>\n\
-                                            <input type="submit" value="Data Peserta" class="btn btn-primary">\n\
+                                            <input type="hidden" name="komsat" value="'+data[count].komsat+'" readonly>\n\
+                                            <input type="submit" value="Data Kader" class="btn btn-primary">\n\
                                         </form>\n\
-                                <i></i><input type="button" class="pull-left btn btn-danger" id="peserta_hapus" id_s="'+data[count].nim+'"value="Hapus Peserta">\n\
+                                <i></i><input type="button" class="pull-left btn btn-danger" id="kader_hapus" id_s="'+data[count].nim+'"value="Hapus Kader">\n\
                             </td></tr>';
                     //console.log(data[count].id);
                     
@@ -163,7 +166,7 @@ $(document).ready(function(){
         });
     }
     
-    fetch_data_peserta();
+    fetch_data_kader();
     
     //Jika pagination di click
     //maka kalkukasikan tombol paginationnya
@@ -187,18 +190,18 @@ $(document).ready(function(){
         $('#bp').attr('data-id',id_string_min);
         $('#bp2').attr('data-id',id_string_plus);
 
-        fetch_data_peserta(id);
+        fetch_data_kader(id);
     });
     
     //fungsi hapus mtk
-    $(document).on('click', '#peserta_hapus', function(){
-        var submit = prompt("Apa anda yakin ingin menghapus PESERTA ? \n\
-        \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus PESERTA", "KETIK DISINI");
+    $(document).on('click', '#kader_hapus', function(){
+        var submit = prompt("Apa anda yakin ingin menghapus KADER ? \n\
+        \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus KADER", "KETIK DISINI");
         var id = $(this).attr('id_s');
         var page = $('#bp2').attr('data-id');
         if(submit == "YAKIN"){
           $.ajax({
-                url:"peserta_opr.php",
+                url:"kader_opr.php",
                 method:"POST",
                 data : {
                     nim : id,
@@ -207,7 +210,7 @@ $(document).ready(function(){
                 //dataType:"json",
                 success:function(data){
                     alert("Mahasiswa Dihapus");
-                    fetch_data_peserta(page-1);
+                    fetch_data_kader(page-1);
                 }
             });
         }

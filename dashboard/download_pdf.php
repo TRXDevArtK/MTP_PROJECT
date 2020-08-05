@@ -29,7 +29,7 @@
     $dompdf->stream($nim."_raport");
 
     $_SESSION['nim'] = $nim;
-    header('Location:peserta_data.php');
+    header('Location:kader_data.php');
     exit();
 
 ?>

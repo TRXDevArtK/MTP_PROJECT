@@ -54,7 +54,7 @@
         <?php include("nav.html"); ?>
         <div class="container">
             <div class="page-header text-center">
-                <h3>Data Matkul Sikap</h3>      
+                <h3>Data Materi Sikap</h3>      
             </div>
               
             <br>
@@ -64,9 +64,9 @@
                 <!-- -->
                 
                 <div class="form-group">
-                    <label>Nama Matkul :</label>
+                    <label>Nama Materi :</label>
                     <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" value="<?php echo $nama;?>" 
-                                                                oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Matkulnya')"
+                                                                oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
                                                                   accept=""oninput="this.setCustomValidity('')" required="require">
                 </div>
                 

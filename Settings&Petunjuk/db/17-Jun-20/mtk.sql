@@ -282,10 +282,10 @@ INSERT INTO `komsat` (`id`, `pelaksana`, `alamat`, `kecamatan`, `kota`, `provins
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peserta`
+-- Table structure for table `kader`
 --
 
-CREATE TABLE `peserta` (
+CREATE TABLE `kader` (
   `nim` int(11) NOT NULL,
   `namafull` varchar(50) NOT NULL,
   `namapanggil` varchar(20) NOT NULL,
@@ -305,39 +305,39 @@ CREATE TABLE `peserta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peserta`
+-- Dumping data for table `kader`
 --
 
-INSERT INTO `peserta` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`, `nama_ayah`, `nama_ibu`, `kerja_ayah`, `kerja_ibu`, `essai`, `periode`) VALUES
+INSERT INTO `kader` (`nim`, `namafull`, `namapanggil`, `notelp`, `tempat`, `tanggal`, `jk`, `fakultas`, `universitas`, `alamat`, `nama_ayah`, `nama_ibu`, `kerja_ayah`, `kerja_ibu`, `essai`, `periode`) VALUES
 (1700018013, 'Refaldi ErgianAB', 'ad', '17239123', 'asd', '2020-06-03', 'L', 'asd', 'assad', 'asd', 'asd', 'asd', 'asd', 'asd', 'as', 'asd'),
 (1700018022, 'asd', 'asd', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peserta_catatan`
+-- Table structure for table `kader_catatan`
 --
 
-CREATE TABLE `peserta_catatan` (
+CREATE TABLE `kader_catatan` (
   `nim` int(11) NOT NULL,
   `deskripsi` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peserta_catatan`
+-- Dumping data for table `kader_catatan`
 --
 
-INSERT INTO `peserta_catatan` (`nim`, `deskripsi`) VALUES
+INSERT INTO `kader_catatan` (`nim`, `deskripsi`) VALUES
 (1700018013, 'ALOOOOO ?aaa'),
 (1700018022, 'NULL');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peserta_presensi`
+-- Table structure for table `kader_presensi`
 --
 
-CREATE TABLE `peserta_presensi` (
+CREATE TABLE `kader_presensi` (
   `nim` int(11) NOT NULL,
   `sakit` int(5) DEFAULT NULL,
   `izin` int(5) DEFAULT NULL,
@@ -345,10 +345,10 @@ CREATE TABLE `peserta_presensi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `peserta_presensi`
+-- Dumping data for table `kader_presensi`
 --
 
-INSERT INTO `peserta_presensi` (`nim`, `sakit`, `izin`, `tanpa_ket`) VALUES
+INSERT INTO `kader_presensi` (`nim`, `sakit`, `izin`, `tanpa_ket`) VALUES
 (1700018013, 55, 3, 2),
 (1700018022, NULL, NULL, NULL);
 
@@ -429,21 +429,21 @@ ALTER TABLE `komsat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `peserta`
+-- Indexes for table `kader`
 --
-ALTER TABLE `peserta`
+ALTER TABLE `kader`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indexes for table `peserta_catatan`
+-- Indexes for table `kader_catatan`
 --
-ALTER TABLE `peserta_catatan`
+ALTER TABLE `kader_catatan`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indexes for table `peserta_presensi`
+-- Indexes for table `kader_presensi`
 --
-ALTER TABLE `peserta_presensi`
+ALTER TABLE `kader_presensi`
   ADD PRIMARY KEY (`nim`);
 COMMIT;
 

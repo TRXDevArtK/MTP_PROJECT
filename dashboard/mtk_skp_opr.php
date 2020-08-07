@@ -14,11 +14,15 @@
 
         $start_from = ($page-1) * $limit;  
 
-        $query = "SELECT * FROM idmtk_skp limit $start_from,$limit";
+        $keyword = '%'.$_POST['keyword'].'%'; 
 
-        $sql_run = mysqli_query($conn2, $query);
+        $query = "SELECT * FROM idmtk_skp WHERE nama LIKE ? limit ?,?";
+        $sql_run = mysqli_prepare($conn2, $query);
+        mysqli_stmt_bind_param($sql_run, "sii", $keyword,$start_from,$limit);
+        mysqli_stmt_execute($sql_run);
+        $result = mysqli_stmt_get_result($sql_run);
 
-        while($row = mysqli_fetch_assoc($sql_run)){
+        while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
 

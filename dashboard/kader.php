@@ -32,8 +32,39 @@
             <br />
             <h3 align="center">List Kader</h3>
             <br />
-            <div align="left">
-                <a href="kader_add.php"><input type="button" class="btn btn-info" value="Tambah Kader" /></a>
+            <div class="row" style="margin:0px 0px;">
+                <a href="kader_add.php"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Kader" /></a>
+                <form id="tls_src">
+                    <div class="col-md-1 pull-right">
+                        <input type="button" id="search" name="search" class="btn btn-warning" value="Cari">
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <div class="form-group">
+                            <input type="text" placeholder="Masukkan keywordnya" name="keyword" id="keyword" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <select name="filter" id="filter" class="form-control">
+                            <option value="">Semua Komsat</option>
+                            <option value="FTI">FTI</option>
+                            <option value="FKM">FKM</option>
+                            <option value="Psikologi">Psikologi</option>
+                            <option value="Farmasi">Farmasi</option>
+                            <option value="JMIPA">JPMIPA</option>
+                            <option value="FEB">FEB</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <select name="order" id="order" class="form-control">
+                            <option value="nim ASC">NIM Terkecil</option>
+                            <option value="nim DESC">NIM Terbesar</option>
+                            <option value="namafull ASC">Nama Menaik</option>
+                            <option value="namafull DESC">Nama Menurun</option>
+                            <option value="komsat ASC">Komsat Menaik</option>
+                            <option value="komsat DESC">Komsat Menurun</option>
+                        </select>
+                    </div>
+                </form>
             </div>
             <form method="post" id="update_form">
                 <br />
@@ -107,7 +138,7 @@ $(document).ready(function(){
     });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE
-    function fetch_data_kader(id)
+    function fetch_data_kader(id, order, filter, keyword)
     {
         //REFRESH PAGE
         //$('#bp2').attr('data-id',2);
@@ -119,15 +150,19 @@ $(document).ready(function(){
             url:"kader_opr.php",
             method:"POST",
             data:{
-                'limit':'<?=$limit?>',
-                'page':id,
-                'key':'load'
+                limit:'<?=$limit?>',
+                page:id,
+                filter:filter,
+                order:order,
+                keyword:keyword,
+                key:'load'
             },
             dataType:"json",
             error: function (xhr, status) {
                 //set tidak ada isi jika error ATAU DATA = 0 (NULL) atau data tidak terbaca
                 var html = '';
                 $('tbody').html(html);
+                console.log(JSON.stringify(xhr));
             },
             success:function(data)
             {
@@ -166,7 +201,7 @@ $(document).ready(function(){
         });
     }
     
-    fetch_data_kader();
+    fetch_data_kader(null,"nim ASC",null,null);
     
     //Jika pagination di click
     //maka kalkukasikan tombol paginationnya
@@ -189,8 +224,34 @@ $(document).ready(function(){
         var id_string_plus = id_int_plus.toString();
         $('#bp').attr('data-id',id_string_min);
         $('#bp2').attr('data-id',id_string_plus);
+        
+        var keyword = $("#keyword").val();
+        var filter = $("#filter").val();
+        var order = $("#order").val();
 
-        fetch_data_kader(id);
+        fetch_data_kader(id,order,filter,keyword);
+    });
+    $("#search").click(function(){
+        var keyword = $("#keyword").val();
+        var filter = $("#filter").val();
+        var order = $("#order").val();
+        
+        fetch_data_kader(null,order,filter,keyword);
+    });
+    
+    $("#keyword").keypress(function(){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            event.preventDefault();
+            $('#search').trigger('click');
+        }
+    });
+    
+    $("#filter").change(function(){
+        $('#search').trigger('click');
+    });
+    $("#order").change(function(){
+        $('#search').trigger('click');
     });
     
     //fungsi hapus mtk
@@ -199,6 +260,9 @@ $(document).ready(function(){
         \n\Ketik 'YAKIN' (Huruf Besar) jika anda yakin untuk menghapus KADER", "KETIK DISINI");
         var id = $(this).attr('id_s');
         var page = $('#bp2').attr('data-id');
+        var keyword = $("#keyword").val();
+        var filter = $("#filter").val();
+        var order = $("#order").val();
         if(submit == "YAKIN"){
           $.ajax({
                 url:"kader_opr.php",
@@ -210,7 +274,7 @@ $(document).ready(function(){
                 //dataType:"json",
                 success:function(data){
                     alert("Mahasiswa Dihapus");
-                    fetch_data_kader(page-1);
+                    fetch_data_kader(page-1,order,filter,keyword);
                 }
             });
         }

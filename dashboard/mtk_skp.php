@@ -28,8 +28,18 @@
             <br />
             <h3 align="center">List Materi Sikap</h3>
             <br />
-            <div align="left">
-                <a href="mtk_skp_add.php"><input type="button" class="btn btn-info" value="Tambah Materi" /></a>
+            <div class="row" style="margin:0px 0px;">
+                <a href="mtk_skp_add.php"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Materi" /></a>
+                <form id="tls_src">
+                    <div class="col-md-1 pull-right">
+                        <input type="button" id="search" name="search" class="btn btn-warning" value="Cari">
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <div class="form-group">
+                            <input type="text" placeholder="Masukkan keywordnya" name="keyword" id="keyword" class="form-control">
+                        </div>
+                    </div>
+                </form>
             </div>
             <form method="post" id="update_form">
                 <br />
@@ -98,20 +108,24 @@ $(document).ready(function(){
     });
     
     //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
-    function fetch_data_idmtk(id)
+    function fetch_data_idmtk(id,keyword)
     {
         //REFRESH PAGE
         //$('#bp2').attr('data-id',2);
         if(id == null){
             id = 1;
         }
+        if(keyword == null){
+            keyword = "";
+        }
         $.ajax({
             url:"mtk_skp_opr.php",
             method:"POST",
             data:{
-                'limit':'<?=$limit?>',
-                'page':id,
-                'key':'load'
+                limit:<?=$limit?>,
+                page:id,
+                keyword:keyword,
+                key:'load'
             },
             dataType:"json",
             error: function (xhr, status) {
@@ -156,6 +170,8 @@ $(document).ready(function(){
         });
     }
     
+    fetch_data_idmtk();
+    
     //Jika pagination di click
     $(".page-link").click(function(){
         var id = $(this).attr("data-id");
@@ -180,7 +196,19 @@ $(document).ready(function(){
         fetch_data_idmtk(id);
     })
     
-    fetch_data_idmtk();
+    $("#search").click(function(){
+        var keyword = $("#keyword").val();
+        
+        fetch_data_idmtk(null,keyword);
+    });
+    
+    $("#keyword").keypress(function(){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            event.preventDefault();
+            $('#search').trigger('click');
+        }
+    });
     
     //Hapus MTK
     $(document).on('click', '#mtk_skp_del', function(){

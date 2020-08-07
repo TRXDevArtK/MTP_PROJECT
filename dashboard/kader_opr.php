@@ -12,13 +12,21 @@
             $page=1; 
         }  
 
-        $start_from = ($page-1) * $limit;  
+        $start_from = ($page-1) * $limit;
+        
+        $filter = '%'.$_POST['filter'].'%';
+        $keyword = '%'.$_POST['keyword'].'%';
+        
+        $order = $_POST['order'];
+        $order = mysqli_real_escape_string($conn2, $order);
 
-        $query = "select nim, namafull, komsat from kader LIMIT $start_from,$limit";
+        $query = "select nim, namafull, komsat FROM kader where komsat LIKE ? AND (nim LIKE ? OR namafull LIKE ? OR komsat LIKE ?) ORDER BY $order LIMIT ?,?";
+        $sql_run = mysqli_prepare($conn2, $query);
+        mysqli_stmt_bind_param($sql_run, "sissii", $filter,$keyword,$keyword,$keyword,$start_from,$limit);
+        mysqli_stmt_execute($sql_run);
+        $result = mysqli_stmt_get_result($sql_run);
 
-        $sql_run = mysqli_query($conn2, $query);
-
-        while($row = mysqli_fetch_assoc($sql_run)){
+        while($row = mysqli_fetch_assoc($result)){
             $data[] = $row;
         }
 

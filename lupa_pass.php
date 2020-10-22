@@ -18,11 +18,14 @@
         else{
             
             //cek email di database apakah ada atau tidak
-            $query = "SELECT email FROM users WHERE email='$email'";
-            $sql_run = mysqli_query($conn, $query);
+            $query = "SELECT email FROM users WHERE email=?";
+            $sql_run = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($sql_run, "s", $email);
+            mysqli_stmt_execute($sql_run);
+            $result = mysqli_stmt_get_result($sql_run);
 
             //jika email tidak ada
-            if(mysqli_num_rows($sql_run) <= 0) {
+            if(mysqli_num_rows($result) <= 0) {
                 $warning = 2;
             }
             
@@ -30,12 +33,19 @@
             else{
                 /*Algoritma : cek email di user_reset, apabila ada maka update, apabila baru maka insert */
                 $pin = bin2hex(random_bytes(20));
-                $query2 = "SELECT email FROM users_reset WHERE email='$email'";
-                $sql_run2 = mysqli_query($conn, $query2);
-                $check = mysqli_num_rows($sql_run2);
+                $query2 = "SELECT email FROM users_reset WHERE email = ?";
+                $sql_run = mysqli_prepare($conn, $query2);
+                mysqli_stmt_bind_param($sql_run, "s", $email);
+                mysqli_stmt_execute($sql_run);
+                $result = mysqli_stmt_get_result($sql_run);
+                
+                $check = mysqli_num_rows($result);
                 if($check > 0){
-                    $query = "UPDATE users_reset SET email='$email', pin='$pin' where email='$email'";
-                    $sql_run = mysqli_query($conn, $query);
+                    $query = "UPDATE users_reset SET email=?, pin=? where email=?";
+                    $sql_run = mysqli_prepare($conn, $query);
+                    mysqli_stmt_bind_param($sql_run, "sss", $email,$email,$email);
+                    mysqli_stmt_execute($sql_run);
+                    $result = mysqli_stmt_get_result($sql_run);
                     //UNTUK DEBUG SAJA
                     /*
                     if($sql_run){
@@ -46,8 +56,11 @@
                     }*/
                 }
                 else{
-                    $query = "INSERT INTO users_reset(email, pin) VALUES ('$email', '$pin')";
-                    $sql_run = mysqli_query($conn, $query);
+                    $query = "INSERT INTO users_reset(email, pin) VALUES (?, ?)";
+                    $sql_run = mysqli_prepare($conn, $query);
+                    mysqli_stmt_bind_param($sql_run, "ss", $email,$pin);
+                    mysqli_stmt_execute($sql_run);
+                    $result = mysqli_stmt_get_result($sql_run);
                     //UNTUK DEBUG SAJA
                     /*
                     if($sql_run){

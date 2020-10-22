@@ -16,9 +16,12 @@
     //$_SESSION['password'] = $password;
     
     //ambil id,username,password dari database
-    $query = "SELECT *FROM users where username='$username'";
-    $sql_run = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($sql_run);
+    $query = "SELECT *FROM users where username= ?";
+    $sql_run = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($sql_run, "s", $username);
+    mysqli_stmt_execute($sql_run);
+    $result = mysqli_stmt_get_result($sql_run);
+    $row = mysqli_fetch_assoc($result);
     
     $id = $row["id"];
     $db_username = $row["username"];

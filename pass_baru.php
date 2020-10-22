@@ -43,9 +43,12 @@
         //apabila tidak ada error (masih 0 warningnya)
         if($error == 0){
             //cek pinnya & ambil email
-            $query = "SELECT email FROM users_reset where pin ='$pin' LIMIT 1";
-            $sql_run = mysqli_query($conn, $query);
-            $email = mysqli_fetch_assoc($sql_run)['email'];
+            $query = "SELECT email FROM users_reset where pin = ? LIMIT 1";
+            $sql_run = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($sql_run, "s", $pin);
+            mysqli_stmt_execute($sql_run);
+            $result = mysqli_stmt_get_result($sql_run);
+            $email = mysqli_fetch_assoc($result)['email'];
             
             //jika pin ada dan emailnya : 
             if($email) {
@@ -54,8 +57,10 @@
                 $pass_baru = password_hash($pass_baru, PASSWORD_DEFAULT);
                 
                 //jalankan querynya, simpan passbaru ke target user
-                $query = "UPDATE users SET password='$pass_baru' WHERE email='$email'";
-                $sql_run = mysqli_query($conn, $query);
+                $query = "UPDATE users SET password= ? WHERE email= ? ";
+                $sql_run = mysqli_prepare($conn, $query);
+                mysqli_stmt_bind_param($sql_run, "ss", $pass_baru, $email);
+                mysqli_stmt_execute($sql_run);
 
                 //kirim notofikasi dan redirect ke login
                 $_SESSION['pass_notf'] = "Ubah password berhasil, silahkan login kembali";

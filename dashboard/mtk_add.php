@@ -66,31 +66,37 @@
             <br>
             <form action="#" method="post">
                 
-                <div class="form-group">
-                    <label>Masukkan Nama Materi (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" 
-                                          oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
-                                            accept=""oninput="this.setCustomValidity('')" required="require">
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label>Masukkan Nama Materi (Wajib) :</label>
+                        <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" 
+                                              oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
+                                                accept=""oninput="this.setCustomValidity('')" required="require">
+                    </div>
+
+                    <div class="col-xs-6 form-group">
+                        <label>Masukkan Semester : </label>
+                        <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc">
+                    </div>
+
+                    <div class="col-xs-6 form-group">
+                        <label>Masukkan Tahun Ajar : </label>
+                        <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020">
+                    </div>
+
+                    <div class="col-xs-6 form-group">
+                        <label>Masukkan Kelas : </label>
+                        <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc">
+                    </div>
+
+                    <div class="col-xs-6 form-group">
+                        <label>Masukkan KKM : </label>
+                        <input type="text" class="form-control" name="kkm" placeholder="">
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Masukkan Semester : </label>
-                    <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc">
-                </div>
-                
-                <div class="form-group">
-                    <label>Masukkan Tahun Ajar : </label>
-                    <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020">
-                </div>
-                
-                <div class="form-group">
-                    <label>Masukkan Kelas : </label>
-                    <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc">
-                </div>
-                
-                <div class="form-group">
-                    <label>Masukkan KKM : </label>
-                    <input type="text" class="form-control" name="kkm" placeholder="">
+                <div class="page-header text-center">
+                    <h3>Deskripsi Nilai</h3>      
                 </div>
                 
                 <div class="form-group">

@@ -18,11 +18,11 @@ include('database.php');
             $t_mtk = "idmtk";
             $c_mtk = "_mtk";
         }
-
-        $query = "SELECT count(*) AS number_table from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '$u_mtk'";
-        $sql_run = mysqli_query($conn2, $query);
-        $row = mysqli_fetch_assoc($sql_run);
-        $number_table = $row['number_table'];
+        
+        $data = array();
+        $datas = array();
+        $datas2 = array();
+        $avaliable_mtk = array();
 
         $query = "SHOW TABLES LIKE '$u_mtk'";
         $sql_run = mysqli_query($conn2, $query);
@@ -31,19 +31,21 @@ include('database.php');
             $data[] = $row;
         }
 
-        $datas = array();
-        $datas2 = array();
         foreach($data as $single_data){
+            
+            //cek ketersedian dan data
             $query = "SELECT $single_data[0].id, $t_mtk.nama, $single_data[0].nilai, $single_data[0].tanggal_nilai FROM $single_data[0],$t_mtk WHERE $single_data[0].id = $t_mtk.id AND nim = $nim";
             $sql_run = mysqli_query($conn2, $query);
 
             while($row = mysqli_fetch_assoc($sql_run)){
                 $datas[] = $row;
+                $avaliable_mtk[] = $row['id'];
             }
-
-
-            $chpmtk = chop($single_data[0],$c_mtk);
-            $query = "select A,B,C,D from descmtk,$t_mtk where descmtk.id = $t_mtk.id and $t_mtk.id = '$chpmtk'";
+            
+        }
+        
+        foreach($avaliable_mtk as $a_mtk){
+            $query = "select A,B,C,D from descmtk,$t_mtk where descmtk.id = $t_mtk.id and $t_mtk.id = '$a_mtk'";
             $sql_run = mysqli_query($conn2, $query);
 
             while($row = mysqli_fetch_assoc($sql_run)){
@@ -53,11 +55,12 @@ include('database.php');
 
         $jumlah = count($datas);
 
-        for($i=0;$i<$jumlah;$i++){
+        for($i=($jumlah-1);$i>=0;$i--){
             $datas[$i]['A'] = $datas2[$i]['A'];
             $datas[$i]['B'] = $datas2[$i]['B'];
             $datas[$i]['C'] = $datas2[$i]['C'];
             $datas[$i]['D'] = $datas2[$i]['D'];
+//            echo $i;
         }
 
         echo json_encode($datas);

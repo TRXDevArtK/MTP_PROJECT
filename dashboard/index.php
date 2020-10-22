@@ -37,7 +37,7 @@
                 <div class="service service2">
                     <h4>Data Materi Sikap</h4>
                     <p>Tempat untuk melihat,mengedit materi SIKAP dan list kadernya</p>
-                    <a href="mtk_skp.php" class="cta">Read More <span class="ti-angle-right"></a>
+                    <a href="mtk_skp.php" class="cta">Klik Disini<span class="ti-angle-right"></a>
                 </div>
             </div>
 

@@ -28,13 +28,13 @@
             <p>
                 Tolong login ke email anda dan klik link yang sudah kami kirim.
             </p>
-            <a href="index.php"><button class="btn btn-warning"> Klik disini untuk kembali ke halaman awal </button></a>
+            <a href="index"><button class="btn btn-warning"> Klik disini untuk kembali ke halaman awal </button></a>
 	</div>
         <?php 
         
         } 
         else{
-            header('location:index.php');
+            header('location:index');
             exit();
         }
         ?>

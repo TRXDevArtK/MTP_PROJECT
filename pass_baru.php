@@ -17,7 +17,7 @@
     
     //jika pin tidak ada maka kembali ke login
     if(mysqli_num_rows($sql_run) != 1){
-        header('location:index.php');
+        header('location:index');
         exit();
     }
     
@@ -64,7 +64,7 @@
 
                 //kirim notofikasi dan redirect ke login
                 $_SESSION['pass_notf'] = "Ubah password berhasil, silahkan login kembali";
-                header("location:index.php");
+                header("location:index");
                 exit();
             }
         }

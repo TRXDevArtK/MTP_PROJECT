@@ -72,7 +72,7 @@
               </div>
             </div>
              
-            <form action="komsat_edit.php" method="post">
+            <form action="komsat_edit" method="post">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -81,10 +81,28 @@
                                 <input type="button" data-toggle="modal" data-target="#pc_modal" id="edit_pc" name="edit_pc" class="btn btn-primary pull-left" value="Edit Data PC">
                                 <br><br><br>
                                 <input type="hidden" name="id" value="<?php echo $id ?>" readonly>
-                                <a class="list-group-item">Komsat Pelaksana : <?php echo $pelaksana ?></a><input type="hidden" name="pelaksana" value="<?php echo $pelaksana ?>" readonly>
-                                <a class="list-group-item">Nama Ketua : <?php echo $ketua ?></a><input type="hidden" name="ketua" value="<?php echo $ketua ?>" readonly>
-                                <a class="list-group-item">Pimpinan Cabang : <?php echo $cabang ?></a><input type="hidden" name="cabang" value="<?php echo $cabang ?>" readonly>
-                                <a class="list-group-item">No Telp/WA : <?php echo $telp ?></a><input type="hidden" name="telp" value="<?php echo $telp ?>" readonly>
+                                <table class="table table-bordered" style="background-color:white !important;">
+                                    <tr>
+                                        <td width="20%">Komsat Pelaksana :</td>
+                                        <td width="80%"><?php echo $pelaksana ?></td>
+                                        <input type="hidden" name="pelaksana" value="<?php echo $pelaksana ?>" readonly>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Nama Ketua :</td>
+                                        <td width="80%"><?php echo $ketua ?></td>
+                                        <input type="hidden" name="ketua" value="<?php echo $ketua ?>" readonly>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Pimpinan Cabang :</td>
+                                        <td width="80%"><?php echo $cabang ?></td>
+                                        <input type="hidden" name="cabang" value="<?php echo $cabang ?>" readonly>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">No Telp/WA :</td>
+                                        <td width="80%"><?php echo $telp ?></td>
+                                        <input type="hidden" name="telp" value="<?php echo $telp ?>" readonly>
+                                    </tr>
+                                </table>
                                 <br>
                                 <button data-toggle="collapse" href="#collapse1" type="button" class="btn btn-info">Data Komsat +</button>
                                 <button data-toggle="collapse" href="#collapse2" type="button" class="btn btn-info">Data PC +</button>
@@ -93,13 +111,39 @@
                         <div id="collapse1" class="panel-collapse collapse">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-info text-center">Data Komsat Tambahan</li>
-                                <li class="list-group-item">Alamat : <?php echo $alamat ?><input type="hidden" name="alamat" value="<?php echo $alamat ?>" readonly>
-                                <li class="list-group-item">Kecamatan : <?php echo $kecamatan ?><input type="hidden" name="kecamatan" value="<?php echo $kecamatan ?>" readonly>
-                                <li class="list-group-item">Kabupaten/Kota : <?php echo $kota ?><input type="hidden" name="kota" value="<?php echo $kota ?>" readonly>
-                                <li class="list-group-item">Provinsi : <?php echo $provinsi ?><input type="hidden" name="provinsi" value="<?php echo $provinsi ?>" readonly>
-                                <li class="list-group-item">Telp/Faks : <?php echo $faks ?><input type="hidden" name="faks" value="<?php echo $faks ?>" readonly>
-                                <li class="list-group-item">Periode Jabatan : <?php echo $periode ?><input type="hidden" name="periode" value="<?php echo $periode ?>" readonly>
                             </ul>
+                            <table class="table table-bordered" style="background-color:white !important;">
+                                <tr>
+                                    <td width="20%">Alamat :</td>
+                                    <td width="80%"><?php echo $alamat ?></td>
+                                    <input type="hidden" name="alamat" value="<?php echo $alamat ?>" readonly>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Kecamatan :</td>
+                                    <td width="80%"><?php echo $kecamatan ?></td>
+                                    <input type="hidden" name="kecamatan" value="<?php echo $kecamatan ?>" readonly>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Kabupaten/Kota :</td>
+                                    <td width="80%"><?php echo $kota ?></td>
+                                    <input type="hidden" name="kota" value="<?php echo $kota ?>" readonly>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Provinsi :</td>
+                                    <td width="80%"><?php echo $provinsi ?></td>
+                                    <input type="hidden" name="provinsi" value="<?php echo $provinsi ?>" readonly>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Telp/Faks :</td>
+                                    <td width="80%"><?php echo $telp ?></td>
+                                    <input type="hidden" name="faks" value="<?php echo $faks ?>" readonly>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Periode Jabatan :</td>
+                                    <td width="80%"><?php echo $periode ?></td>
+                                    <input type="hidden" name="periode" value="<?php echo $periode ?>" readonly>
+                                </tr>
+                            </table>
                         </div>
                         <div id="collapse2" class="panel-collapse collapse">
                             <!-- Data ada di script -->
@@ -116,7 +160,7 @@
                         <tr>
                             <li class="list-group-item text-center list-group-item-info"><h3 style="color:black">Data Instruktur</h3>
                                 <span style="display: inline;">
-                                    <a href="instruktur_add.php"><input type="button" name="add" id="add" class="btn btn-success" value="Tambah Data" /></a>
+                                    <a href="instruktur_add"><input type="button" name="add" id="add" class="btn btn-success" value="Tambah Data" /></a>
                                     <input type="button" name="multiple_update" id="update" class="btn btn-primary" value="Update Data Yang Dipilih" />
                                     <input type="button" name="multiple_delete" id="delete" class="btn btn-danger" value="Delete Data Yang Dipilih" />
                                 </span>
@@ -152,7 +196,7 @@ $(document).ready(function(){
     //LOAD DATA KOMSAT
     function fetch_data_instruktur(){
         $.ajax({
-            url:"dad_opr.php",
+            url:"dad_opr",
             method:"POST",
             data:{
               'key':'load_instruktur'  
@@ -189,7 +233,7 @@ $(document).ready(function(){
     function fetch_data_pc(){
         //alert("asdd");
         $.ajax({
-            url:"dad_opr.php",
+            url:"dad_opr",
             method:"POST",
             data:{
               'key':'load_pc'  
@@ -198,9 +242,17 @@ $(document).ready(function(){
             success:function(data)
             {
                 var html = '';
-                html +='<li class="list-group-item list-group-item-info text-center">Data PC</li>';
-                html += '<li class="list-group-item">Ketum PC Djazman : '+data[1].nama+' ( NIA : '+data[1].nia+')';
-                html += '<li class="list-group-item">Bidang Kader PC : '+data[0].nama+' (NIA : '+data[0].nia+')';
+                html += '<li class="list-group-item list-group-item-info text-center">Data Pimpinan Cabang</li>';
+                html += '<table class="table table-bordered" style="background-color:white !important;">\n\
+                            <tr>\n\
+                                <td width="20%">Ketum PC Djazman</td>\n\
+                                <td width="80%">'+data[1].nama+' ( NIA : '+data[1].nia+')</td>\n\
+                            </tr>\n\
+                            <tr>\n\
+                                <td width="20%">Bidang Kader PC :</td>\n\
+                                <td width="80%">'+data[0].nama+' (NIA : '+data[0].nia+')</td>\n\
+                            </tr>\n\
+                        </table>';
                 $('#pc_out').html(html);
                 
                 $('#kader_nama').val(data[0].nama);
@@ -265,7 +317,7 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"dad_opr.php",
+                url:"dad_opr",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
@@ -287,7 +339,7 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"dad_opr.php",
+                url:"dad_opr",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
@@ -305,7 +357,7 @@ $(document).ready(function(){
         var serialize = $("#pc_data").serializeArray();
         serialize.push({name: 'key', value: 'update_pc'});
         $.ajax({
-            url:"dad_opr.php",
+            url:"dad_opr",
             method:"POST",
             data:$.param(serialize),
             success:function(data)

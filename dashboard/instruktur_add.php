@@ -25,7 +25,7 @@
             $warning = 0;
             //Test untuk sql berjalan
             if($sql_run){
-                header("location:dad.php");
+                header("location:dad");
                 exit();
             }
             

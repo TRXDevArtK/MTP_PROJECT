@@ -6,7 +6,7 @@
     //HAPUS INI KALAU MAU DEBUG DI POSTMAN
     if(!isset($_SESSION['status']) && !isset($_SESSION['login_id'])){
         //Kalau status gk ada, balik ke index
-        header("location:../index.php");
+        header("location:../index");
         exit();
     }
     else{
@@ -18,12 +18,12 @@
         //session destroy dan kembali ke halaman login
         if ($now > $_SESSION['expire']) {
             session_destroy();
-            header("location:../index.php");
+            header("location:../index");
             exit();
         }
     }
     
-    //ambil database untuk keperluan manajemen (user,nilai,etc)
+    //ambil database.php untuk keperluan manajemen (user,nilai,etc)
     $conn2 = new mysqli('localhost','root','','mtk');
 ?>
 

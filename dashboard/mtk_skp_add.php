@@ -38,7 +38,7 @@
             mysqli_query($conn2, $query);
         }
         
-        header("location:mtk_skp.php");
+        header("location:mtk_skp");
         exit();
         
     }  
@@ -51,6 +51,7 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/form.css" />   
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
@@ -61,38 +62,63 @@
                 <h3>Data Materi Sikap</h3>      
             </div>
               
-            <br>
             <form action="#" method="post">
                 
-                <div class="form-group">
-                    <label>Nama Materi (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : SIKAP SOSIAL" 
-                                          oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
+                <div class="form-all">
+                    <div class="form-prehead">
+                        <h4>Data Materi</h4>      
+                        <hr>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Materi (Wajib)</label>
+                        <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" 
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materi Nya')"
                                             accept=""oninput="this.setCustomValidity('')" required="require">
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Deskripsi Nilai A :</label>
-                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."></textarea>
+                <br>
+                
+                <div class="form-all">
+                    <div class="form-prehead">
+                        <h4>Deskripsi Nilai</h4>      
+                        <hr>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Deskripsi Nilai A</label>
+                        <textarea type="text" class="form-control" name="desca"
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nilai A Nya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Deskripsi Nilai B</label>
+                        <textarea type="text" class="form-control" name="descb"
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nilai B Nya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Deskripsi Nilai C</label>
+                        <textarea type="text" class="form-control" name="descc"
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nilai C Nya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Deskripsi Nilai D</label>
+                        <textarea type="text" class="form-control" name="descd"
+                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nilai D Nya')"
+                                            accept=""oninput="this.setCustomValidity('')" required="require"></textarea>
+                    </div>
+                    
                 </div>
                 
-                <div class="form-group">
-                    <label>Deskripsi Nilai B :</label>
-                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai C :</label>
-                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai D :</label>
-                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."></textarea>
-                </div>
-                
-                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambah / Submit">
-                
+                <br>
+                <input type="submit" name="submit" class="btn btn-primary center-block" value="Tambahkan / Submit">
+                <br>
             </form>
         </div>
     </body>

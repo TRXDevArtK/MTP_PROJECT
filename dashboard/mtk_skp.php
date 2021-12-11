@@ -29,7 +29,7 @@
             <h3 align="center">List Materi Sikap</h3>
             <br />
             <div class="row" style="margin:0px 0px;">
-                <a href="mtk_skp_add.php"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Materi" /></a>
+                <a href="mtk_skp_add"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Materi" /></a>
                 <form id="tls_src">
                     <div class="col-md-1 pull-right">
                         <input type="button" id="search" name="search" class="btn btn-warning" value="Cari">
@@ -107,7 +107,7 @@ $(document).ready(function(){
         ajaxStop: function() { $body.removeClass("loading"); }    
     });
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata)
     function fetch_data_idmtk(id,keyword)
     {
         //REFRESH PAGE
@@ -119,7 +119,7 @@ $(document).ready(function(){
             keyword = "";
         }
         $.ajax({
-            url:"mtk_skp_opr.php",
+            url:"mtk_skp_opr",
             method:"POST",
             data:{
                 limit:<?=$limit?>,
@@ -143,12 +143,12 @@ $(document).ready(function(){
                     html += '<td>'+data[count].nama+'</td>';
                     //html += '<td><button id="soak">SOAK</button></td>';
                     html += '<td>\n\
-                                <i></i><form action="mtk_skp_data.php" method="post" class="pull-left">\n\
+                                <i></i><form action="mtk_skp_data" method="post" class="pull-left">\n\
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
                                             <input type="submit" value="Input Nilai" class="btn btn-primary" style="margin-right:10px">\n\
                                         </form>\n\
                                 <i></i><input type="button" class="pull-left btn btn-danger" id="mtk_skp_del" id_s="'+data[count].id+'"value="Hapus Materi" style="margin-right:10px">\n\
-                                <i></i><form action="mtk_skp_edit.php" method="post" class="pull-left">\n\
+                                <i></i><form action="mtk_skp_edit" method="post" class="pull-left">\n\
                                             <input type="hidden" name="id" value="'+data[count].id+'" readonly>\n\
                                             <input type="hidden" name="nama" value="'+data[count].nama+'" readonly>\n\
                                             <input type="submit" name="edit" value="Edit Data Materi" class="btn btn-info">\n\
@@ -219,7 +219,7 @@ $(document).ready(function(){
         var page = $('#bp2').attr('data-id');
         if(submit == "YAKIN"){
           $.ajax({
-                url:"mtk_skp_opr.php",
+                url:"mtk_skp_opr",
                 method:"POST",
                 data : {
                     id : id,

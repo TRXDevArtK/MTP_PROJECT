@@ -42,7 +42,7 @@
         $query2 = "UPDATE `descmtk` SET `A` = '$desca', `B` = '$descb', `C` = '$descc', `D` = '$descd' WHERE `descmtk`.`id` = $id";
         $sql_run2 = mysqli_query($conn2, $query2); // DEBUG // or trigger_error("Query Failed! SQL: $query2 - Error: ".mysqli_error($conn2), E_USER_ERROR);
 
-        header("location:mtk.php");
+        header("location:mtk");
         exit();
         //echo "DISUBMIT";
     }
@@ -55,6 +55,7 @@
         <meta charset="UTF-8">
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
+        <link rel="stylesheet" href="../css/form.css" />  
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
@@ -67,57 +68,75 @@
               
             <br>
             <form action="#" method="post">
-                <input type="hidden" class="form-control" name="id" value="<?= $id ?>" readonly>
-                
-                <div class="form-group">
-                    <label>Masukkan Nama Materi (Wajib) :</label>
-                    <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>" 
-                                                        oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
-                                                          accept=""oninput="this.setCustomValidity('')" required="require">
+                <div class="form-all">
+                    <div class="form-prehead">
+                        <h4>Profil Matkul</h4>      
+                        <hr>
+                    </div>
+                    
+                    <input type="hidden" class="form-control" name="id" value="<?= $id ?>" readonly>
+
+                    <div class="form-group">
+                        <label>Masukkan Nama Materi (Wajib) :</label>
+                        <input type="text" class="form-control" name="nama" placeholder="e.g : Al-Quran" value="<?= $nama ?>" 
+                                                            oninvalid="this.setCustomValidity('Silahkan Masukkan Nama Materinya')"
+                                                              accept=""oninput="this.setCustomValidity('')" required="require">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Masukkan Semester : </label>
+                        <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?= $semester ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Masukkan Tahun Ajar : </label>
+                        <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020" value="<?= $thn ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Masukkan Kelas : </label>
+                        <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc" value="<?= $kelas ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Masukkan KKM : </label>
+                        <input type="text" class="form-control" name="kkm" placeholder="" value="<?= $kkm ?>">
+                    </div>
+                    
                 </div>
                 
-                <div class="form-group">
-                    <label>Masukkan Semester : </label>
-                    <input type="number" class="form-control" name="semester" placeholder="e.g : 1, 2, 3, etc" value="<?= $semester ?>">
+                <br>
+                
+                <div class="form-all">
+                    <div class="form-prehead">
+                        <h4>Deskripsi Matkul</h4>      
+                        <hr>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Nilai A :</label>
+                        <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."><?= $desca ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Nilai B :</label>
+                        <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."><?= $descb ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Nilai C :</label>
+                        <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."><?= $descc ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Nilai D :</label>
+                        <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."><?= $descd ?></textarea>
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Masukkan Tahun Ajar : </label>
-                    <input type="text" class="form-control" name="thn" placeholder="e.g : 2019/2020" value="<?= $thn ?>">
-                </div>
-                
-                <div class="form-group">
-                    <label>Masukkan Kelas : </label>
-                    <input type="text" class="form-control" name="kelas" placeholder="e.g : A, B, C, etc" value="<?= $kelas ?>">
-                </div>
-                
-                <div class="form-group">
-                    <label>Masukkan KKM : </label>
-                    <input type="text" class="form-control" name="kkm" placeholder="" value="<?= $kkm ?>">
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai A :</label>
-                    <textarea type="text" class="form-control" name="desca" placeholder="e.g : NILAI SANGAT BAGUS . ."><?= $desca ?></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai B :</label>
-                    <textarea type="text" class="form-control" name="descb" placeholder="e.g : NILAI BAGUS . ."><?= $descb ?></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai C :</label>
-                    <textarea type="text" class="form-control" name="descc" placeholder="e.g : NILAI KURANG BAGUS . ."><?= $descc ?></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Deskripsi Nilai D :</label>
-                    <textarea type="text" class="form-control" name="descd" placeholder="e.g : PERLU LATIHAN LAGI . ."><?= $descd ?></textarea>
-                </div>
-                
+                <br>
                 <input type="submit" name="submit" class="btn btn-primary center-block" value="Update / Submit">
-                
+                <br>
             </form>
         </div>
     </body>

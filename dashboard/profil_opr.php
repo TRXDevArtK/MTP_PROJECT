@@ -1,24 +1,7 @@
 <?php
     ob_start();
-    session_start();
     
-    //CEK LOGIN
-    //HAPUS INI KALAU MAU DEBUG DI POSTMAN
-    if(!isset($_SESSION['status']) && !isset($_SESSION['login_id'])){
-        //Kalau status gk ada, balik ke index
-        header("location:../index.php");
-        exit();
-    }
-    else{
-        $now = time();
-
-        if ($now > $_SESSION['expire']) {
-            session_destroy();
-            header("location:../index.php");
-            exit();
-        }
-    }
-    
+    include_once "database.php";
     include_once "../sql_connect.php";
     
     if(isset($_POST['gantiusername'])){
@@ -31,12 +14,12 @@
             $sql_run = mysqli_query($conn,$query);
             
             $_SESSION['warning'] = "Operasi ubah username berhasil";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
         else{
             $_SESSION['danger'] = "Operasi ubah username gagal (nama konfirmasi tidak sama)";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
     }
@@ -52,12 +35,12 @@
             $sql_run = mysqli_query($conn,$query);
             
             $_SESSION['warning'] = "Operasi ubah password berhasil";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
         else{
             $_SESSION['danger'] = "Operasi ubah password gagal (password konfirmasi tidak sama)";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
     }
@@ -72,12 +55,12 @@
             $sql_run = mysqli_query($conn,$query);
             
             $_SESSION['warning'] = "Operasi ubah email berhasil";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
         else{
             $_SESSION['danger'] = "Operasi ubah email gagal (email konfirmasi tidak sama)";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
     }
@@ -97,7 +80,7 @@
         if(mysqli_num_rows($sql_run)==1){
             $state = 1;
             $_SESSION['danger'] = "Operasi tambah user gagal (email sudah terdaftar)";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
         
@@ -142,21 +125,54 @@
             
             if($mail_sent == true){
                 $_SESSION['warning'] = "Operasi tambah user berhasil";
-                header('location:profil.php');
+                header('location:profil');
                 exit();
             }
             else{
                 $_SESSION['danger'] = "Mail tidak terkirim untuk operasi tambah user";
-                header('location:profil.php');
+                header('location:profil');
                 exit();
             }
             
         }
         else{
             $_SESSION['danger'] = "Operasi tambah user gagal (email tidak sama)";
-            header('location:profil.php');
+            header('location:profil');
             exit();
         }
+    }
+    else if(isset($_POST['form_conf'])){
+        $judul = $_POST['judul'];
+        $deskripsi = $_POST['deskripsi'];
+        $link_baru = $_POST['link_baru'];
+        $link_lama = $_POST['link_lama'];
+        $id = 9765;
+        
+        if($link_baru === $link_lama){
+            $_SESSION['danger'] = "Nama link masih sama dengan nama lama";
+            header('location:profil');
+            exit();
+        }
+        else{
+            $renaming = rename("../".$link_lama.".php", "../".$link_baru.".php");
+            if($renaming == true){
+                $query = "UPDATE `form_data` SET `judul` = ?, `deskripsi` = ?, `link` = ?, `id` = ? WHERE `form_data`.`id` = ?";
+                $sql_run = mysqli_prepare($conn2, $query);
+                mysqli_stmt_bind_param($sql_run, "sssii", $judul, $deskripsi, $link_baru, $id, $id);
+                if(mysqli_stmt_execute($sql_run)){
+                    $_SESSION['warning'] = "Berhasil ganti nama link";
+                    header('location:profil');
+                    exit();
+                }
+                else{
+                    $_SESSION['danger'] = "Gagal ganti nama link";
+                    header('location:profil');
+                    exit();
+                }
+            }
+        }
+        
+        
     }
 ?>
 

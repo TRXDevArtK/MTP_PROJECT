@@ -11,6 +11,11 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Server/xampp73/htdocs/MTP_PROJECT/dashboard/kader_data.php</file>
+            <file>file:/C:/Server/xampp73/htdocs/MTP_PROJECT/dashboard/kader_add.php</file>
+            <file>file:/C:/Server/xampp73/htdocs/MTP_PROJECT/dashboard/kader.php</file>
+            <file>file:/C:/Server/xampp73/htdocs/MTP_PROJECT/dashboard/kader_opr.php</file>
+        </group>
     </open-files>
 </project-private>

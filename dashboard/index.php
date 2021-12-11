@@ -1,6 +1,6 @@
 <?php
 
-    //ambil database untuk keperluan manajemen
+    //ambil database.php untuk keperluan manajemen
     include('database.php');
 ?>
 
@@ -14,7 +14,7 @@
         <title></title>
     </head>
     <body style="background: skyblue">
-        <a href="logout.php"><button class="button button1">Logout</button></a>
+        <a href="logout"><button class="button button1">Logout</button></a>
         <!-- PAGESHOW (START) -->
         <div id="pageshow">
             <div class="page-header">
@@ -25,19 +25,19 @@
                 <div class="service service2">
                     <h4>Data Kader</h4>
                     <p>Tempat untuk melihat data dan nilai serta download raportnya</p>
-                    <a href="kader.php" class="cta">Klik Disini</a>
+                    <a href="kader" class="cta">Klik Disini</a>
                 </div>
 
                 <div class="service service2">
                     <h4>Data Materi</h4>
                     <p>Tempat untuk melihat,mengedit materi dan list kadernya</p>
-                    <a href="mtk.php" class="cta">Klik Disini</a>
+                    <a href="mtk" class="cta">Klik Disini</a>
                 </div>
 
                 <div class="service service2">
                     <h4>Data Materi Sikap</h4>
                     <p>Tempat untuk melihat,mengedit materi SIKAP dan list kadernya</p>
-                    <a href="mtk_skp.php" class="cta">Klik Disini<span class="ti-angle-right"></a>
+                    <a href="mtk_skp" class="cta">Klik Disini<span class="ti-angle-right"></a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                 <div class="service service2">
                     <h4>Data DAD</h4>
                     <p>Tempat untuk melihat dan mengedit data pengelolaan DAD</p>
-                    <a href="dad.php" class="cta">Klik Disini</a>
+                    <a href="dad" class="cta">Klik Disini</a>
                 </div>
             </div>
         </div>

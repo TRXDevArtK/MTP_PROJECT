@@ -1,1 +1,0 @@
-<?php echo $_SERVER['HTTP_HOST']."/pass_baru.php?pin=" ?>

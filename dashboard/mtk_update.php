@@ -4,7 +4,7 @@
 
     //CEK LOGIN
     if(!isset($_SESSION['status'])){
-        header("location:../index.php");
+        header("location:../index");
         exit();
     }
 
@@ -45,7 +45,7 @@
             $query = "INSERT INTO `descmtk` (`id`, `A`, `B`, `C`, `D`) VALUES ('$id', '$desca', '$descb', '$descc', '$descd')";
             mysqli_query($conn2, $query);
         }
-        header("location:mtk.php");
+        header("location:mtk");
         exit();
     }  
     

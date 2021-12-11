@@ -12,7 +12,7 @@
         //jika email kosong
         if(empty($email)){
             $warning = 1;
-            //header("location:email_inp.php");
+            //header("location:email_inp");
         }
         //jika email ada
         else{
@@ -74,11 +74,11 @@
                 // FILE EMAILNYA & kirim
                 $to = $email;
                 $subject = "RESET PASSWORD DJAZMAN";
-                $msg = "Hi, untuk reset password kamu, klik link ini ".$_SERVER['HTTP_HOST']."/pass_baru.php?pin=" . $pin ."";
+                $msg = "Hi, untuk reset password kamu, klik link ini ".$_SERVER['HTTP_HOST']."/pass_baru?pin=" . $pin ."";
                 $msg = wordwrap($msg,70);
                 $headers = "From: androrobot1234567890@gmail.com";
                 $mail_sent = mail($to, $subject, $msg, $headers);
-                header('location:pending.php?email=' . $email);
+                header('location:pending?email=' . $email);
                 exit();
             }
         }
@@ -134,7 +134,7 @@
                 <p class="text-center" style="color:red"> Maaf tidak ada user terdaftar dengan email tersebut </p>
                 <br>
                 <?php } ?>
-                <a href="index.php"><div class="btn btn-warning">Kembali</div></a>
+                <a href="index"><div class="btn btn-warning">Kembali</div></a>
                 <h3 class="text-center">Form Lupa Password</h3> 
                 <br>
                 <div class="form-group">

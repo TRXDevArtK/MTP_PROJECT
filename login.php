@@ -32,7 +32,7 @@
 
     //jika username sama dengan database username
     //dan konfirmasi masi password benar, maka tambah session untuk login
-    //dan redirect ke index.php (setelah itu ke dashboard index)
+    //dan redirect ke index (setelah itu ke dashboard index)
     if(($username == $db_username) && $conf_password == true){
         $_SESSION['login_id'] = $id;
         $_SESSION['status'] = "login";
@@ -43,7 +43,7 @@
         else{
             $_SESSION['expire'] = $_SESSION['start'] + (180 * 60);
         }
-        header("location:index.php");
+        header("location:index");
         exit();
         
     }
@@ -52,7 +52,7 @@
     //dan kembali lagi ke page login
     else{
         $_SESSION['loginsalah'] = "Login salah, silahkan coba lagi";  
-        header("location:index.php");
+        header("location:index");
         exit();
     }
     

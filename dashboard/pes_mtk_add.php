@@ -63,12 +63,12 @@
 <script>
 $(document).ready(function(){
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata)
     function fetch_data_mtk()
     {
         //REFRESH PAGE
         $.ajax({
-            url:"pes_mtk_opr.php",
+            url:"pes_mtk_opr",
             method:"POST",
             data:{
                 'nim':'<?=$nim?>',
@@ -141,13 +141,13 @@ $(document).ready(function(){
         
         if($('.check_box:checked').length > 0){
             $.ajax({
-                url:"pes_mtk_opr.php",
+                url:"pes_mtk_opr",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
                 {
                     
-                    var url = "kader_data.php";
+                    var url = "kader_data";
                     $(location).attr('href',url);
                     //fetch_data_mtk();
                 }

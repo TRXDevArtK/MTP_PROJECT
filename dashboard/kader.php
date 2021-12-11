@@ -8,7 +8,7 @@
 
     //rumus untuk pagination
     //set limit, 20 data di list akan tampil
-    $limit = 20;
+    $limit = 1;
     $query = "SELECT COUNT(*) FROM kader";  
     $sql_run = mysqli_query($conn2, $query);  
     $row = mysqli_fetch_row($sql_run);  
@@ -33,7 +33,7 @@
             <h3 align="center">List Kader</h3>
             <br />
             <div class="row" style="margin:0px 0px;">
-                <a href="kader_add.php"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Kader" /></a>
+                <a href="kader_add"><input type="button" class="btn btn-info col-md-2 pull-left" value="Tambah Kader" /></a>
                 <form id="tls_src">
                     <div class="col-md-1 pull-right">
                         <input type="button" id="search" name="search" class="btn btn-warning" value="Cari">
@@ -128,7 +128,7 @@
 $(document).ready(function(){
     
     //ini adalah rumus untuk loading jquery
-    //jika load data dari database maka tampilkan animasi loading
+    //jika load data dari database.php maka tampilkan animasi loading
     //agar orang tahu datanya lagi diload
     $body = $("body");
     
@@ -145,9 +145,13 @@ $(document).ready(function(){
         if(id == null){
             id = 1;
         }
+        
+        var lmt = <?=$limit?>;
+        
+        //alert(id-1 * lmt)
         //jalankan fungsi ajax
         $.ajax({
-            url:"kader_opr.php",
+            url:"kader_opr",
             method:"POST",
             data:{
                 limit:'<?=$limit?>',
@@ -176,7 +180,7 @@ $(document).ready(function(){
                     html += '<td>'+data[count].namafull+'</td>';
                     html += '<td>'+data[count].komsat+'</td>';
                     html += '<td>\n\
-                                <i></i><form action="kader_data.php" method="post" class="pull-left" style="margin-right : 10px">\n\
+                                <i></i><form action="kader_data" method="post" class="pull-left" style="margin-right : 10px">\n\
                                             <input type="hidden" name="nim" value="'+data[count].nim+'" readonly>\n\
                                             <input type="hidden" name="namafull" value="'+data[count].namafull+'" readonly>\n\
                                             <input type="hidden" name="komsat" value="'+data[count].komsat+'" readonly>\n\
@@ -207,6 +211,7 @@ $(document).ready(function(){
     //maka kalkukasikan tombol paginationnya
     $(".page-link").click(function(){
         var id = $(this).attr("data-id");
+        
         if(id >= <?=$total_pages?>)
         {
             id = <?=$total_pages?>;
@@ -265,7 +270,7 @@ $(document).ready(function(){
         var order = $("#order").val();
         if(submit == "YAKIN"){
           $.ajax({
-                url:"kader_opr.php",
+                url:"kader_opr",
                 method:"POST",
                 data : {
                     nim : id,

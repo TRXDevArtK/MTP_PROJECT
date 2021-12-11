@@ -24,7 +24,7 @@ Website: https://www.allphptricks.com
 </thead>
 <tbody>
 <?php
-include('db.php');
+include('db');
 
 if (isset($_GET['page_no']) && $_GET['page_no']!="") {
 		$page_no = $_GET['page_no'];

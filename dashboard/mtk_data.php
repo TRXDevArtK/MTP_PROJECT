@@ -18,7 +18,7 @@
         $idmateri = $_POST['id']."_mtk";
     }
     else{
-        header('Location:mtk.php');
+        header('Location:mtk');
         exit();
     }
     
@@ -62,6 +62,7 @@
         <script src="../js/jquery.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />  
         <link rel="stylesheet" href="../css/loading.css" />  
+        <link rel="stylesheet" href="../css/settings.css" /> 
         <script src="../js/bootstrap.min.js"></script>  
         <title></title>
     </head>
@@ -72,15 +73,33 @@
                 <h3>Data Materi</h3>      
             </div>
             <ul class="list-group">
-                <li class="list-group-item">Materi : <?php echo $nama;?></li>
-                <li class="list-group-item">Semester : <?php echo $semester;?></li>
-                <li class="list-group-item">Tahun Ajaran : <?php echo $thn;?></li>
-                <li class="list-group-item">Kelas : <?php echo $kelas;?></li>
-                <li class="list-group-item">KKM : <?php echo $kkm;?></li>
+                <li class="list-group-item list-group-item-info text-center">Rincian Data Materi</li>
             </ul>
+            <table class="table table-bordered" style="background-color:white !important;">
+                <tr>
+                    <td width="20%">Nama Materi :</td>
+                    <td width="80%"><?php echo $nama ?></td>
+                </tr>
+                <tr>
+                    <td width="20%">Semester :</td>
+                    <td width="80%"><?php echo $semester ?></td>
+                </tr>
+                <tr>
+                    <td width="20%">Tahun :</td>
+                    <td width="80%"><?php echo $thn ?></td>
+                </tr>
+                <tr>
+                    <td width="20%">Kelas :</td>
+                    <td width="80%"><?php echo $kelas ?></td>
+                </tr>
+                <tr>
+                    <td width="20%">KKM : </td>
+                    <td width="80%"><?php echo $kkm ?></td>
+                </tr>
+            </table>
             
             <hr style="color:black">
-            <form action="mtk_pes_add.php" method="post">
+            <form action="mtk_pes_add" method="post">
                 <input type="hidden" name="idmateri" value="<?= $idmateri ?>"/>
                 <input type="hidden" name="mtk" value="<?= $mtk ?>"/>
                 <input type="submit" name="add_pes" id="add" class="hidden"/>
@@ -104,10 +123,10 @@
                             
                             <th width="5%">Pilih</th>
                             <th width="5%">No</th>
-                            <th width="5%">NIM</th>
+                            <th width="10%">NIM</th>
                             <th width="15%">Nama</th>
-                            <th width="5%">Asal Komsat</th>
-                            <th width="30%">Waktu & Tanggal Penilaian</th>
+                            <th width="10%">Asal Komsat</th>
+                            <th width="20%">Waktu & Tanggal Penilaian</th>
                             <th width="10%">Nilai</th>
                         </thead>
                         <tbody id="tbody"></tbody>
@@ -185,7 +204,7 @@ $(document).ready(function(){
         ajaxStop: function() { $body.removeClass("loading"); }    
     });
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata)
     function fetch_data_nilaimtk(id)
     {
         //REFRESH PAGE
@@ -194,9 +213,9 @@ $(document).ready(function(){
             id = 1;
         }
         $.ajax({
-            url:"mtk_data_opr.php",
+            url:"mtk_data_opr",
             method:"POST",
-            /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
+            /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata*/
             data:{
                 'idmateri': '<?=$idmateri?>',
                 'limit':'<?=$limit?>',
@@ -239,13 +258,13 @@ $(document).ready(function(){
         });
     }
     
-    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata.php)
+    //AMBIL DATA NILAI MATA KULIAH DARI DATABASE (loaddata)
     function fetch_data_descmtk()
     {
         $.ajax({
-            url:"mtk_data_opr.php",
+            url:"mtk_data_opr",
             method:"POST",
-            /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata.php*/
+            /* Masukkan data yang diperlukan untuk di loaddatanya di loaddata*/
             data:{
                 'idmateri': '<?=$idmateri?>',
                 'key':'load_dsc',
@@ -339,7 +358,7 @@ $(document).ready(function(){
         }
         $(this).closest('tr').html(html);
         
-        //SET option sesuai dengan database awal
+        //SET option sesuai dengan database.php awal
         $("#options"+$(this).attr('no')).val($(this).attr('nilai'));
     });
     
@@ -356,7 +375,7 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"mtk_data_opr.php",
+                url:"mtk_data_opr",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)
@@ -380,7 +399,7 @@ $(document).ready(function(){
         if($('.check_box:checked').length > 0)
         {
             $.ajax({
-                url:"mtk_data_opr.php",
+                url:"mtk_data_opr",
                 method:"POST",
                 data:$.param(serialize),
                 success:function(data)

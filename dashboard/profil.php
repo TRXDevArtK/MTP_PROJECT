@@ -1,24 +1,7 @@
 <?php
     ob_start();
-    session_start();
     
-    //CEK LOGIN
-    //HAPUS INI KALAU MAU DEBUG DI POSTMAN
-    if(!isset($_SESSION['status']) && !isset($_SESSION['login_id'])){
-        //Kalau status gk ada, balik ke index
-        header("location:../index.php");
-        exit();
-    }
-    else{
-        $now = time();
-
-        if ($now > $_SESSION['expire']) {
-            session_destroy();
-            header("location:../index.php");
-            exit();
-        }
-    }
-    
+    include_once "database.php";
     include_once "../sql_connect.php";
     
     $query = "SELECT username,password,email FROM users where id = '".$_SESSION['login_id']."'";
@@ -38,6 +21,14 @@
     if($admin === 'yes'){
         $adm_state = 1;
     }
+    
+    $query = "SELECT *FROM form_data";
+    $sql_run = mysqli_query($conn2,$query);
+    $row = mysqli_fetch_assoc($sql_run);
+    
+    $judul = $row['judul'];
+    $deskripsi = $row['deskripsi'];
+    $link = $row['link'];
     
 ?>
 
@@ -77,7 +68,7 @@
                     </div>
                     <div id="collapse0" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <form action="profil_opr.php" method="post">
+                            <form action="profil_opr" method="post">
                                 <div class="form-group">
                                     <label>Masukkan Username Baru : </label>
                                     <input type="text" class="form-control" name="username" required="require">
@@ -103,7 +94,7 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <form action="profil_opr.php" method="post">
+                            <form action="profil_opr" method="post">
                                 <div class="form-group">
                                     <label>Masukkan Email Baru : </label>
                                     <input type="text" class="form-control" name="email" required="require">
@@ -129,7 +120,7 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <form action="profil_opr.php" method="post">
+                            <form action="profil_opr" method="post">
                                 <div class="form-group">
                                     <label>Masukkan Password Baru: </label>
                                     <input type="text" class="form-control" name="password" required="require">
@@ -157,7 +148,7 @@
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <p style="color:blue">Kirim akun baru ke email dibawah ini</p>
-                            <form action="profil_opr.php" method="post">
+                            <form action="profil_opr" method="post">
                                 <div class="form-group">
                                     <label>Masukkan Email : </label>
                                     <input type="text" class="form-control" name="email" required="require">
@@ -172,6 +163,46 @@
                                 <p style="color:red">Silahkan nanti di cek email untuk orang yang dikirim, didalamnya sudah ada username dan password yang nanti bisa diubah</p>
                                 
                                 <input type="submit" name="akunbaru" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title list-group-item list-group-item-info">
+                          <a data-toggle="collapse" href="#collapse4"><b>Konfigurasi Form Djazman</b></a>
+                      </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form action="profil_opr" method="post">
+                                <div class="form-group">
+                                    <label>Judul : </label>
+                                    <input type="text" class="form-control" name="judul" value="<?php echo $judul ?>"required="require">
+                                </div>
+                                <div class="form-group">
+                                    <label>Deskripsi : </label>
+                                    <input type="text" class="form-control" name="deskripsi" value="<?php echo $deskripsi ?>" required="require">
+                                </div>
+                                <div class="form-group">
+                                    <label>Link :</label>
+                                    <p> <?php echo $_SERVER['HTTP_HOST']."/".$link; ?> </p>
+                                    <table class="table table-bordered" style="background-color:white !important;">
+                                        <tr>
+                                            <td style="text-align:center; vertical-align: middle">
+                                                /
+                                            </td>
+                                            <td width="95%">
+                                                <input type="text" class="form-control" name="link_baru" value="<?php echo $link ?>" pattern="[A-Za-z_-]*" 
+                                                       oninvalid="this.setCustomValidity('Mohon masukkan link yang benar')" oninput="this.setCustomValidity('')" required="require">
+                                            </td>
+                                            <input type="hidden" class="form-control" name="link_lama" value="<?php echo $link ?>">
+                                        </tr>
+                                    </table>
+                                </div>
+                                <input type="submit" name="form_conf" class="btn btn-primary">
                             </form>
                         </div>
                     </div>

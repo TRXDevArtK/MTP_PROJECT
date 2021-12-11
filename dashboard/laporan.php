@@ -245,7 +245,7 @@
 </head>
 
 <body>
-<table cellspacing="0" border="0" width="100%">
+<table cellspacing="0" border="0" width="100%" style="table-layout:fixed;">
 	<colgroup width="44"></colgroup>
 	<colgroup width="107"></colgroup>
 	<colgroup width="51"></colgroup>
@@ -320,7 +320,7 @@
         <?php for($i=0;$i<count($mtk_skp);$i++){ ?>
 	<tr>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 height="48" align="left" valign=middle><b><font color="#000000"><?php echo ($i+1).".".$mtk_skp[$i]['nama']; ?></font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=7 align="left" valign=middle><font color="#000000"><?php echo $mtk_skp[$i]['desc']; ?></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; word-break: break-all;" colspan=7 align="left" valign=middle><font color="#000000"><?php echo $mtk_skp[$i]['desc']; ?></font></td>
         </tr>
         <?php } ?>
 	<tr>
@@ -356,7 +356,7 @@
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="58" align="center" valign=middle sdval="1" sdnum="1033;"><b><font color="#000000"><?php echo ($i+1); ?></font></b></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><b><font color="#000000"><?php echo $mtk[$i]['nama']; ?></font></b></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><b><font color="#000000"><?php echo $mtk[$i]['nilai']; ?></font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=6 align="center" valign=middle><font color="#000000"><?php echo $mtk[$i]['desc']; ?></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; word-break: break-all;" colspan=6 align="center" valign=middle><font color="#000000"><?php echo $mtk[$i]['desc']; ?></font></td>
         </tr>
         <?php } ?>
 	<tr>
@@ -382,7 +382,7 @@
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 height="33" align="center" valign=middle bgcolor="#CCCCCC"><b><font color="#000000">Deskripsi</font></b></td>
 		</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 height="39" align="center" valign=middle bgcolor="#CCCCCC"><font color="#000000"><?php echo $deskripsi ?></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; word-break: break-all;" colspan=9 height="39" align="center" valign=middle bgcolor="#CCCCCC"><font color="#000000"><?php echo $deskripsi ?></font></td>
 		</tr>
 	<tr>
 		<td height="17" align="left"><font color="#000000"><br></font></td>
@@ -404,7 +404,7 @@
 		<td align="left"><font color="#000000"><br></font></td>
 	</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 height="24" align="center" valign=middle bgcolor="#CCCCCC"><font color="#000000"><?php echo $essai ?></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; word-break: break-all;" colspan=9 height="24" align="center" valign=middle bgcolor="#CCCCCC"><font color="#000000"><?php echo $essai ?></font></td>
 		</tr>
 	<tr>
 		<td height="29" align="left"><font color="#000000"><br></font></td>

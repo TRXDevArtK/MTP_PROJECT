@@ -7,7 +7,7 @@
     
     //cek status apabila login atau belum
     if(isset($_SESSION['status'])){
-        header("location:dashboard/index.php");
+        header("location:dashboard/index");
         exit();
     }
 ?>
@@ -53,7 +53,7 @@
     <body style="background:skyblue">
         
         <div class="login-form">
-            <form action="login.php" method="post">
+            <form action="login" method="post">
                 <?php if(isset($_SESSION['loginsalah'])){ ?>
                     <p style="color:red" class="text-center"> Notifikasi : <?= $_SESSION['loginsalah']; ?></p>
                 <?php unset($_SESSION['loginsalah']); } 
@@ -73,7 +73,7 @@
                 </div>
                 <div class="clearfix">
                     <label class="pull-left checkbox-inline"><input type="checkbox" name="save"> Ingat Saya 24 Jam</label>
-                    <a href="lupa_pass.php" class="pull-right">Lupa Password ?</a>
+                    <a href="lupa_pass" class="pull-right">Lupa Password ?</a>
                 </div>        
             </form>
         </div>
